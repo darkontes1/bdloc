@@ -52,7 +52,7 @@ class Author
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateDeces", type="datetime")
+     * @ORM\Column(name="dateDeces", type="datetime", nullable=true)
      */
     private $dateDeces;
 
