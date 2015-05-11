@@ -1,0 +1,26 @@
+Générer getters and setters:
+php app/console doctrine:generate:entities AppBundle
+
+Créer une table, avec son entité:
+php app/console doctrine:generate:entity AppBundle:NomDeLaTable
+
+Créer une table, avec son formulaire:
+php app/console doctrine:generate:form AppBundle:NomDeLaTable
+
+Modifier Entité dans la base:
+php app/console doctrine:schema:update --force
+
+réinstaller composer:
+composer update
+
+installer vendor:
+composer install
+
+créer projet symfony(Se mettre à la racine de l'endroit où on veut créer le projet):
+php composer create-project symfony/framework-standard-edition Symfony 2.3.0
+
+Effacer le cache Symfony:
+php app/console cache:clear
+
+
+
