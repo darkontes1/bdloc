@@ -8,10 +8,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/app/example", name="homepage")
+     * @Route("/", name="home")
      */
     public function homeAction()
     {
         return $this->render('default/index.html.twig');
+    }
+
+    /**
+     * @Route("/connect", name="connect")
+     */
+    public function connectAction()
+    {
+        return $this->render('default/connect.html.twig');
     }
 }
