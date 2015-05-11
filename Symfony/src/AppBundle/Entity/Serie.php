@@ -76,6 +76,11 @@ class Serie
    */
     private $books;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category", inversedBy="series")
+     */
+    private $category;
+
 
     /**
      * Get id
@@ -286,5 +291,28 @@ class Serie
     public function getBooks()
     {
         return $this->books;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \AppBundle\Entity\Category $category
+     * @return Serie
+     */
+    public function setCategory(\AppBundle\Entity\Category $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \AppBundle\Entity\Category 
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 }

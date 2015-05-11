@@ -37,6 +37,12 @@ class Commande
 
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="commands")
+     */
+    private $user;
+
+
+    /**
      * Get id
      *
      * @return integer 

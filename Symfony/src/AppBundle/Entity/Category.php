@@ -28,6 +28,12 @@ class Category
      */
     private $nom;
 
+    /**
+   * @ORM\OneToMany(targetEntity="Serie", mappedBy="Category")
+   * @ORM\JoinColumn(nullable=false)
+   */
+    private $series;
+
 
     /**
      * Get id
@@ -60,5 +66,45 @@ class Category
     public function getNom()
     {
         return $this->nom;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->series = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add series
+     *
+     * @param \AppBundle\Entity\Serie $series
+     * @return Category
+     */
+    public function addSeries(\AppBundle\Entity\Serie $series)
+    {
+        $this->series[] = $series;
+
+        return $this;
+    }
+
+    /**
+     * Remove series
+     *
+     * @param \AppBundle\Entity\Serie $series
+     */
+    public function removeSeries(\AppBundle\Entity\Serie $series)
+    {
+        $this->series->removeElement($series);
+    }
+
+    /**
+     * Get series
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSeries()
+    {
+        return $this->series;
     }
 }

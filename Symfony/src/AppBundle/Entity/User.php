@@ -91,6 +91,12 @@ class User
      */
     private $raisons;
 
+    /**
+   * @ORM\OneToMany(targetEntity="Commande", mappedBy="Commande")
+   * @ORM\JoinColumn(nullable=false)
+   */
+    private $commands;
+
 
     /**
      * Get id
@@ -330,5 +336,45 @@ class User
     public function getRaisons()
     {
         return $this->raisons;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->commands = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add commands
+     *
+     * @param \AppBundle\Entity\Commande $commands
+     * @return User
+     */
+    public function addCommand(\AppBundle\Entity\Commande $commands)
+    {
+        $this->commands[] = $commands;
+
+        return $this;
+    }
+
+    /**
+     * Remove commands
+     *
+     * @param \AppBundle\Entity\Commande $commands
+     */
+    public function removeCommand(\AppBundle\Entity\Commande $commands)
+    {
+        $this->commands->removeElement($commands);
+    }
+
+    /**
+     * Get commands
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCommands()
+    {
+        return $this->commands;
     }
 }

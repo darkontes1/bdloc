@@ -37,6 +37,12 @@ class Commande
 
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="commands")
+     */
+    private $user;
+
+
+    /**
      * Get id
      *
      * @return integer 
@@ -90,5 +96,28 @@ class Commande
     public function getNbBD()
     {
         return $this->nbBD;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     * @return Commande
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
