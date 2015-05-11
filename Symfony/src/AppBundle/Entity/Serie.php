@@ -70,6 +70,12 @@ class Serie
      */
     private $langue;
 
+    /**
+   * @ORM\OneToMany(targetEntity="Book", mappedBy="Serie")
+   * @ORM\JoinColumn(nullable=false)
+   */
+    private $books;
+
 
     /**
      * Get id
@@ -240,5 +246,45 @@ class Serie
     public function getLangue()
     {
         return $this->langue;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->books = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add books
+     *
+     * @param \AppBundle\Entity\Book $books
+     * @return Serie
+     */
+    public function addBook(\AppBundle\Entity\Book $books)
+    {
+        $this->books[] = $books;
+
+        return $this;
+    }
+
+    /**
+     * Remove books
+     *
+     * @param \AppBundle\Entity\Book $books
+     */
+    public function removeBook(\AppBundle\Entity\Book $books)
+    {
+        $this->books->removeElement($books);
+    }
+
+    /**
+     * Get books
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getBooks()
+    {
+        return $this->books;
     }
 }

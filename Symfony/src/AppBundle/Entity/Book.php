@@ -107,6 +107,13 @@ class Book
      */
     private $scenariste;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Serie", inversedBy="books")
+     */
+    private $serie;
+
+
+
 
     /**
      * Get id
@@ -416,5 +423,28 @@ class Book
     public function getScenariste()
     {
         return $this->scenariste;
+    }
+
+    /**
+     * Set serie
+     *
+     * @param \AppBundle\Entity\Serie $serie
+     * @return Book
+     */
+    public function setSerie(\AppBundle\Entity\Serie $serie = null)
+    {
+        $this->serie = $serie;
+
+        return $this;
+    }
+
+    /**
+     * Get serie
+     *
+     * @return \AppBundle\Entity\Serie 
+     */
+    public function getSerie()
+    {
+        return $this->serie;
     }
 }

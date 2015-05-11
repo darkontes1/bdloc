@@ -70,6 +70,12 @@ class Serie
      */
     private $langue;
 
+    /**
+   * @ORM\OneToMany(targetEntity="Book", mappedBy="Serie")
+   * @ORM\JoinColumn(nullable=false)
+   */
+    private $books;
+
 
     /**
      * Get id
