@@ -9,6 +9,9 @@ security:
             logout:
                 path:   logout
                 target: home
+        dev:
+            pattern: ^/(_(profiler|wdt|error)|css|images|js)/
+            security: false
 
     providers:
         main:
@@ -23,7 +26,6 @@ security:
 
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
-        - { $ath: ^/utilisateur, roles: ROLE_USER }
 
     role_hierarchy:
         ROLE_ADMIN: ROLE_USER
