@@ -42,6 +42,10 @@ class UserController extends Controller
             //dump($user);
             return $this->redirectToRoute('login');
         }
+
+        if ($this->getUser()) {
+            return $this->redirectToRoute('catalogue');
+        }
         $params = array(
             "createUserForm" => $createUserForm->createView()
         );
