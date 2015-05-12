@@ -9,9 +9,6 @@ security:
             logout:
                 path:   logout
                 target: home
-        dev:
-            pattern: ^/(_(profiler|wdt|error)|css|images|js)/
-            security: false
 
     providers:
         main:
