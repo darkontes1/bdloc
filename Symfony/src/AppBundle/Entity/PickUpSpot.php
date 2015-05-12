@@ -42,6 +42,12 @@ class PickUpSpot
      */
     private $nomEntreprise;
 
+    /**
+   * @ORM\OneToMany(targetEntity="Commande", mappedBy="pickupspot")
+   * @ORM\JoinColumn(nullable=false)
+   */
+  private $orders;
+
 
     /**
      * Get id

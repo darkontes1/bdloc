@@ -79,7 +79,7 @@ class Author
 
 
     /**
-   * @ORM\OneToMany(targetEntity="Book", mappedBy="Author")
+   * @ORM\OneToMany(targetEntity="Book", mappedBy="author")
    * @ORM\JoinColumn(nullable=false)
    */
   private $books;

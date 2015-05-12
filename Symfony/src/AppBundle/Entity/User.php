@@ -92,10 +92,22 @@ class User
     private $raisons;
 
     /**
-   * @ORM\OneToMany(targetEntity="Commande", mappedBy="Commande")
+   * @ORM\OneToMany(targetEntity="Commande", mappedBy="user")
    * @ORM\JoinColumn(nullable=false)
    */
     private $commands;
+
+    /**
+   * @ORM\OneToMany(targetEntity="Fine", mappedBy="user")
+   * @ORM\JoinColumn(nullable=false)
+   */
+    private $fines;
+
+    /**
+   * @ORM\OneToMany(targetEntity="Adress", mappedBy="user")
+   * @ORM\JoinColumn(nullable=false)
+   */
+  private $adresses;
 
 
     /**

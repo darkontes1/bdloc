@@ -42,6 +42,11 @@ class Adress
      */
     private $ville;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="adresses")
+     */
+    private $user;
+
 
     /**
      * Get id

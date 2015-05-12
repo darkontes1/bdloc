@@ -71,7 +71,7 @@ class Serie
     private $langue;
 
     /**
-   * @ORM\OneToMany(targetEntity="Book", mappedBy="Serie")
+   * @ORM\OneToMany(targetEntity="Book", mappedBy="serie")
    * @ORM\JoinColumn(nullable=false)
    */
     private $books;

@@ -41,6 +41,11 @@ class Commande
      */
     private $user;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\PickUpSpot", inversedBy="orders")
+     */
+    private $pickupspot;
+
 
     /**
      * Get id
