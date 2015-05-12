@@ -21,7 +21,7 @@
 
                 <div id="log">
                 {% if app.user and is_granted("ROLE_USER") or is_granted("ROLE_ADMIN") %}
-                    Bonjour <b>{{ app.user.username }}</b> !!<br/>
+                    Bonjour {{ app.user.username }} !!<br/>
                 {% endif %}
 
                 {% if app.user and is_granted("ROLE_USER") or is_granted("ROLE_ADMIN") %}          
