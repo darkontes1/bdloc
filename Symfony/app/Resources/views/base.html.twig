@@ -15,17 +15,22 @@
     <body>
         <div id="container">
             <header>
-                <h1><a href=" {{ path('home') }} ">BdLoc</a></h1>
+                <h1 id="h1"><a href=" {{ path('home') }} ">BdLoc</a></h1>
+
                 {% block header %}{% endblock %}
+
+                <div id="log">
                 {% if app.user and is_granted("ROLE_USER") or is_granted("ROLE_ADMIN") %}
-                    Bonjour {{ app.user.username }} !!<br/>
+                    Bonjour <b>{{ app.user.username }}</b> !!<br/>
                 {% endif %}
+
                 {% if app.user and is_granted("ROLE_USER") or is_granted("ROLE_ADMIN") %}          
                     <a href="{{ path('logout') }}">Deconnexion</a>
                 {% endif %}
+                </div>
                 
                 <HR>
-            <header>
+            </header>
             <section>
                 {% block body %}{% endblock %}
             </section>

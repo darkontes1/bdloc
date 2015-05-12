@@ -7,6 +7,19 @@ body{
     background: url("../images/bk.jpg");
 }
 
+header{
+    margin-bottom: 90px;
+}
+
+#h1{
+    float: left;
+}
+
+#log{
+    float: right;
+    margin-top: 15px;
+}
+
 #connect{
     margin-left: 47%;
     font-size: 12px;
@@ -112,3 +125,4 @@ body{
     transform: rotate(1080deg);
     border-radius: 50%;
 }
+
