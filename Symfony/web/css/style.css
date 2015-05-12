@@ -50,8 +50,8 @@ body{
     margin-left: 160px;
     margin-top: 130px;
     border: 20px solid black;
-    /*border-radius: 30px;*/
-    transition: all 2s; /* transition when the mouse over */
+    border-radius: 30px;
+    transition: all 1s; /* transition when the mouse over */
 }
 
 #slider1:hover {
@@ -75,7 +75,7 @@ body{
     margin-top: 130px;
     border: 20px solid black;
     border-radius: 30px;
-    transition: all 2s; /* transition when the mouse over */
+    transition: all 1s; /* transition when the mouse over */
 }
 
 #slider2:hover {
@@ -99,7 +99,7 @@ body{
     margin-top: 130px;
     border: 20px solid black;
     border-radius: 30px;
-    transition: all 2s; /* transition when the mouse over */
+    transition: all 1s; /* transition when the mouse over */
 }
 
 #slider3:hover {
