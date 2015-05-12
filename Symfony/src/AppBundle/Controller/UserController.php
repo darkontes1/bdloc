@@ -13,7 +13,7 @@ use AppBundle\Form\UserType;
 class UserController extends Controller
 {
     /**
-     * @Route("/utilisateur/enregistrement", name="register_user")
+     * @Route("/enregistrement", name="register_user")
      */
     public function registerUserAction(Request $request)
     {
