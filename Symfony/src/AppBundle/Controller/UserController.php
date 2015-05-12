@@ -26,6 +26,8 @@ class UserController extends Controller
             $token = bin2hex( $generator->nextBytes(50) );
             $user->setSalt($salt);
             $user->setToken($token);
+            $user->setStatus(true);
+            //$user->setRaisons("");
             $user->setDateCreated( new \DateTime() );
             $user->setDateModified( new \DateTime() );
             $user->setDateLastLogin( new \DateTime() );
@@ -37,7 +39,8 @@ class UserController extends Controller
             $em = $this->get("doctrine")->getManager();
             $em->persist($user);
             $em->flush();
-            dump($user);
+            //dump($user);
+            return $this->redirectToRoute('connect');
         }
         $params = array(
             "createUserForm" => $createUserForm->createView()
