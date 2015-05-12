@@ -1,12 +1,28 @@
 security:
-    providers:
-        in_memory:
-            memory: ~
-
     firewalls:
-        dev:
-            pattern: ^/(_(profiler|wdt|error)|css|images|js)/
-            security: false
-
-        default:
+        main:
+            pattern: ^/
             anonymous: ~
+            form_login:
+                login_path: login
+                check_path: login_check
+            logout:
+                path:   logout
+                target: home
+
+    providers:
+        main:
+            entity:
+                class: AppBundle\Entity\User
+                property: pseudo
+
+    encoders:
+        AppBundle\Entity\User:
+            algorithm: sha512
+            iterations: 5000
+
+    access_control:
+        - { path: ^/admin, roles: ROLE_ADMIN }
+
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER
