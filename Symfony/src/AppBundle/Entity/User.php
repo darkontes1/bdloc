@@ -69,6 +69,14 @@ class User implements UserInterface
     private $salt;
 
     /**
+     * @var array
+     *
+     * @ORM\Column(name="roles", type="array")
+     */
+    private $roles;
+
+
+    /**
      * @var string
      *
      * @ORM\Column(name="token", type="string", length=255)
@@ -522,5 +530,26 @@ class User implements UserInterface
     }
     public function eraseCredentials(){}
 
-    public function getRoles(){}
+    /**
+     * Get roles
+     *
+     * @return array 
+     */
+    public function getRoles()
+    {
+        return $this->roles;
+    }
+
+    /**
+     * Set roles
+     *
+     * @param array $roles
+     * @return User
+     */
+    public function setRoles($roles)
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
 }
