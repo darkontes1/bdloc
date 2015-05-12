@@ -12,7 +12,7 @@
     <body>
         <div class="container">
             <header>
-                <h1>BdLoc</h1>
+                <h1><a href=" {{ path('home') }} ">BdLoc</a></h1>
                 {% block header %}{% endblock %}
                 <HR>
             <header>
@@ -22,9 +22,12 @@
             <footer>
                 {% block footer %}
                     <p>
-                        &copy; Copyright 2015;
+                        &copy; Copyright 2015;<br/>
                         Anthony PECRIAUX, Sofiane BERRABAH, Amadou DABITAO
                     </p>
+                    <div>
+                        <a href=" {{ path('rules') }} ">Reglement</a>
+                    </div>
                 {% endblock %}
             </footer>
         {% block javascripts %}{% endblock %}

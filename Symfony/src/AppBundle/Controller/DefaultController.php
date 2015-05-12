@@ -22,4 +22,12 @@ class DefaultController extends Controller
     {
         return $this->render('default/connect.html.twig');
     }
+
+    /**
+     * @Route("/reglement", name="rules")
+     */
+    public function rulesAction()
+    {
+        return $this->render('default/rules.html.twig');
+    }
 }
