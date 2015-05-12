@@ -40,7 +40,7 @@ class UserController extends Controller
             $em->persist($user);
             $em->flush();
             //dump($user);
-            return $this->redirectToRoute('connect');
+            return $this->redirectToRoute('login');
         }
         $params = array(
             "createUserForm" => $createUserForm->createView()
