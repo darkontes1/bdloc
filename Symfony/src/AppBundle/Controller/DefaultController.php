@@ -16,7 +16,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/connect", name="connect")
+     * @Route("/connection", name="connect")
      */
     public function connectAction()
     {
@@ -29,5 +29,13 @@ class DefaultController extends Controller
     public function rulesAction()
     {
         return $this->render('default/rules.html.twig');
+    }
+
+    /**
+     * @Route("/abonnement", name="subscribe")
+     */
+    public function subscribeAction()
+    {
+        return $this->render('default/subscribe.html.twig');
     }
 }
