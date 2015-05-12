@@ -17,12 +17,13 @@
             <header>
                 <h1><a href=" {{ path('home') }} ">BdLoc</a></h1>
                 {% block header %}{% endblock %}
-                {% if app.user and is_granted("ROLE_USER") or is_granted("ROLE_ADMIN") %}          
-                    <a href="{{ path('logout') }}">Deconnexion</a>
-                {% endif %}
                 {% if app.user and is_granted("ROLE_USER") or is_granted("ROLE_ADMIN") %}
                     Bonjour {{ app.user.username }} !!
                 {% endif %}
+                {% if app.user and is_granted("ROLE_USER") or is_granted("ROLE_ADMIN") %}          
+                    <a href="{{ path('logout') }}">Deconnexion</a>
+                {% endif %}
+                
                 <HR>
             <header>
             <section>
