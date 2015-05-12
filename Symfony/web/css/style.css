@@ -1,16 +1,114 @@
 #container{
-    width: 960px;
+    width: 1200px;
     margin: 0px auto;
 }
+
+body{
+    background: url("../images/bk.jpg");
+}
+
 #connect{
-    margin-left: 46%;
+    margin-left: 47%;
     font-size: 12px;
 }
 
 #intro{
-    font-size: 25px;
+    font-size: 20px;
 }
 
 #abonner{
-    margin-top: 80px;
+    margin-top: 30px;
+}
+
+#reglement{
+    font-size: 20px;
+}
+
+#fond-slider{
+    width: 1000px;
+    margin: 0px auto;
+    height: 350px;
+    background: rgba(36,68,92,0.5);
+    border-radius: 10px;
+}
+
+#support1{
+    
+    margin:3em;
+    
+    background: red;
+}
+
+
+
+#slider1{
+    width: 90px; 
+    height: 90px;
+    display: block;
+    background: green;
+    position: absolute;
+    margin-left: 160px;
+    margin-top: 130px;
+    border: 20px solid black;
+    border-radius: 30px;
+    transition: all 2s; /* transition when the mouse over */
+}
+
+#slider1:hover {
+    width: 180px;
+    height: 180px;
+    border-color: #333;
+    background: url("../images/hulk.jpg");
+    margin-left: 115px;
+    margin-top: 85px;
+    transform: rotate(1080deg);
+    border-radius: 50%;
+}
+
+#slider2{
+    width: 90px; 
+    height: 90px;
+    display: block;
+    background: rgb(36,68,92);
+    position: absolute;
+    margin-left: 430px;
+    margin-top: 130px;
+    border: 20px solid black;
+    border-radius: 30px;
+    transition: all 2s; /* transition when the mouse over */
+}
+
+#slider2:hover {
+    width: 180px;
+    height: 180px;
+    border-color: #333;
+    background: url("../images/haddock.jpg");
+    margin-left: 385px;
+    margin-top: 85px;
+    transform: rotate(1080deg);
+    border-radius: 50%;
+}
+
+#slider3{
+    width: 90px; 
+    height: 90px;
+    display: block;
+    background: yellow;
+    position: absolute;
+    margin-left: 700px;
+    margin-top: 130px;
+    border: 20px solid black;
+    border-radius: 30px;
+    transition: all 2s; /* transition when the mouse over */
+}
+
+#slider3:hover {
+    width: 180px;
+    height: 180px;
+    border-color: #333;
+    background: url("../images/simpson.jpg");
+    margin-left: 655px;
+    margin-top: 85px;
+    transform: rotate(1080deg);
+    border-radius: 50%;
 }
