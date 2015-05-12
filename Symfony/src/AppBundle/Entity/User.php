@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
@@ -10,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Entity\UserRepository")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @var integer
@@ -83,6 +85,20 @@ class User
      * @ORM\Column(name="dateCreated", type="datetime")
      */
     private $dateCreated;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateModified", type="datetime")
+     */
+    private $dateModified;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateLastLogin", type="datetime")
+     */
+    private $dateLastLogin;
 
     /**
      * @var string
@@ -454,5 +470,51 @@ class User
     public function getAdresses()
     {
         return $this->adresses;
+    }
+
+    /**
+     * Set dateModified
+     *
+     * @param \DateTime $dateModified
+     * @return User
+     */
+    public function setDateModified($dateModified)
+    {
+        $this->dateModified = $dateModified;
+
+        return $this;
+    }
+
+    /**
+     * Get dateModified
+     *
+     * @return \DateTime 
+     */
+    public function getDateModified()
+    {
+        return $this->dateModified;
+    }
+
+    /**
+     * Set dateLastLogin
+     *
+     * @param \DateTime $dateLastLogin
+     * @return User
+     */
+    public function setDateLastLogin($dateLastLogin)
+    {
+        $this->dateLastLogin = $dateLastLogin;
+
+        return $this;
+    }
+
+    /**
+     * Get dateLastLogin
+     *
+     * @return \DateTime 
+     */
+    public function getDateLastLogin()
+    {
+        return $this->dateLastLogin;
     }
 }

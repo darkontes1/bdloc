@@ -127,4 +127,44 @@ class PickUpSpot
     {
         return $this->nomEntreprise;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->orders = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add orders
+     *
+     * @param \AppBundle\Entity\Commande $orders
+     * @return PickUpSpot
+     */
+    public function addOrder(\AppBundle\Entity\Commande $orders)
+    {
+        $this->orders[] = $orders;
+
+        return $this;
+    }
+
+    /**
+     * Remove orders
+     *
+     * @param \AppBundle\Entity\Commande $orders
+     */
+    public function removeOrder(\AppBundle\Entity\Commande $orders)
+    {
+        $this->orders->removeElement($orders);
+    }
+
+    /**
+     * Get orders
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getOrders()
+    {
+        return $this->orders;
+    }
 }

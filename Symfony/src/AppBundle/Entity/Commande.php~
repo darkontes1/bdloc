@@ -125,4 +125,27 @@ class Commande
     {
         return $this->user;
     }
+
+    /**
+     * Set pickupspot
+     *
+     * @param \AppBundle\Entity\PickUpSpot $pickupspot
+     * @return Commande
+     */
+    public function setPickupspot(\AppBundle\Entity\PickUpSpot $pickupspot = null)
+    {
+        $this->pickupspot = $pickupspot;
+
+        return $this;
+    }
+
+    /**
+     * Get pickupspot
+     *
+     * @return \AppBundle\Entity\PickUpSpot 
+     */
+    public function getPickupspot()
+    {
+        return $this->pickupspot;
+    }
 }

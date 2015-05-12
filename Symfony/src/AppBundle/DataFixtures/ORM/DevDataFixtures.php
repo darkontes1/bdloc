@@ -68,11 +68,13 @@ class DevDatafixtures extends ContainerAware implements FixtureInterface
 
                 $userAdmin->setPassword("test");
 
-                $userAdmin->setRaison("test");
+                $userAdmin->setRaisons("test");
 
 
 
                 $userAdmin->setDateCreated(new \DateTime());
+                $userAdmin->setDateModified(new \DateTime());
+                $userAdmin->setDateLastLogin(new \DateTime());
 
             $this->em->persist($userAdmin);
 
