@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * RelBookOrder
@@ -12,14 +13,13 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class RelBookOrder
 {
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
+
+     /** @ORM\Id @ORM\ManyToOne(targetEntity="Commande") */
+    private $order;
+
+    /** @ORM\Id @ORM\ManyToOne(targetEntity="Book") */
+    private $book;
+
 
     /**
      * @var boolean
@@ -35,16 +35,6 @@ class RelBookOrder
      */
     private $dateOrder;
 
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set status

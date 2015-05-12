@@ -87,7 +87,7 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="raisons", type="string", length=255)
+     * @ORM\Column(name="raisons", type="string", length=255, nullable=true)
      */
     private $raisons;
 
@@ -388,5 +388,71 @@ class User
     public function getCommands()
     {
         return $this->commands;
+    }
+
+    /**
+     * Add fines
+     *
+     * @param \AppBundle\Entity\Fine $fines
+     * @return User
+     */
+    public function addFine(\AppBundle\Entity\Fine $fines)
+    {
+        $this->fines[] = $fines;
+
+        return $this;
+    }
+
+    /**
+     * Remove fines
+     *
+     * @param \AppBundle\Entity\Fine $fines
+     */
+    public function removeFine(\AppBundle\Entity\Fine $fines)
+    {
+        $this->fines->removeElement($fines);
+    }
+
+    /**
+     * Get fines
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFines()
+    {
+        return $this->fines;
+    }
+
+    /**
+     * Add adresses
+     *
+     * @param \AppBundle\Entity\Adress $adresses
+     * @return User
+     */
+    public function addAdress(\AppBundle\Entity\Adress $adresses)
+    {
+        $this->adresses[] = $adresses;
+
+        return $this;
+    }
+
+    /**
+     * Remove adresses
+     *
+     * @param \AppBundle\Entity\Adress $adresses
+     */
+    public function removeAdress(\AppBundle\Entity\Adress $adresses)
+    {
+        $this->adresses->removeElement($adresses);
+    }
+
+    /**
+     * Get adresses
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAdresses()
+    {
+        return $this->adresses;
     }
 }

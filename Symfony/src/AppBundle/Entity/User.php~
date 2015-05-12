@@ -87,15 +87,27 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="raisons", type="string", length=255)
+     * @ORM\Column(name="raisons", type="string", length=255,nullable=true)
      */
     private $raisons;
 
     /**
-   * @ORM\OneToMany(targetEntity="Commande", mappedBy="Commande")
+   * @ORM\OneToMany(targetEntity="Commande", mappedBy="user")
    * @ORM\JoinColumn(nullable=false)
    */
     private $commands;
+
+    /**
+   * @ORM\OneToMany(targetEntity="Fine", mappedBy="user")
+   * @ORM\JoinColumn(nullable=false)
+   */
+    private $fines;
+
+    /**
+   * @ORM\OneToMany(targetEntity="Adress", mappedBy="user")
+   * @ORM\JoinColumn(nullable=false)
+   */
+  private $adresses;
 
 
     /**

@@ -35,6 +35,11 @@ class Fine
      */
     private $montant;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="commands")
+     */
+    private $user;
+
 
     /**
      * Get id
