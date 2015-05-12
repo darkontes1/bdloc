@@ -1,7 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <p>La Marie de Paris a décidé de créer un nouveau système de location de BD, 100% en ligne, 100% gratuit, 100% moderne.</p>
-    <a href=" {{ path('subscribe') }} ">S'abonner</a><br/>
-    <a href=" {{ path('connect') }} ">Se connecter</a>
+
+    <p id="intro">La Marie de Paris a décidé de créer un nouveau système de location de BD, 100% en ligne, 100% gratuit, 100% moderne !</p>
+
+    <a id="abonner" href=" {{ path('subscribe') }} " class="btn btn-primary btn-lg btn-block">S'abonner</a><br/>
+
+    <a id="connect" href=" {{ path('connect') }} ">Se connecter</a>
+
 {% endblock %}
