@@ -8,16 +8,18 @@ body{
 }
 
 header{
-    margin-bottom: 90px;
+    margin-bottom: 80px;
 }
 
+
 #h1{
-    float: left;
+    width: 110px;
+    font-size: 28px;
+    position: absolute;
 }
 
 #log{
     float: right;
-    margin-top: 15px;
 }
 
 #connect{
