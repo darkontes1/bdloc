@@ -36,7 +36,7 @@ class Fine
     private $montant;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="commands")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="fines")
      */
     private $user;
 
