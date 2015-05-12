@@ -3,14 +3,19 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * User
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Entity\UserRepository")
+ * @UniqueEntity("email")
+ * @UniqueEntity("username")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @var integer
@@ -45,9 +50,9 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="pseudo", type="string", length=255)
+     * @ORM\Column(name="username", type="string", length=255)
      */
-    private $pseudo;
+    private $username;
 
     /**
      * @var string
@@ -85,9 +90,23 @@ class User
     private $dateCreated;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateModified", type="datetime")
+     */
+    private $dateModified;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateLastLogin", type="datetime")
+     */
+    private $dateLastLogin;
+
+    /**
      * @var string
      *
-     * @ORM\Column(name="raisons", type="string", length=255)
+     * @ORM\Column(name="raisons", type="string", length=255, nullable=true)
      */
     private $raisons;
 
@@ -190,26 +209,26 @@ class User
     }
 
     /**
-     * Set pseudo
+     * Set username
      *
-     * @param string $pseudo
+     * @param string $username
      * @return User
      */
-    public function setPseudo($pseudo)
+    public function setUsername($username)
     {
-        $this->pseudo = $pseudo;
+        $this->username = $username;
 
         return $this;
     }
 
     /**
-     * Get pseudo
+     * Get username
      *
      * @return string 
      */
-    public function getPseudo()
+    public function getUsername()
     {
-        return $this->pseudo;
+        return $this->username;
     }
 
     /**
@@ -389,4 +408,119 @@ class User
     {
         return $this->commands;
     }
+
+    /**
+     * Add fines
+     *
+     * @param \AppBundle\Entity\Fine $fines
+     * @return User
+     */
+    public function addFine(\AppBundle\Entity\Fine $fines)
+    {
+        $this->fines[] = $fines;
+
+        return $this;
+    }
+
+    /**
+     * Remove fines
+     *
+     * @param \AppBundle\Entity\Fine $fines
+     */
+    public function removeFine(\AppBundle\Entity\Fine $fines)
+    {
+        $this->fines->removeElement($fines);
+    }
+
+    /**
+     * Get fines
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFines()
+    {
+        return $this->fines;
+    }
+
+    /**
+     * Add adresses
+     *
+     * @param \AppBundle\Entity\Adress $adresses
+     * @return User
+     */
+    public function addAdress(\AppBundle\Entity\Adress $adresses)
+    {
+        $this->adresses[] = $adresses;
+
+        return $this;
+    }
+
+    /**
+     * Remove adresses
+     *
+     * @param \AppBundle\Entity\Adress $adresses
+     */
+    public function removeAdress(\AppBundle\Entity\Adress $adresses)
+    {
+        $this->adresses->removeElement($adresses);
+    }
+
+    /**
+     * Get adresses
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAdresses()
+    {
+        return $this->adresses;
+    }
+
+    /**
+     * Set dateModified
+     *
+     * @param \DateTime $dateModified
+     * @return User
+     */
+    public function setDateModified($dateModified)
+    {
+        $this->dateModified = $dateModified;
+
+        return $this;
+    }
+
+    /**
+     * Get dateModified
+     *
+     * @return \DateTime 
+     */
+    public function getDateModified()
+    {
+        return $this->dateModified;
+    }
+
+    /**
+     * Set dateLastLogin
+     *
+     * @param \DateTime $dateLastLogin
+     * @return User
+     */
+    public function setDateLastLogin($dateLastLogin)
+    {
+        $this->dateLastLogin = $dateLastLogin;
+
+        return $this;
+    }
+
+    /**
+     * Get dateLastLogin
+     *
+     * @return \DateTime 
+     */
+    public function getDateLastLogin()
+    {
+        return $this->dateLastLogin;
+    }
+    public function eraseCredentials(){}
+
+    public function getRoles(){}
 }

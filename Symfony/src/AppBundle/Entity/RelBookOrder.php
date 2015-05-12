@@ -81,4 +81,50 @@ class RelBookOrder
     {
         return $this->dateOrder;
     }
+
+    /**
+     * Set order
+     *
+     * @param \AppBundle\Entity\Commande $order
+     * @return RelBookOrder
+     */
+    public function setOrder(\AppBundle\Entity\Commande $order)
+    {
+        $this->order = $order;
+
+        return $this;
+    }
+
+    /**
+     * Get order
+     *
+     * @return \AppBundle\Entity\Commande 
+     */
+    public function getOrder()
+    {
+        return $this->order;
+    }
+
+    /**
+     * Set book
+     *
+     * @param \AppBundle\Entity\Book $book
+     * @return RelBookOrder
+     */
+    public function setBook(\AppBundle\Entity\Book $book)
+    {
+        $this->book = $book;
+
+        return $this;
+    }
+
+    /**
+     * Get book
+     *
+     * @return \AppBundle\Entity\Book 
+     */
+    public function getBook()
+    {
+        return $this->book;
+    }
 }

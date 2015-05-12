@@ -42,6 +42,12 @@ class PickUpSpot
      */
     private $nomEntreprise;
 
+    /**
+   * @ORM\OneToMany(targetEntity="Commande", mappedBy="pickupspot")
+   * @ORM\JoinColumn(nullable=false)
+   */
+  private $orders;
+
 
     /**
      * Get id
@@ -120,5 +126,45 @@ class PickUpSpot
     public function getNomEntreprise()
     {
         return $this->nomEntreprise;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->orders = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add orders
+     *
+     * @param \AppBundle\Entity\Commande $orders
+     * @return PickUpSpot
+     */
+    public function addOrder(\AppBundle\Entity\Commande $orders)
+    {
+        $this->orders[] = $orders;
+
+        return $this;
+    }
+
+    /**
+     * Remove orders
+     *
+     * @param \AppBundle\Entity\Commande $orders
+     */
+    public function removeOrder(\AppBundle\Entity\Commande $orders)
+    {
+        $this->orders->removeElement($orders);
+    }
+
+    /**
+     * Get orders
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getOrders()
+    {
+        return $this->orders;
     }
 }

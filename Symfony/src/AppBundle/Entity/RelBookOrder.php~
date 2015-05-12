@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * RelBookOrder
@@ -12,14 +13,13 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class RelBookOrder
 {
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
+
+     /** @ORM\Id @ORM\ManyToOne(targetEntity="Commande") */
+    private $order;
+
+    /** @ORM\Id @ORM\ManyToOne(targetEntity="Book") */
+    private $book;
+
 
     /**
      * @var boolean
@@ -35,16 +35,6 @@ class RelBookOrder
      */
     private $dateOrder;
 
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set status
@@ -90,5 +80,51 @@ class RelBookOrder
     public function getDateOrder()
     {
         return $this->dateOrder;
+    }
+
+    /**
+     * Set order
+     *
+     * @param \AppBundle\Entity\Commande $order
+     * @return RelBookOrder
+     */
+    public function setOrder(\AppBundle\Entity\Commande $order)
+    {
+        $this->order = $order;
+
+        return $this;
+    }
+
+    /**
+     * Get order
+     *
+     * @return \AppBundle\Entity\Commande 
+     */
+    public function getOrder()
+    {
+        return $this->order;
+    }
+
+    /**
+     * Set book
+     *
+     * @param \AppBundle\Entity\Book $book
+     * @return RelBookOrder
+     */
+    public function setBook(\AppBundle\Entity\Book $book)
+    {
+        $this->book = $book;
+
+        return $this;
+    }
+
+    /**
+     * Get book
+     *
+     * @return \AppBundle\Entity\Book 
+     */
+    public function getBook()
+    {
+        return $this->book;
     }
 }

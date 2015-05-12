@@ -17,17 +17,16 @@ class UserController extends Controller
      */
     public function registerUserAction(Request $request)
     {
-        /*$user = new User();
+        $user = new User();
         $createUserForm = $this->createForm(new UserType(), $user);
         $createUserForm->handleRequest($request);
         if ($createUserForm->isValid()){
-            $user->setRoles( array("ROLE_ADMIN") );
             $generator = new SecureRandom();
             $salt = bin2hex( $generator->nextBytes(50) );
             $token = bin2hex( $generator->nextBytes(50) );
             $user->setSalt($salt);
             $user->setToken($token);
-            $user->setDateRegistered( new \DateTime() );
+            $user->setDateCreated( new \DateTime() );
             $user->setDateModified( new \DateTime() );
             $user->setDateLastLogin( new \DateTime() );
             $encoder = $this->get("security.password_encoder");
@@ -43,15 +42,41 @@ class UserController extends Controller
         $params = array(
             "createUserForm" => $createUserForm->createView()
         );
-        return $this->render("user/register_user.html.twig", $params);*/
+        return $this->render("user/register_user.html.twig", $params);
     }
+
+    /**
+     * @Route("/utilisateur/modification-profile", name="modify_user")
+     */
+    /*public function modifyUserAction(Request $request)
+    {
+
+        $user = new User();
+        $createUserForm = $this->createForm(new UserType(), $user);
+        $createUserForm->handleRequest($request);
+        if ($createUserForm->isValid()){
+            $user->setNom($user->getNom());
+            $user->setPrenom($user->getPrenom());
+            $user->setEmail($user->getEmail);
+            $user->setDateModified( new \DateTime() );
+            
+            $em = $this->get("doctrine")->getManager();
+            $em->persist($user);
+            $em->flush();
+            //dump($user);
+        }
+        $params = array(
+            "createUserForm" => $createUserForm->createView()
+        );
+        return $this->render("user/register_user.html.twig", $params);
+    }*/
 
     /**
      * @Route("/login", name="login")
      */
     public function loginAction(Request $request)
     {
-        /*$authenticationUtils = $this->get('security.authentication_utils');
+        $authenticationUtils = $this->get('security.authentication_utils');
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -66,7 +91,7 @@ class UserController extends Controller
                 'last_username' => $lastUsername,
                 'error'         => $error,
             )
-        );*/
+        );
     }
     /**
      * @Route("/login_check", name="login_check")
