@@ -5,12 +5,15 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * User
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Entity\UserRepository")
+ * @UniqueEntity("email")
+ * @UniqueEntity("pseudo")
  */
 class User implements UserInterface
 {
@@ -517,4 +520,9 @@ class User implements UserInterface
     {
         return $this->dateLastLogin;
     }
+    public function eraseCredentials(){}
+
+    public function getRoles(){}
+
+    public function getUsername(){}
 }
