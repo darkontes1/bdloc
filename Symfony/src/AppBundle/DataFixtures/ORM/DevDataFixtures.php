@@ -53,8 +53,9 @@ class DevDatafixtures extends ContainerAware implements FixtureInterface
             
             $userAdmin->setNom($faker->lastName);
             $userAdmin->setPrenom($faker->firstName);
-            $userAdmin->setPseudo($faker->userName);
+            $userAdmin->setUsername($faker->userName);
             $userAdmin->setEmail($faker->email);
+            $userAdmin->setRoles(array ("ROLE_USER"));
             $userAdmin->setStatus(true);
             
 
