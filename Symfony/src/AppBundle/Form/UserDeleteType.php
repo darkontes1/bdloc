@@ -18,6 +18,7 @@ class UserDeleteType extends AbstractType
             ->add('raisons', 'text', array(
                 "label" => "Veuillez nous expliquer les raisons de votre départ"
             ))
+            ->add('Se desabonner', 'submit')
         ;
     }
     

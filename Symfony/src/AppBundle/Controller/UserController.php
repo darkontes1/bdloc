@@ -11,6 +11,7 @@ use AppBundle\Entity\User;
 use AppBundle\Form\UserAllType;
 use AppBundle\Form\UserDataType;
 use AppBundle\Form\UserPassType;
+use AppBundle\Form\UserDeleteType;
 
 class UserController extends Controller
 {
@@ -152,7 +153,7 @@ class UserController extends Controller
         $params = array(
             "createUserForm" => $createUserForm->createView()
         );
-        return $this->render("user/modify_pass_user.html.twig", $params);
+        return $this->render("user/delete_user.html.twig", $params);
     }
 
     /**
