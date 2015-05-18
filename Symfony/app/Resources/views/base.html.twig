@@ -15,15 +15,21 @@
     <body>
         <div id="container">
             <header>
-
+                {% block header %}{% endblock %}
                 <div id="h1"><a href=" {{ path('home') }} ">BdLoc</a></div>
-                    {% block header %}{% endblock %}
-                <div id="log">
-                    {% if app.user and is_granted("ROLE_USER") or is_granted("ROLE_ADMIN") %}
+                {% if app.user and is_granted("ROLE_USER") or is_granted("ROLE_ADMIN") %}
+                    <nav id="menu_header">
+                        <ul>
+                            <li><a href="">Les BDs !</a></li>
+                            <li><a href="">Mon panier</a></li>
+                            <li><a href="">Mon compte</a></li>
+                        </ul>
+                    </nav>
+                    <div id="log">
                         Bonjour <b>{{ app.user.username }}</b> !!<br/>       
                         <a href="{{ path('logout') }}">Deconnexion</a>
-                    {% endif %}
-                </div>
+                    </div>
+                {% endif %}
                 <hr>
             </header>
             
