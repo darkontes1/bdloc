@@ -8,13 +8,17 @@ body{
 }
 
 header{
-    margin-bottom: 80px;
+    height: 100px;
+    padding: 0px 0px 10px 0px;
+    border-bottom: 2px solid black;
 }
+
 
 
 #h1{
     width: 110px;
-    position: absolute;
+    float: left;
+    margin-top: 
 }
 
 #h1 a{
@@ -23,6 +27,7 @@ header{
 
 #log{
     float: right;
+    margin-top: 10px;
 }
 
 #connect{
@@ -98,7 +103,7 @@ header{
     width: 180px;
     height: 180px;
     border-color: #333;
-    background: url("../images/haddock.jpg");
+    background: url("../images/tintin.png");
     margin-left: 385px;
     margin-top: 85px;
     transform: rotate(1080deg);
@@ -129,9 +134,25 @@ header{
     border-radius: 50%;
 }
 
-.menu-principal ul li{
-   list-style-type: none;
+.menu-principal{
+   margin-left: 270px;
+   padding-top: 10px;
    float: left;
+}
+
+.menu-principal ul li{
+    border: 1px solid black;
+    background: #E1E1F4;
+   /*list-style-type: none;
+   float: left;
+   width: 115px;
+   border: 1px solid black;
+   padding: 4px 12px 4px 12px;
+   background: #CCCCFF;*/
+}
+
+.menu-principal a{
+    color: black;
 }
 
 #log-div{

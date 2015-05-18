@@ -22,7 +22,7 @@
                 {% if app.user and is_granted("ROLE_USER") or is_granted("ROLE_ADMIN") %}
 
                     <nav class="menu-principal">
-                        <ul>
+                        <ul class="nav nav-tabs">
                             <li><a href="">Les BDs !</a></li>
                             <li><a href="">Mon panier</a></li>
                             <li><a href=" {{ path('modify_user') }} ">Mon compte</a></li>
@@ -34,8 +34,8 @@
                         <a href="{{ path('logout') }}">Deconnexion</a>
                     </div>
                 {% endif %}
-                <hr>
             </header>
+
             
             <section>
                 {% block body %}{% endblock %}
