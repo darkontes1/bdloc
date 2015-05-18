@@ -199,6 +199,23 @@ header{
     color: white;
 }
 
+#nav-modif{
+    height: 410px;
+}
+
+#ul-modif li{
+    width: 250px;
+    height: 150px;
+    float: left;
+    list-style-type: none;
+    border: 1px solid black;
+    margin: 10px;
+}
+
+#ul-modif span{
+    font-size: 650%;
+    margin-left: 90px;
+}
 
 
 
