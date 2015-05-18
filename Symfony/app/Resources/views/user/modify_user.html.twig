@@ -2,17 +2,18 @@
 {% block body %}
 
 {% if app.user and is_granted("ROLE_USER") or is_granted("ROLE_ADMIN") %}
+
     <nav id="nav-modif">
         <ul id="ul-modif">
-            <li><span class="fa fa-home"> 
+            <li><span class="fa fa-list-alt"> 
             </span></br><a href=" {{ path('modify_data_user') }} ">Modifier mes données personnelles</a></li>
-            <li><span class="fa fa-home"> 
+            <li><span class="fa fa-unlock-alt"> 
             </span></br><a href=" {{ path('modify_pass_user') }} ">Modifier mon mot de passe</a></li>
-            <li><span class="fa fa-home"> 
+            <li><span class="fa fa-history">
             </span></br><a href="">Consulter mon historique</a></li>
-            <li><span class="fa fa-home"> 
+            <li><span class="fa fa-money"> 
             </span></br><a href="">Payer une amende</a></li>
-            <li><span class="fa fa-home"> 
+            <li><span class="fa fa-sign-out"> 
             </span></br><a href=" {{ path('delete_user') }} ">Me désabonner</a></li>
         </ul>
     </nav>
