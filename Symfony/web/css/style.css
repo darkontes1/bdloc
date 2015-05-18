@@ -46,15 +46,13 @@ header{
     width: 1000px;
     margin: 0px auto;
     height: 350px;
-    background: rgba(36,68,92,0.5);
+    background: url("../images/accueil.jpg");
     border-radius: 10px;
 }
 
 #support1{
     
     margin:3em;
-    
-    background: red;
 }
 
 
