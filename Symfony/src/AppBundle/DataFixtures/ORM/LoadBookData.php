@@ -1,13 +1,17 @@
 <?php
 namespace Bdloc\AppBundle\DataFixtures\ORM;
+
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+
 use Bdloc\AppBundle\Entity\Book;
 use Bdloc\AppBundle\Entity\Author;
 use Bdloc\AppBundle\Entity\Serie;
+
 use \DateTime;
+
 class LoadBookData implements FixtureInterface, ContainerAwareInterface
 {
     private $pathToData;
@@ -15,9 +19,11 @@ class LoadBookData implements FixtureInterface, ContainerAwareInterface
     private $serieRepo;
     private $authors = array();
     private $series = array();
+
     public function __construct(){
         $this->pathToData = __DIR__ . "/data/";
     }
+
     /**
      * @var ContainerInterface
      */
@@ -29,6 +35,7 @@ class LoadBookData implements FixtureInterface, ContainerAwareInterface
     {
         $this->container = $container;
     }
+
     /**
      * {@inheritDoc}
      */
@@ -38,9 +45,10 @@ class LoadBookData implements FixtureInterface, ContainerAwareInterface
         $this->loadAuthors($manager);
         $this->loadBooks($manager);
     }
+
     private function loadBooks(ObjectManager $manager){
-        $this->authorRepo = $this->container->get('doctrine')->getRepository("BdlocAppBundle:Author");
-        $this->serieRepo = $this->container->get('doctrine')->getRepository("BdlocAppBundle:Serie");
+        $this->authorRepo = $this->container->get('doctrine')->getRepository("AppBundle:Author");
+        $this->serieRepo = $this->container->get('doctrine')->getRepository("AppBundle:Serie");
         $fh = fopen($this->pathToData."albums.csv", "r");
         $num = 1;
         while($row = fgetcsv($fh)){
@@ -104,6 +112,7 @@ class LoadBookData implements FixtureInterface, ContainerAwareInterface
         
         $manager->flush();
     }
+
     private function loadAuthors(ObjectManager $manager){
         $fh = fopen($this->pathToData."authors.csv", "r");
         $num = 1;
@@ -148,6 +157,7 @@ class LoadBookData implements FixtureInterface, ContainerAwareInterface
         
         $manager->flush();
     }
+
     private function loadSeries(ObjectManager $manager){
         $fh = fopen($this->pathToData."series.csv", "r");
         $num = 1;
@@ -188,6 +198,7 @@ class LoadBookData implements FixtureInterface, ContainerAwareInterface
         
         $manager->flush();
     }
+
     //replace textual NULL values by real null
     private function replaceNull($row){
         for($i=0;$i<count($row);$i++){
@@ -197,6 +208,7 @@ class LoadBookData implements FixtureInterface, ContainerAwareInterface
         }
         return $row;
     }
+
     //get new author from db, else from local property if already set
     private function getAuthor( $authorId ){
         if (empty($this->authors[$authorId])){
@@ -205,6 +217,7 @@ class LoadBookData implements FixtureInterface, ContainerAwareInterface
         }
         return $this->authors[ $authorId ];
     }
+
     //get new serie from db, else from local property if already set
     private function getSerie( $serieId ){
         if (empty($this->series[$serieId])){
@@ -213,6 +226,7 @@ class LoadBookData implements FixtureInterface, ContainerAwareInterface
         }
         return $this->series[ $serieId ];
     }
+
     //return a DateTime object from a shitty date, or false on failure
     private function getDateTime($date){
         $twoDigitDate = substr($date, 6, 2);
@@ -224,6 +238,7 @@ class LoadBookData implements FixtureInterface, ContainerAwareInterface
         $dateTime = DateTime::createFromFormat("d/m/Y H:i", $date);
         return $dateTime;
     }
+
     //return the language code from full name
     private function getLanguageCode( $fullName ){
         $lang = false;
