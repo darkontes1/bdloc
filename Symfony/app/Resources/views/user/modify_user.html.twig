@@ -1,15 +1,12 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 
-{% if error %}
-    [#<div>{{  }}</div>#}
-{% endif %}
-
 {% if app.user and is_granted("ROLE_USER") or is_granted("ROLE_ADMIN") %}
-
+    <h1>Modification du profil</h1>
+    
 {% else %}
     <p>Vous n'êtes pas connecté</p>
     <a href=" {{ path('home') }} ">Retour à la page d'accueil</a>
 {% endif %}
 
-{%endblock%}
+{% endblock %}

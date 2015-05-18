@@ -57,7 +57,9 @@ class UserController extends Controller
      */
     public function modifyUserAction(Request $request)
     {
-
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('catalogue');
+        }
 
         return $this->render("user/modify_user.html.twig");
     }
