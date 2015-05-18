@@ -18,11 +18,11 @@
                 {% block header %}{% endblock %}
                 <div id="h1"><a href=" {{ path('home') }} ">BdLoc</a></div>
                 {% if app.user and is_granted("ROLE_USER") or is_granted("ROLE_ADMIN") %}
-                    <nav id="menu_header">
+                    <nav>
                         <ul>
                             <li><a href="">Les BDs !</a></li>
                             <li><a href="">Mon panier</a></li>
-                            <li><a href="">Mon compte</a></li>
+                            <li><a href=" {{ path('modify_user') }} ">Mon compte</a></li>
                         </ul>
                     </nav>
                     <div id="log">

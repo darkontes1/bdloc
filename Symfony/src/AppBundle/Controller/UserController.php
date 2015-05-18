@@ -53,30 +53,14 @@ class UserController extends Controller
     }
 
     /**
-     * @Route("/utilisateur/modification-profile", name="modify_user")
+     * @Route("/utilisateur/profil", name="modify_user")
      */
-    /*public function modifyUserAction(Request $request)
+    public function modifyUserAction(Request $request)
     {
 
-        $user = new User();
-        $createUserForm = $this->createForm(new UserType(), $user);
-        $createUserForm->handleRequest($request);
-        if ($createUserForm->isValid()){
-            $user->setNom($user->getNom());
-            $user->setPrenom($user->getPrenom());
-            $user->setEmail($user->getEmail);
-            $user->setDateModified( new \DateTime() );
-            
-            $em = $this->get("doctrine")->getManager();
-            $em->persist($user);
-            $em->flush();
-            //dump($user);
-        }
-        $params = array(
-            "createUserForm" => $createUserForm->createView()
-        );
-        return $this->render("user/register_user.html.twig", $params);
-    }*/
+
+        return $this->render("user/modify_user.html.twig");
+    }
 
     /**
      * @Route("/login", name="login")
