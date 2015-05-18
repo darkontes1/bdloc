@@ -152,7 +152,7 @@ class UserController extends Controller
         $params = array(
             "createUserForm" => $createUserForm->createView()
         );
-        return $this->render("user/modify_pass_user.html.twig", $params);
+        return $this->render("user/modify_delete_user.html.twig", $params);
     }
 
     /**
