@@ -71,11 +71,26 @@ class UserController extends Controller
      */
     public function modifyUserAction(Request $request)
     {
+        $user = $this->getUser();
+        $createUserForm = $this->createForm(new UserDataType(), $user);
+        $createUserForm->handleRequest($request);
+        if ($createUserForm->isValid()){
+            $user->setDateModified(new \DateTime());
+
+            $em = $this->get("doctrine")->getManager();
+            $em->persist($user);
+            $em->flush();
+            
+            return $this->redirectToRoute('modify_user');
+        }
+
         if (!$this->getUser()) {
             return $this->redirectToRoute('catalogue');
         }
-
-        return $this->render("user/modify_data_user.html.twig");
+        $params = array(
+            "createUserForm" => $createUserForm->createView()
+        );
+        return $this->render("user/modify_data_user.html.twig", $params);
     }
 
     /**
@@ -83,11 +98,32 @@ class UserController extends Controller
      */
     public function modifyPassAction(Request $request)
     {
+        $user = $this->getUser();
+        $createUserForm = $this->createForm(new UserPassType(), $user);
+        $createUserForm->handleRequest($request);
+        if ($createUserForm->isValid()){
+            $user->setDateModified(new \DateTime());
+            $encoder = $this->get("security.password_encoder");
+            $encodedPassword = $encoder->encodePassword(
+                $user, $user->getPassword()
+            );
+
+            $user->setPassword($encodedPassword);
+
+            $em = $this->get("doctrine")->getManager();
+            $em->persist($user);
+            $em->flush();
+            
+            return $this->redirectToRoute('modify_user');
+        }
+
         if (!$this->getUser()) {
             return $this->redirectToRoute('catalogue');
         }
-
-        return $this->render("user/modify_pass_user.html.twig");
+        $params = array(
+            "createUserForm" => $createUserForm->createView()
+        );
+        return $this->render("user/modify_pass_user.html.twig", $params);
     }
 
     /**
