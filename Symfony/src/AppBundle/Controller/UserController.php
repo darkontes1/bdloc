@@ -53,7 +53,19 @@ class UserController extends Controller
     }
 
     /**
-     * @Route("/utilisateur/profil", name="modify_user")
+     * @Route("/profil", name="modify_user")
+     */
+    public function profilAction(Request $request)
+    {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('catalogue');
+        }
+
+        return $this->render("user/modify_user.html.twig");
+    }
+
+    /**
+     * @Route("/profil/modifier-utilisateur", name="modify_data_user")
      */
     public function modifyUserAction(Request $request)
     {
@@ -61,7 +73,7 @@ class UserController extends Controller
             return $this->redirectToRoute('catalogue');
         }
 
-        return $this->render("user/modify_user.html.twig");
+        return $this->render("user/modify_data_user.html.twig");
     }
 
     /**

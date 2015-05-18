@@ -2,8 +2,15 @@
 {% block body %}
 
 {% if app.user and is_granted("ROLE_USER") or is_granted("ROLE_ADMIN") %}
-    <h1>Modification du profil</h1>
-    
+    <nav>
+        <ul>
+            <li><a href=" {{ path('modify_data_user') }} ">Modifier mes données personnelles</a></li>
+            <li><a href="">Modifier mon mot de passe</a></li>
+            <li><a href="">Consulter mon historique</a></li>
+            <li><a href="">Payer une amende</a></li>
+            <li><a href="">Me désabonner</a></li>
+        </ul>
+    </nav>
 {% else %}
     <p>Vous n'êtes pas connecté</p>
     <a href=" {{ path('home') }} ">Retour à la page d'accueil</a>
