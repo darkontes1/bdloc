@@ -14,8 +14,11 @@ header{
 
 #h1{
     width: 110px;
-    font-size: 28px;
     position: absolute;
+}
+
+#h1 a{
+    font-size: 40px;
 }
 
 #log{
