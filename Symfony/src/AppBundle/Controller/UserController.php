@@ -8,7 +8,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Util\SecureRandom;
 
 use AppBundle\Entity\User;
-use AppBundle\Form\UserType;
+use AppBundle\Form\UserAllType;
+use AppBundle\Form\UserDataType;
+use AppBundle\Form\UserPassType;
 
 class UserController extends Controller
 {
@@ -18,7 +20,7 @@ class UserController extends Controller
     public function registerUserAction(Request $request)
     {
         $user = new User();
-        $createUserForm = $this->createForm(new UserType(), $user);
+        $createUserForm = $this->createForm(new UserAllType(), $user);
         $createUserForm->handleRequest($request);
         if ($createUserForm->isValid()){
             $generator = new SecureRandom();
@@ -74,6 +76,18 @@ class UserController extends Controller
         }
 
         return $this->render("user/modify_data_user.html.twig");
+    }
+
+    /**
+     * @Route("/profil/modifier-password-utilisateur", name="modify_pass_user")
+     */
+    public function modifyPassAction(Request $request)
+    {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('catalogue');
+        }
+
+        return $this->render("user/modify_pass_user.html.twig");
     }
 
     /**
