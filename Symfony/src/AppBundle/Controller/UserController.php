@@ -60,7 +60,7 @@ class UserController extends Controller
     public function profilAction(Request $request)
     {
         if (!$this->getUser()) {
-            return $this->redirectToRoute('catalogue');
+            return $this->redirectToRoute('home');
         }
 
         return $this->render("user/modify_user.html.twig");
@@ -85,7 +85,7 @@ class UserController extends Controller
         }
 
         if (!$this->getUser()) {
-            return $this->redirectToRoute('catalogue');
+            return $this->redirectToRoute('home');
         }
         $params = array(
             "createUserForm" => $createUserForm->createView()
@@ -118,7 +118,36 @@ class UserController extends Controller
         }
 
         if (!$this->getUser()) {
-            return $this->redirectToRoute('catalogue');
+            return $this->redirectToRoute('home');
+        }
+        $params = array(
+            "createUserForm" => $createUserForm->createView()
+        );
+        return $this->render("user/modify_pass_user.html.twig", $params);
+    }
+
+    /**
+     * @Route("/profil/se-desabonner", name="delete_user")
+     */
+    public function deleteAction(Request $request)
+    {
+        $user = $this->getUser();
+        $createUserForm = $this->createForm(new UserDeleteType(), $user);
+        $createUserForm->handleRequest($request);
+        if ($createUserForm->isValid()){
+            $user->setDateModified(new \DateTime());
+            /*FAIRE LE SET DU STATUS COMME QUOI IL EST DESABONNEE !!!*/
+
+            $em = $this->get("doctrine")->getManager();
+            $em->persist($user);
+            $em->flush();
+            
+            return $this->redirectToRoute('modify_user');
+        }
+
+        
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('home');
         }
         $params = array(
             "createUserForm" => $createUserForm->createView()
@@ -149,6 +178,7 @@ class UserController extends Controller
             )
         );
     }
+
     /**
      * @Route("/login_check", name="login_check")
      */
