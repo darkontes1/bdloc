@@ -12,4 +12,12 @@ use Doctrine\ORM\EntityRepository;
  */
 class BookRepository extends EntityRepository
 {
+    public function allResults(){
+
+        return $this->createQueryBuilder('a')
+             ->select('COUNT(a)')
+             ->getQuery()
+             ->getSingleScalarResult();
+    }
+}
 }
