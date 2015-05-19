@@ -82,7 +82,20 @@ class Author
    * @ORM\OneToMany(targetEntity="Book", mappedBy="author")
    * @ORM\JoinColumn(nullable=false)
    */
-  private $books;
+  private $books_dessinateur;
+
+   /**
+   * @ORM\OneToMany(targetEntity="Book", mappedBy="author")
+   * @ORM\JoinColumn(nullable=false)
+   */
+  private $books_scenarist;
+
+   /**
+   * @ORM\OneToMany(targetEntity="Book", mappedBy="author")
+   * @ORM\JoinColumn(nullable=false)
+   */
+  private $books_colorist;
+
 
 
     /**

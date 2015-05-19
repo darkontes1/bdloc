@@ -38,6 +38,12 @@
                         <a href="{{ path('logout') }}">Deconnexion</a>
                     </div>
 
+                    <div id="log-resp">
+                        <p>Connecté:</p> 
+                        <b>{{ app.user.username }}</b>
+                        <a href="{{ path('logout') }}">X</a>
+                    </div>
+
                 {% endif %}
             </header>
             

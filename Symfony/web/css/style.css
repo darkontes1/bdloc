@@ -131,7 +131,7 @@ header{
 }
 
 .menu-principal{
-   margin-left: 270px;
+   margin-left: 17%;
    padding-top: 10px;
    float: left;
 }
@@ -218,29 +218,32 @@ header{
     text-align: center;
 }
 
+#log-resp{
+    float: left;
+    width: 100px;
+    height: 75px;
+    padding: 3px 6px 3px 6px;
+    background: green;
+    border-radius: 8px;
+    margin-left: 150px;
+    margin-top: 13px;
+    display: none;
+}
+
 @media screen and (max-width: 995px){
-
-    #h1{
-        float: none;
-        display: block;
-    }
-
-    .menu-principal{
-        float: none;
-        display: block;
-        margin-left: 40%;
-    }
 
 
     #log{
-        float: none;
-        display: block;
-        margin-top: 0px;
+        display: none;
     }
 
     header{
         height: 200px;
     }
+
+    #log-resp{
+        display: block;
+
 
 }
 
