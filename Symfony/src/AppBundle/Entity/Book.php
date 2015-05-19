@@ -27,70 +27,70 @@ class Book
     /**
      * @var integer
      *
-     * @ORM\Column(name="num", type="integer",nullable=true)
+     * @ORM\Column(name="num", type="integer")
      */
     private $num;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=255,nullable=true)
+     * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="editor", type="string", length=255,nullable=true)
+     * @ORM\Column(name="editor", type="string", length=255)
      */
     private $editor;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="reference", type="string", length=255,nullable=true)
+     * @ORM\Column(name="reference", type="string", length=255)
      */
     private $reference;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="cover", type="string", length=255,nullable=true)
+     * @ORM\Column(name="cover", type="string", length=255)
      */
     private $cover;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="exlibris", type="string", length=255,nullable=true)
+     * @ORM\Column(name="exlibris", type="string", length=255)
      */
     private $exlibris;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="nbPages", type="integer",nullable=true)
+     * @ORM\Column(name="nbPages", type="integer")
      */
     private $nbPages;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="planche", type="string", length=255,nullable=true)
+     * @ORM\Column(name="planche", type="string", length=255)
      */
     private $planche;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="idBel", type="integer",nullable=true)
+     * @ORM\Column(name="idBel", type="integer")
      */
     private $idBel;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="exemplaires", type="integer",nullable=true)
+     * @ORM\Column(name="exemplaires", type="integer")
      */
     private $exemplaires;
 
@@ -126,19 +126,6 @@ class Book
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set id
-     *
-     * @param string $id
-     * @return integer
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
     }
 
     /**

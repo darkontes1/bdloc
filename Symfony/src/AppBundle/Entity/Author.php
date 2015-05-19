@@ -109,19 +109,6 @@ class Author
     }
 
     /**
-     * Set id
-     *
-     * @param string $id
-     * @return integer
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
-
-    /**
      * Get nom
      *
      * @return string 

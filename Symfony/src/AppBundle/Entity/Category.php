@@ -29,6 +29,13 @@ class Category
     private $nom;
 
     /**
+   * @ORM\OneToMany(targetEntity="Serie", mappedBy="Category")
+   * @ORM\JoinColumn(nullable=false)
+   */
+    private $series;
+
+
+    /**
      * Get id
      *
      * @return integer 
