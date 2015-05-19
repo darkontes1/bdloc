@@ -24,49 +24,49 @@ class Serie
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=255)
+     * @ORM\Column(name="title", type="string", length=255,nullable=true)
      */
     private $title;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="style", type="string", length=255)
+     * @ORM\Column(name="style", type="string", length=255,nullable=true)
      */
     private $style;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="comment", type="string", length=255)
+     * @ORM\Column(name="comment", type="string", length=255,nullable=true)
      */
     private $comment;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="note", type="integer")
+     * @ORM\Column(name="note", type="integer",nullable=true)
      */
     private $note;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="planche", type="string", length=255)
+     * @ORM\Column(name="planche", type="string", length=255,nullable=true)
      */
     private $planche;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="idBel", type="integer")
+     * @ORM\Column(name="idBel", type="integer",nullable=true)
      */
     private $idBel;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="langue", type="string", length=255)
+     * @ORM\Column(name="langue", type="string", length=255,nullable=true)
      */
     private $langue;
 
@@ -75,11 +75,6 @@ class Serie
    * @ORM\JoinColumn(nullable=false)
    */
     private $books;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category", inversedBy="series")
-     */
-    private $category;
 
 
     /**
@@ -90,6 +85,19 @@ class Serie
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set id
+     *
+     * @param string $id
+     * @return integer
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     /**
