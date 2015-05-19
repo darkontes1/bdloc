@@ -2,4 +2,39 @@
 {% block body %}
 <h1>catalogue</h1>
 
+{% for book in books %}
+    
+    <div>
+    <img class="cover" src="{{asset('images/Couvertures/'~book.cover)}}" alt="cover">
+
+    {{book.title}}
+
+    {{"autheur : "}}{{book.dessinateur.prenom}}
+                        {{book.dessinateur.nom}}
+
+    {{"coloriste : "}}{{book.coloriste.prenom}}
+                        {{book.coloriste.nom}}
+
+    {{"scenariste : "}}{{book.scenariste.prenom}}
+                        {{book.scenariste.nom}}
+
+{% if book.exemplaires > 0 %}
+    {{book.exemplaires}}{{" dispos !"}}
+{%endif%}
+
+{% if book.exemplaires == 0 %}
+{{"indisponible !"}}
+
+{%endif%}
+
+
+
+
+
+
+    </div>
+
+
+    {% endfor %}
+
 {% endblock %}

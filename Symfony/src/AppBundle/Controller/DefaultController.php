@@ -2,6 +2,10 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Book;
+use AppBundle\Entity\Author;
+use AppBundle\Entity\Serie;
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -29,11 +33,4 @@ class DefaultController extends Controller
         return $this->render('default/rules.html.twig');
     }
 
-    /**
-     * @Route("/catalogue", name="catalogue")
-     */
-    public function catalogueAction()
-    {
-        return $this->render('catalogue.html.twig');
-    }
 }
