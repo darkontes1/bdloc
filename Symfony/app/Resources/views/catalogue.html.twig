@@ -11,27 +11,27 @@
 
     {% if not book.dessinateur == NULL %}
 
-        {{"autheur : "}}{{book.dessinateur.prenom}}
-                        {{book.dessinateur.nom}}
+        {{"autheur : "}}{{book.dessinateur.prenom}}</br>
+                        {{book.dessinateur.nom}}</br>
     
     {%endif%}
 {% if not book.coloriste == NULL %}
-    {{"coloriste : "}}{{book.coloriste.prenom}}
-                        {{book.coloriste.nom}}
+    {{"coloriste : "}}{{book.coloriste.prenom}}</br>
+                        {{book.coloriste.nom}}</br>
 
                         {%endif%}
 {% if not book.scenariste == NULL %}
-    {{"scenariste : "}}{{book.scenariste.prenom}}
-                        {{book.scenariste.nom}}
+    {{"scenariste : "}}{{book.scenariste.prenom}}</br>
+                        {{book.scenariste.nom}}</br>
 
                         {%endif%}
 
 {% if book.exemplaires > 0 %}
-    {{book.exemplaires}}{{" dispos !"}}
+    {{book.exemplaires}}{{" dispos !"}}</br>
 {%endif%}
 
 {% if book.exemplaires == 0 %}
-{{"indisponible !"}}
+{{"indisponible !"}}</br>
 
 {%endif%}
 
