@@ -79,22 +79,22 @@ class Author
 
 
     /**
-   * @ORM\OneToMany(targetEntity="Book", mappedBy="author")
+   * @ORM\OneToMany(targetEntity="Book", mappedBy="dessinateur")
    * @ORM\JoinColumn(nullable=false)
    */
   private $books_dessinateur;
 
    /**
-   * @ORM\OneToMany(targetEntity="Book", mappedBy="author")
+   * @ORM\OneToMany(targetEntity="Book", mappedBy="scenariste")
    * @ORM\JoinColumn(nullable=false)
    */
   private $books_scenarist;
 
    /**
-   * @ORM\OneToMany(targetEntity="Book", mappedBy="author")
+   * @ORM\OneToMany(targetEntity="Book", mappedBy="coloriste")
    * @ORM\JoinColumn(nullable=false)
    */
-  private $books_colorist;
+  private $books_coloriste;
 
 
 
@@ -343,5 +343,104 @@ class Author
     public function getBooks()
     {
         return $this->books;
+    }
+
+    /**
+     * Add books_dessinateur
+     *
+     * @param \AppBundle\Entity\Book $booksDessinateur
+     * @return Author
+     */
+    public function addBooksDessinateur(\AppBundle\Entity\Book $booksDessinateur)
+    {
+        $this->books_dessinateur[] = $booksDessinateur;
+
+        return $this;
+    }
+
+    /**
+     * Remove books_dessinateur
+     *
+     * @param \AppBundle\Entity\Book $booksDessinateur
+     */
+    public function removeBooksDessinateur(\AppBundle\Entity\Book $booksDessinateur)
+    {
+        $this->books_dessinateur->removeElement($booksDessinateur);
+    }
+
+    /**
+     * Get books_dessinateur
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getBooksDessinateur()
+    {
+        return $this->books_dessinateur;
+    }
+
+    /**
+     * Add books_scenarist
+     *
+     * @param \AppBundle\Entity\Book $booksScenarist
+     * @return Author
+     */
+    public function addBooksScenarist(\AppBundle\Entity\Book $booksScenarist)
+    {
+        $this->books_scenarist[] = $booksScenarist;
+
+        return $this;
+    }
+
+    /**
+     * Remove books_scenarist
+     *
+     * @param \AppBundle\Entity\Book $booksScenarist
+     */
+    public function removeBooksScenarist(\AppBundle\Entity\Book $booksScenarist)
+    {
+        $this->books_scenarist->removeElement($booksScenarist);
+    }
+
+    /**
+     * Get books_scenarist
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getBooksScenarist()
+    {
+        return $this->books_scenarist;
+    }
+
+    /**
+     * Add books_coloriste
+     *
+     * @param \AppBundle\Entity\Book $booksColoriste
+     * @return Author
+     */
+    public function addBooksColoriste(\AppBundle\Entity\Book $booksColoriste)
+    {
+        $this->books_coloriste[] = $booksColoriste;
+
+        return $this;
+    }
+
+    /**
+     * Remove books_coloriste
+     *
+     * @param \AppBundle\Entity\Book $booksColoriste
+     */
+    public function removeBooksColoriste(\AppBundle\Entity\Book $booksColoriste)
+    {
+        $this->books_coloriste->removeElement($booksColoriste);
+    }
+
+    /**
+     * Get books_coloriste
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getBooksColoriste()
+    {
+        return $this->books_coloriste;
     }
 }

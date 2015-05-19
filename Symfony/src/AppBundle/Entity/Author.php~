@@ -79,10 +79,23 @@ class Author
 
 
     /**
-   * @ORM\OneToMany(targetEntity="Book", mappedBy="author")
+   * @ORM\OneToMany(targetEntity="Book", mappedBy="dessinateur")
    * @ORM\JoinColumn(nullable=false)
    */
-  private $books;
+  private $books_dessinateur;
+
+   /**
+   * @ORM\OneToMany(targetEntity="Book", mappedBy="scenariste")
+   * @ORM\JoinColumn(nullable=false)
+   */
+  private $books_scenarist;
+
+   /**
+   * @ORM\OneToMany(targetEntity="Book", mappedBy="coloriste")
+   * @ORM\JoinColumn(nullable=false)
+   */
+  private $books_coloriste;
+
 
 
     /**
@@ -104,6 +117,19 @@ class Author
     public function setNom($nom)
     {
         $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Set id
+     *
+     * @param string $id
+     * @return integer
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
 
         return $this;
     }

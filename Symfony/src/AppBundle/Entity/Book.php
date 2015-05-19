@@ -98,21 +98,21 @@ class Book
     /**
      * @var Author
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Author", inversedBy="books")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Author", inversedBy="books_dessinateur")
      */
     private $dessinateur;
 
     /**
      * @var Author
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Author", inversedBy="books")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Author", inversedBy="books_coloriste")
      */
     private $coloriste;
 
     /**
      * @var Author
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Author", inversedBy="books")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Author", inversedBy="books_scenarist")
      */
     private $scenariste;
 
