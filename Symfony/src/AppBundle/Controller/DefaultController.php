@@ -28,13 +28,4 @@ class DefaultController extends Controller
     {
         return $this->render('default/rules.html.twig');
     }
-
-    /**
-     * @Route("/catalogue", name="catalogue")
-     */
-    public function catalogueAction()
-    {
-        return $this->render('catalogue.html.twig');
-    }
-
 }
