@@ -43,6 +43,11 @@ class UserController extends Controller
             $em->persist($user);
             $em->flush();
             //dump($user);
+            //Create a message for the user
+            $this->addFlash(
+                'notice',
+                'Vous avez bien été enregistré !'
+            );
             return $this->redirectToRoute('login');
         }
 
