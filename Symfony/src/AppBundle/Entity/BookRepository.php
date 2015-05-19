@@ -13,11 +13,14 @@ use Doctrine\ORM\EntityRepository;
 class BookRepository extends EntityRepository
 {
     public function allResults(){
+        $qd=$this->createQueryBuilder('b');
+        $qd->select('b');
+        $query=$qd->getQuery();
+        $query->setMaxResults(10);
+        $result=$query->getResult();
 
-        return $this->createQueryBuilder('a')
-             ->select('COUNT(a)')
-             ->getQuery()
-             ->getSingleScalarResult();
+
+        return $result;
     }
 
 }

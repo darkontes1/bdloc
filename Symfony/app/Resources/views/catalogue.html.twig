@@ -9,14 +9,22 @@
 
     {{book.title}}
 
-    {{"autheur : "}}{{book.dessinateur.prenom}}
-                        {{book.dessinateur.nom}}
+    {% if not book.dessinateur == NULL %}
 
+        {{"autheur : "}}{{book.dessinateur.prenom}}
+                        {{book.dessinateur.nom}}
+    
+    {%endif%}
+{% if not book.coloriste == NULL %}
     {{"coloriste : "}}{{book.coloriste.prenom}}
                         {{book.coloriste.nom}}
 
+                        {%endif%}
+{% if not book.scenariste == NULL %}
     {{"scenariste : "}}{{book.scenariste.prenom}}
                         {{book.scenariste.nom}}
+
+                        {%endif%}
 
 {% if book.exemplaires > 0 %}
     {{book.exemplaires}}{{" dispos !"}}

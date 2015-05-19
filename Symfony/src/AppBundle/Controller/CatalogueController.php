@@ -20,7 +20,11 @@ class CatalogueController extends Controller
         $bd= new Book();
 
         $bookrepo=$this->get("doctrine")->getRepository("AppBundle:Book");
-        $book=$bookrepo->findBy(array(), null, 5);
+        //$book=$bookrepo->findBy(array(), null, 5);
+
+        $book=$bookrepo->allResults();
+
+
 
         /*$dessinateur=$bookrepo->findByDessinateur($book);*/
 
