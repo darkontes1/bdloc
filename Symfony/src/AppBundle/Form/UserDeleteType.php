@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use EWZ\Bundle\RecaptchaBundle\Validator\Constraints\True;
 
 class UserDeleteType extends AbstractType
 {
@@ -17,6 +18,18 @@ class UserDeleteType extends AbstractType
         $builder
             ->add('raisons', 'text', array(
                 "label" => "Veuillez nous expliquer les raisons de votre départ"
+            ))
+            ->add('recaptcha', 'ewz_recaptcha', array(
+                'attr'        => array(
+                    'options' => array(
+                        'theme' => 'light',
+                        'type'  => 'image'
+                    )
+                ),
+                'mapped'      => false,
+                'constraints' => array(
+                    new True()
+                )
             ))
             ->add('Se desabonner', 'submit')
         ;
