@@ -14,7 +14,10 @@ class BookRepository extends EntityRepository
 {
     public function allResults(){
         $qd=$this->createQueryBuilder('b');
-        $qd->select('b');
+        $qd->select('b','a','c','s')
+        ->leftJoin('b.dessinateur', 'a')
+        ->leftJoin('b.scenariste', 'c')
+        ->leftJoin('b.coloriste', 's');
         $query=$qd->getQuery();
         $query->setMaxResults(10);
         $result=$query->getResult();
