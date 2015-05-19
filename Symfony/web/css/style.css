@@ -230,6 +230,17 @@ header{
     display: none;
 }
 
+.apercu{
+    border: solid black 1px;
+    display: inline-block;
+    
+}
+
+.cover{
+    max-height: 250px;
+    max-width: 250px;
+}
+
 @media screen and (max-width: 995px){
 
 
