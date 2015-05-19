@@ -29,6 +29,7 @@ class User implements UserInterface
     /**
      * @var string
      *
+     * @Assert\NotBlank(message=" Veuillez renseigner un nom")
      * @ORM\Column(name="nom", type="string", length=255)
      */
     private $nom;
@@ -36,6 +37,7 @@ class User implements UserInterface
     /**
      * @var string
      *
+     * @Assert\NotBlank(message=" Veuillez renseigner un prenom")
      * @ORM\Column(name="prenom", type="string", length=255)
      */
     private $prenom;
@@ -43,6 +45,7 @@ class User implements UserInterface
     /**
      * @var string
      *
+     * @Assert\NotBlank(message=" Veuillez renseigner un email")
      * @ORM\Column(name="email", type="string", length=255)
      */
     private $email;
@@ -50,6 +53,12 @@ class User implements UserInterface
     /**
      * @var string
      *
+     * @Assert\NotBlank(message=" Veuillez renseigner un username")
+     *      min = "3",
+     *      max = "255",
+     *      minMessage = " Votre titre doit faire au moins {{ limit }} caractères",
+     *      maxMessage = " Votre titre ne peut pas être plus long que {{ limit }} caractères"
+     * )
      * @ORM\Column(name="username", type="string", length=255)
      */
     private $username;
@@ -57,6 +66,7 @@ class User implements UserInterface
     /**
      * @var string
      *
+     * @Assert\NotBlank(message=" Veuillez renseigner un mot de passe")
      * @ORM\Column(name="password", type="string", length=255)
      */
     private $password;
