@@ -19,5 +19,5 @@ class BookRepository extends EntityRepository
              ->getQuery()
              ->getSingleScalarResult();
     }
-}
+
 }
