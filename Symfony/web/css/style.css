@@ -131,9 +131,9 @@ header{
 }
 
 .menu-principal{
-   margin-left: 270px;
    padding-top: 10px;
    float: left;
+   margin-left: 17%;
 }
 
 .menu-principal ul li{
@@ -218,24 +218,22 @@ header{
     text-align: center;
 }
 
+#log-resp{
+    height: 70px;
+    width: 100px;
+    padding: 3px 6px 3px 6px;
+    border: 1px solid black;
+    background: green;
+    float: left;
+}
+
+
 @media screen and (max-width: 995px){
 
-    #h1{
-        float: none;
-        display: block;
-    }
-
-    .menu-principal{
-        float: none;
-        display: block;
-        margin-left: 40%;
-    }
 
 
     #log{
-        float: none;
-        display: block;
-        margin-top: 0px;
+        display: none;
     }
 
     header{
