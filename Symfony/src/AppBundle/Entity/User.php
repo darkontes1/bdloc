@@ -54,6 +54,7 @@ class User implements UserInterface
      * @var string
      *
      * @Assert\NotBlank(message=" Veuillez renseigner un username")
+     * @Assert\Length(
      *      min = "3",
      *      max = "255",
      *      minMessage = " Votre titre doit faire au moins {{ limit }} caractères",
