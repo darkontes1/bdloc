@@ -33,6 +33,12 @@ class UserAllType extends AbstractType
                 'first_options'  => array('label' => 'Mot de passe'),
                 'second_options' => array('label' => 'Mot de passe (validation)')
             ))
+            ->add('adresse', null, array(
+                "label" => "Adresse (num rue app)"
+            ))
+            ->add('telephone', null, array(
+                "label" => "Telephone"
+            ))
             ->add('Enregistrer', 'submit')
         ;
     }

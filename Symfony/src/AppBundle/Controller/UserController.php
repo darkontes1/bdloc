@@ -30,6 +30,7 @@ class UserController extends Controller
             $user->setSalt($salt);
             $user->setToken($token);
             $user->setStatus(true);
+            $user->setCP(75);
             $user->setRoles(array("ROLE_USER"));
             $user->setDateCreated( new \DateTime() );
             $user->setDateModified( new \DateTime() );

@@ -80,18 +80,26 @@ class User implements UserInterface
     private $salt;
 
     /**
-     * @var integer
+     * @var string
      *@Assert\Length(
      *      min = "10",
-     *      max = "10")
-     *
-     * @ORM\Column(name="telephone", type="integer", nullable=true)
+     *      max = "10",
+     *      minMessage = "Votre nom doit faire au moins 10 caractères",
+     *      maxMessage = "Votre nom ne peut pas être plus long que 10 caractères"
+     * )
+     * @Assert\Regex(
+     *      "/^0[1-9][0-9]{8}/",
+     *      message=" Votre téléphone n'est pas valide"
+     * )
+     * @Assert\NotBlank(message=" Veuillez renseigner un telephone valide")
+     * @ORM\Column(name="telephone", type="string", nullable=true)
      */
     private $telephone;
 
     /**
      * @var string
      *
+     * @Assert\NotBlank(message=" Veuillez renseigner une adresse")
      * @ORM\Column(name="adresse", type="string", length=255, nullable=true)
      */
     private $adresse;
@@ -99,11 +107,9 @@ class User implements UserInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="CP", type="string", length=255, nullable=true)
+     * @ORM\Column(name="CP", type="string", length=255)
      */
     private $CP;
-
-
 
     /**
      * @var array
