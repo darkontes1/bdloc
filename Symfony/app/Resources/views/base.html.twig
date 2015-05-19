@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     </head>
     <body>
-        <div id="container">
+        <div class="container">
             <header>
                 {% block header %}{% endblock %}
 
@@ -35,11 +35,12 @@
                         Bonjour <b>{{ app.user.username }}</b> !!<br/>       
                         <a href="{{ path('logout') }}">Deconnexion</a>
                     </div>
+
                 {% endif %}
             </header>
-
-            
+            <div style="border-top:1px solid black"></div>
             <section>
+
                 {% block body %}{% endblock %}
             </section>
 
