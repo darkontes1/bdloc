@@ -142,11 +142,10 @@ class User implements UserInterface
     private $fines;
 
     /**
-   * @ORM\OneToMany(targetEntity="Adress", mappedBy="user")
-   * @ORM\JoinColumn(nullable=false)
-   */
-  private $adresses;
-
+     * @ORM\OneToMany(targetEntity="Adress", mappedBy="user")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $adresses;
 
     /**
      * Get id

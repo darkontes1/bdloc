@@ -142,15 +142,14 @@ class UserController extends Controller
         $createUserForm->handleRequest($request);
         if ($createUserForm->isValid()){
             $user->setDateModified(new \DateTime());
-            /*FAIRE LE SET DU STATUS COMME QUOI IL EST DESABONNEE !!!*/
+            $user->setStatus(false);
 
             $em = $this->get("doctrine")->getManager();
             $em->persist($user);
             $em->flush();
             
-            return $this->redirectToRoute('modify_user');
+            return $this->redirectToRoute('logout');
         }
-
         
         if (!$this->getUser()) {
             return $this->redirectToRoute('home');
