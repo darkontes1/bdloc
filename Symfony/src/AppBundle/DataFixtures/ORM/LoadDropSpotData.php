@@ -6,8 +6,16 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use AppBundle\Entity\PickUpSpot;
 use \DateTime;
-class LoadDropSpotDataData implements FixtureInterface, ContainerAwareInterface
+class LoadDropSpotDataData implements FixtureInterface, ContainerAwareInterface 
 {
+    /**
+     * @inheritdoc
+     */
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+    }
+    
     /**
      * {@inheritDoc}
      */
