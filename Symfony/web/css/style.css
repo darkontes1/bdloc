@@ -233,11 +233,14 @@ header{
 .apercu{
     border: solid black 1px;
     display: inline-block;
-    height: 300px;
+    width: 350px;
+    margin: 15px;
+    padding: 5px;
     
 }
 
 .cover{
+    
     max-height: 250px;
     max-width: 250px;
 }
