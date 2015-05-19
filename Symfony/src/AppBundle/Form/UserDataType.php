@@ -27,6 +27,12 @@ class UserDataType extends AbstractType
             ->add('email', 'email', array(
                 "label" => "Email"
             ))
+            ->add('adresse', 'string', array(
+                "label" => "Adresse (num rue app)"
+            ))
+            ->add('telephone', 'integer', array(
+                "label" => "Telephone"
+            ))
             ->add('Modifier', 'submit')
         ;
     }
