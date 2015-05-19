@@ -15,7 +15,6 @@ header{
 #h1{
     width: 110px;
     float: left;
-    margin-top: 
 }
 
 #h1 a{
@@ -218,6 +217,41 @@ header{
 #ul-modif a{
     text-align: center;
 }
+
+@media screen and (max-width: 995px){
+
+    #h1{
+        float: none;
+        display: block;
+    }
+    .menu-principal{
+        float: none;
+        display: block;
+        margin: 0px auto;
+    }
+
+
+    #log{
+        float: none;
+        display: block;
+        margin-top: 0px;
+    }
+
+    header{
+        height: 200px;
+    }
+
+}
+
+@media screen and (min-width: 995px){
+              
+    #burger{
+        display: none;
+    }
+
+                
+
+} 
 
 
 
