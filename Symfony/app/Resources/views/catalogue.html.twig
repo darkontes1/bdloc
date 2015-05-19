@@ -36,13 +36,70 @@
 {%endif%}
 
 
+<!-- Bouton pour activer modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal-{{book.id}}">
+  Plus de détails
+</button>
 
+<!-- Modal -->
+<div class="modal fade" id="myModal-{{book.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">{{ book.title }}</h2>
+      </div>
+      <div class="modal-body">
+        <article>
+            {% if not book.dessinateur == NULL %}
 
+        <h4>{{"autheur : "}}{{book.dessinateur.prenom}}
+                        {{book.dessinateur.nom}}</h4></br>
+    
+    {%endif%}
+{% if not book.coloriste == NULL %}
+    {{"coloriste : "}}{{book.coloriste.prenom}}</br>
+                        {{book.coloriste.nom}}</br>
+
+                        {%endif%}
+{% if not book.scenariste == NULL %}
+    {{"scenariste : "}}{{book.scenariste.prenom}}</br>
+                        {{book.scenariste.nom}}</br>
+
+                        {%endif%}
+
+{% if book.exemplaires > 0 %}
+    {{book.exemplaires}}{{" dispos !"}}</br>
+{%endif%}
+
+{% if book.exemplaires == 0 %}
+{{"indisponible !"}}</br>
+
+{%endif%}
+        </article>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
 
 
     </div>
 
 
     {% endfor %}
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+    <script type="text/javascript">
+
+    $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').focus()
+    });
+
+    </script>
 
 {% endblock %}
