@@ -37,35 +37,4 @@ class DefaultController extends Controller
         return $this->render('catalogue.html.twig');
     }
 
-    /**
-    * @Route(
-    *   "/details/{id}",
-    *   name="book_details"
-    * ) 
-    */
-    public function bookDetailsAction($id)
-    {
-
-        $bookRepo = $this->get("doctrine")->getRepository("AppBundle:Book");
-        $book = $bookRepo->find($id);
-
-        
-        if (!$book){
-            throw $this->createNotFoundException("Oupsie !");
-        }
-         
-            
-
-        //récupère les commentaires associés à l'article actuel
-        //$commentsRepo = $this->get("doctrine")->getRepository("AppBundle:Comment");
-        //$comments = $commentsRepo->findByStory($story);
-        //$comments = $commentsRepo->findBy(
-        //  array("story" => $story)
-        //);
-
-        $params = array(
-            "book" => $book
-        );
-        return $this->render("bd/book_details.html.twig", $params);
-    }
 }

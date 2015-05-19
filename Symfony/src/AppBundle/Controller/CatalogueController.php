@@ -35,4 +35,24 @@ class CatalogueController extends Controller
 
         return $this->render('catalogue.html.twig',$param);
     }
+
+        /**
+    * @Route("/details/{id}", name="book_details") 
+    */
+    public function bookDetailsAction($id)
+    {
+
+        $bookRepo = $this->get("doctrine")->getRepository("AppBundle:Book");
+        $book = $bookRepo->find($id);
+
+        
+        if (!$book){
+            throw $this->createNotFoundException("Oupsie !");
+        }
+
+        $params = array(
+            "book" => $book
+        );
+        return $this->render("bd/book_details.html.twig", $params);
+    }
 }
