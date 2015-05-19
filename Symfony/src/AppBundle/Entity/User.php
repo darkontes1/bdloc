@@ -80,6 +80,32 @@ class User implements UserInterface
     private $salt;
 
     /**
+     * @var integer
+     *@Assert\Length(
+     *      min = "10",
+     *      max = "10")
+     *
+     * @ORM\Column(name="telephone", type="integer", nullable=true)
+     */
+    private $telephone;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="adresse", type="string", length=255, nullable=true)
+     */
+    private $adresse;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="CP", type="string", length=255, nullable=true)
+     */
+    private $CP;
+
+
+
+    /**
      * @var array
      *
      * @ORM\Column(name="roles", type="array")
@@ -561,5 +587,74 @@ class User implements UserInterface
         $this->roles = $roles;
 
         return $this;
+    }
+
+    /**
+     * Set telephone
+     *
+     * @param integer $telephone
+     * @return User
+     */
+    public function setTelephone($telephone)
+    {
+        $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    /**
+     * Get telephone
+     *
+     * @return integer 
+     */
+    public function getTelephone()
+    {
+        return $this->telephone;
+    }
+
+    /**
+     * Set adresse
+     *
+     * @param string $adresse
+     * @return User
+     */
+    public function setAdresse($adresse)
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    /**
+     * Get adresse
+     *
+     * @return string 
+     */
+    public function getAdresse()
+    {
+        return $this->adresse;
+    }
+
+    /**
+     * Set CP
+     *
+     * @param string $cP
+     * @return User
+     */
+    public function setCP($cP)
+    {
+        $this->CP = $cP;
+
+        return $this;
+    }
+
+    /**
+     * Get CP
+     *
+     * @return string 
+     */
+    public function getCP()
+    {
+        return $this->CP;
     }
 }

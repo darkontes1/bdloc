@@ -80,6 +80,32 @@ class User implements UserInterface
     private $salt;
 
     /**
+     * @var integer
+     *@Assert\Length(
+     *      min = "10",
+     *      max = "10")
+     *
+     * @ORM\Column(name="telephone", type="integer", nullable=true)
+     */
+    private $telephone;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="adresse", type="string", length=255, nullable=true)
+     */
+    private $adresse;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="CP", type="string", length=255, nullable=true)
+     */
+    private $CP;
+
+
+
+    /**
      * @var array
      *
      * @ORM\Column(name="roles", type="array")
