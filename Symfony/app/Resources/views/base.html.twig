@@ -34,7 +34,7 @@
                     <nav class="menu-principal">
                         <ul class="nav nav-tabs">
                             <li><a href=" {{ path('catalogue') }} ">Les BDs !</a></li>
-                            <li><a href="">Mon panier</a></li>
+                            <li><a id="panier" href="{{ path('panier') }}">Mon panier</a></li>
                             <li><a href=" {{ path('modify_user') }} ">Mon compte</a></li>
                         </ul>
                     </nav>
@@ -75,7 +75,10 @@
                     </div>
                 {% endblock %}
             </footer>
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+
+        <script type="text/javascript" src="{{asset("js/script.js")}}"></script>
+        {% endblock %}
         </div>
     </body>
 </html>

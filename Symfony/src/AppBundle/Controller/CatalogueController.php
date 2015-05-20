@@ -5,6 +5,8 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Book;
 use AppBundle\Entity\Author;
 use AppBundle\Entity\Serie;
+use AppBundle\Entity\Commande;
+use AppBundle\Entity\RelBookOrder;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -16,13 +18,17 @@ class CatalogueController extends Controller
      * @Route("/catalogue", name="catalogue")
      */
     public function catalogueAction()
-    {
-        $bd= new Book();
+    {        
 
         $bookrepo=$this->get("doctrine")->getRepository("AppBundle:Book");
         //$book=$bookrepo->findBy(array(), null, 5);
-
         $book=$bookrepo->allResults();
+
+        $orderrepo=$this->get("doctrine")->getRepository("AppBundle:RelBookOrder");
+
+        
+
+        $order=$orderrepo->findAll();
 
 
 
@@ -32,7 +38,8 @@ class CatalogueController extends Controller
 
 
 
-        $param=array('books'=>$book
+        $param=array('books'=>$book,
+            'orders'=>$order
 
             );
 
@@ -59,4 +66,5 @@ class CatalogueController extends Controller
         );
         return $this->render("bd/book_details.html.twig", $params);
     }
+
 }

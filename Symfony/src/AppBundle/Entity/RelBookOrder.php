@@ -14,7 +14,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 class RelBookOrder
 {
 
-     /** @ORM\Id @ORM\ManyToOne(targetEntity="Commande") */
+     /** @ORM\Id @ORM\ManyToOne(targetEntity="Commande")
+     *orphanRemoval=true
+
+      */
     private $order;
 
     /** @ORM\Id @ORM\ManyToOne(targetEntity="Book") */

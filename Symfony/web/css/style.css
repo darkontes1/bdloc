@@ -230,19 +230,34 @@ header{
     display: none;
 }
 
+aside{
+    height: 400px;
+    width: 250px;
+    border: solid 1px;
+    float: left;
+    
+}
+
 .apercu{
+
     border: solid black 1px;
-    display: inline-block;
-    width: 350px;
-    margin: 15px;
+    display:inline-block;
+    height: 400px;
+    width: 380px;
+    margin: 25px;
     padding: 5px;
+    float: right;
     
 }
 
 .cover{
-    
+    float: left;
+    margin: 2px;
     max-height: 250px;
     max-width: 250px;
+}
+footer{
+    clear: both;
 }
 
 @media screen and (max-width: 995px){

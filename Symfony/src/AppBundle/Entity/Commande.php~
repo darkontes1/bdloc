@@ -35,6 +35,13 @@ class Commande
      */
     private $nbBD;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string")
+     */
+    private $status;
+
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="commands")

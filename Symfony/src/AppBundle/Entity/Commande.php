@@ -35,6 +35,13 @@ class Commande
      */
     private $nbBD;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string")
+     */
+    private $status;
+
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="commands")
@@ -147,5 +154,28 @@ class Commande
     public function getPickupspot()
     {
         return $this->pickupspot;
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     * @return Commande
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string 
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 }

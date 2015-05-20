@@ -12,4 +12,15 @@ use Doctrine\ORM\EntityRepository;
  */
 class RelBookOrderRepository extends EntityRepository
 {
+
+     /*public function panierResults(){
+        $qd=$this->createQueryBuilder('r');
+        $qd->select('r','c')
+        ->leftJoin('r.order', 'c');
+        $query=$qd->getQuery();
+        $result=$query->getResult();
+
+
+        return $result;
+    }*/
 }

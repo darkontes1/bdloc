@@ -2,100 +2,123 @@
 {% block body %}
 <h1>catalogue</h1>
 
-{% for book in books %}
-    
-    <div class="apercu">
-    <img class="cover" src="{{asset('images/Couvertures/'~book.cover)}}" alt="cover">
+    {% block aside %}
+    <aside>tri</aside>
+    {% endblock %}
 
-    {{book.title}}
+    {% for book in books %}
+        
+        <article class="apercu">
+        <img class="cover" src="{{asset('images/Couvertures/'~book.cover)}}" alt="cover">
 
-    {% if not book.dessinateur == NULL %}
+        <h5>{{book.title}}</h5>
 
-        {{"autheur : "}}{{book.dessinateur.prenom}}</br>
-                        {{book.dessinateur.nom}}</br>
-    
-    {%endif%}
-{% if not book.coloriste == NULL %}
-    {{"coloriste : "}}{{book.coloriste.prenom}}</br>
-                        {{book.coloriste.nom}}</br>
+        {% if not book.dessinateur == NULL %}
 
+            
+            {{book.dessinateur.prenom}}
+            {{book.dessinateur.nom}}</br>
+        
+        {%endif%}
+        {% if not book.coloriste == NULL %}
+            
+            
+            {{book.coloriste.prenom}}
+            {{book.coloriste.nom}}</br>
+
+        {%endif%}
+        
+        {% if not book.scenariste == NULL %}
+            
+            {{book.scenariste.prenom}}
+            {{book.scenariste.nom}}</br>
+
+        {%endif%}
+
+        {% if book.exemplaires > 0 %}
+            {{book.exemplaires}}{{" dispos !"}}</br>
+            <button data-bdid="{{path("ajoutPanier",{id:book.id})}}" class="ajoutPanier">ajouter au panier</button>
+        {%endif%}
+
+        {% if book.exemplaires == 0 %}
+        {{"indisponible !"}}</br>
+
+        {%endif%}
+
+
+            
+
+
+
+        <!-- Bouton pour activer modal -->
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal-{{book.id}}">
+          Plus de détails
+        </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="myModal-{{book.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h2 class="modal-title" id="myModalLabel">{{ book.title }}</h2>
+                  </div>
+                  <div class="modal-body">
+                    <article>
+                    <img class="cover" src="{{asset('images/Couvertures/'~book.cover)}}" alt="cover">
+
+                        {{book.serie.title}}
+                        {{book.serie.style}}
+                        {{book.serie.langue}}
+                        {% if not book.dessinateur == NULL %}
+
+                            <h4>{{"autheur : "}}{{book.dessinateur.prenom}}
+                                            {{book.dessinateur.nom}}</h4></br>
+                
                         {%endif%}
-{% if not book.scenariste == NULL %}
-    {{"scenariste : "}}{{book.scenariste.prenom}}</br>
-                        {{book.scenariste.nom}}</br>
+                    {% if not book.coloriste == NULL %}
+                        {{"coloriste : "}}{{book.coloriste.prenom}}</br>
+                                            {{book.coloriste.nom}}</br>
 
-                        {%endif%}
+                                            {%endif%}
+                    {% if not book.scenariste == NULL %}
+                        {{"scenariste : "}}{{book.scenariste.prenom}}</br>
+                                            {{book.scenariste.nom}}</br>
 
-{% if book.exemplaires > 0 %}
-    {{book.exemplaires}}{{" dispos !"}}</br>
-{%endif%}
+                                            {%endif%}
 
-{% if book.exemplaires == 0 %}
-{{"indisponible !"}}</br>
+                    {% if book.exemplaires > 0 %}
+                        {{book.exemplaires}}{{" dispos !"}}</br>
+                    {%endif%}
 
-{%endif%}
+                    {% if book.exemplaires == 0 %}
+                    {{"indisponible !"}}</br>
+
+                    {%endif%}
+
+                            </article>
+                          </div>
+                          <div class="modal-footer">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
 
-<!-- Bouton pour activer modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal-{{book.id}}">
-  Plus de détails
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="myModal-{{book.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="myModalLabel">{{ book.title }}</h2>
-      </div>
-      <div class="modal-body">
-        <article>
-            {% if not book.dessinateur == NULL %}
-
-        <h4>{{"autheur : "}}{{book.dessinateur.prenom}}
-                        {{book.dessinateur.nom}}</h4></br>
-    
-    {%endif%}
-{% if not book.coloriste == NULL %}
-    {{"coloriste : "}}{{book.coloriste.prenom}}</br>
-                        {{book.coloriste.nom}}</br>
-
-                        {%endif%}
-{% if not book.scenariste == NULL %}
-    {{"scenariste : "}}{{book.scenariste.prenom}}</br>
-                        {{book.scenariste.nom}}</br>
-
-                        {%endif%}
-
-{% if book.exemplaires > 0 %}
-    {{book.exemplaires}}{{" dispos !"}}</br>
-{%endif%}
-
-{% if book.exemplaires == 0 %}
-{{"indisponible !"}}</br>
-
-{%endif%}
         </article>
-      </div>
-      <div class="modal-footer">
-      </div>
-    </div>
-  </div>
-</div>
 
 
-    </div>
+        {% endfor %}
 
 
-    {% endfor %}
 
 {% endblock %}
 
 
 {% block javascripts %}
 
-    <script type="text/javascript">
+    {{parent()}}
 
+    <script type="text/javascript">
     $('#myModal').on('shown.bs.modal', function () {
         $('#myInput').focus()
     });

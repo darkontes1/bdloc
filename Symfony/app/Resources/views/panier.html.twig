@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    {% for order in orders %}
+        
+        {% if  order.order.user.id == app.user.id %}
+
+            <article><img class="cover" src="{{asset('images/Couvertures/'~order.book.cover)}}" alt="cover">{{order.dateOrder|date("d-m-Y")}}
+            {{order.book.title}}
+
+            <a href="{{ path('panier_delete', {"id":order.order.id}) }}">retirer du panier</a></article>
+        
+        {% endif %}
+
+    {% endfor %}
+
+{% endblock %}
