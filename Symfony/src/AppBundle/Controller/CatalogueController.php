@@ -17,15 +17,25 @@ use Symfony\Component\HttpFoundation\Request;
 class CatalogueController extends Controller
 {
     /**
-     * @Route("/catalogue", name="catalogue")
+     * @Route("/catalogue/{page}", 
+     * requirements={"page":"[1-9]\d*"}, 
+     * defaults={"page":1},
+     * name="catalogue")
      */
-    public function catalogueAction(Request $request)
+    public function catalogueAction(Request $request, $page)
     {        
         $bookrepo = $this->get("doctrine")->getRepository("AppBundle:Book");
         $book = $bookrepo->allResults();
 
         $orderrepo = $this->get("doctrine")->getRepository("AppBundle:RelBookOrder");
         $order = $orderrepo->findAll();
+
+        //récupère toutes les BDs de la bdd
+        $paginationResults = $bookrepo->findPaginated($page);
+
+        if (!$paginationResults){
+            throw $this->createNotFoundException();
+        }
 
         $books = new Book();
         $createBookForm = $this->createForm(new BookCateType(), $books);
@@ -46,7 +56,8 @@ class CatalogueController extends Controller
         $params=array(
             'createBookForm' => $createBookForm->createView(),
             'books' => $book,
-            'orders' => $order
+            'orders' => $order,
+            "paginationResults" => $paginationResults
         );
 
         return $this->render('catalogue.html.twig',$params);

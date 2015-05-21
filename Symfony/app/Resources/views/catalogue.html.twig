@@ -1,15 +1,39 @@
 {% extends 'base.html.twig' %}
-
 {% block filtre %}
+<h1>catalogue</h1>
     <aside>
         {{ form(createBookForm) }}
     </aside>
 {% endblock %}
-
 {% block body %}
-<h1>catalogue</h1>
 
-    {% for book in books %}
+<div id="nav-page">
+{{ paginationResults.nowShowingMin }} à {{ paginationResults.nowShowingMax }} sur {{ paginationResults.total }}
+    <ul class="pagination">
+
+    {% if paginationResults.prevPage %}
+
+    <li><a href="{{ path('catalogue', {page: paginationResults.prevPage}) }}">Préc</a></li>
+
+    {% endif %}
+
+    {% for i in paginationResults.numLinkMin..paginationResults.numLinkMax %}
+    <li><a href="{{ path('catalogue', {'page' : i}) }}">{{i}}</a></li>
+    {% endfor %}
+
+    {% if paginationResults.nextPage %}
+
+    <li><a href="{{ path('catalogue', {page: paginationResults.nextPage}) }}">Suiv</a></li>
+
+    {% endif %}
+
+    </ul>
+</div>
+
+
+
+
+    {% for book in paginationResults.data %}
         
         <article class="apercu">
         <img class="cover" src="{{asset('images/Couvertures/'~book.cover)}}" alt="cover">
@@ -128,6 +152,30 @@
 
 
         {% endfor %}
+        <div id="nav-page">
+{{ paginationResults.nowShowingMin }} à {{ paginationResults.nowShowingMax }} sur {{ paginationResults.total }}
+    <ul class="pagination">
+
+    {% if paginationResults.prevPage %}
+
+    <li><a href="{{ path('catalogue', {page: paginationResults.prevPage}) }}">Préc</a></li>
+
+    {% endif %}
+
+    {% for i in paginationResults.numLinkMin..paginationResults.numLinkMax %}
+    <li><a href="{{ path('catalogue', {'page' : i}) }}">{{i}}</a></li>
+    {% endfor %}
+
+    {% if paginationResults.nextPage %}
+
+    <li><a href="{{ path('catalogue', {page: paginationResults.nextPage}) }}">Suiv</a></li>
+
+    {% endif %}
+
+    </ul>
+</div>
+
+
 
 
 

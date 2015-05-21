@@ -56,6 +56,10 @@ header{
     margin:3em;
 }
 
+#nav-page{
+    margin-left: 44%;
+}
+
 
 
 #slider1{
@@ -239,7 +243,9 @@ aside{
     border-radius: 0px 12px 12px 0px;
     float: left;
     position: fixed;
-    transition: all 1s;   
+    transition: all 1s;
+    overflow: hidden;
+    padding: 5px;  
 }
 
 aside:hover{
@@ -247,6 +253,10 @@ aside:hover{
     width: 220px;
     background: rgb(163, 194, 255);
     transition: all 1s;
+}
+
+#appbundle_book_cate_category{
+    margin: 4px 4px 0px 4px;
 }
 
 

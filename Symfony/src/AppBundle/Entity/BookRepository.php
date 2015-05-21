@@ -57,4 +57,63 @@ class BookRepository extends EntityRepository
 
         return $result;
     }
+
+     public function findPaginated($page)
+    {
+        // DQL
+        /*
+        $em = $this->getEntityManager();
+
+        $dql = "SELECT s, a
+                FROM AppBundle\Entity\Story s 
+                LEFT JOIN s.author a 
+                WHERE s.isPublished = 1";
+        $query = $em->createQuery($dql);
+        */
+
+        //Doctrine Query Builder
+        $qb = $this->createQueryBuilder("b");
+
+        // $qb->select('s')
+        //     ->addSelect('a')
+        //     ->leftJoin('s.author', 'a')
+        //     ->where('s.isPublished = 1');
+
+        //commun aux deux
+        $query = $qb->getQuery();
+
+        $numPerPage = 10;
+        $query->setMaxResults($numPerPage);
+        $query->setFirstResult( ($page-1) * $numPerPage );
+        $result = $query->getResult();
+
+        $paginationResults = array();
+
+        //nombre total possible
+        $paginationResults["total"] = $qb->select("COUNT(b)")->getQuery()->getSingleScalarResult();
+        $lastPage = ceil($paginationResults["total"] / $numPerPage);
+
+        if ($page > $lastPage){
+            return false;
+        }
+
+        //les actualités
+        $paginationResults["data"] = $result;
+
+        //affichage des infos sur les résultats
+        $paginationResults['nowShowingMin'] = ($page-1) * $numPerPage + 1;
+        $paginationResults['nowShowingMax'] = $paginationResults['nowShowingMin'] + count($result) - 1;
+
+        //liens numériques
+        $numPagesDiff = 2;
+        $paginationResults['numLinkMin'] = ($page - $numPagesDiff < 1) ? 1 : $page - $numPagesDiff;
+        $paginationResults['numLinkMax'] = ($page + $numPagesDiff >= $lastPage) ? $lastPage : $page + $numPagesDiff;
+
+        //page précédente ?
+        $paginationResults["prevPage"] = ($page <= 1) ? false : $page-1;
+        $paginationResults["nextPage"] = ($page >= $lastPage) ? false : $page+1;
+        
+        //dump($paginationResults);
+        return $paginationResults;
+    }
 }
