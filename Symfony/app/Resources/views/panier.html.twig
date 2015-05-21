@@ -1,59 +1,32 @@
 {% extends 'base.html.twig' %}
+
 {% block body %}
 
     {% for order in orders %}
-        
-        {% if  order.order.user.id == app.user.id %}
 
-            <article class="apercu"><img class="cover" src="{{asset('images/Couvertures/'~order.book.cover)}}" alt="cover">{{order.dateOrder|date("d-m-Y")}}
-            <h4>{{order.book.title}}</h4>
+        {% if order.order.user.id == app.user.id %}
+            <article class="apercu">
+                <img class="cover" src="{{asset('images/Couvertures/'~order.book.cover)}}" alt="cover">
+                <div>{{order.dateOrder|date("d-m-Y")}}</div>
+                <h4>{{order.book.title}}</h4>
 
-        {% if not order.book.dessinateur == NULL %}
+                {% if not order.book.dessinateur == NULL %}
+                    <div>De: {{order.book.dessinateur.prenom}}
+                    {{order.book.dessinateur.nom}}</div>
+                {%endif%}
 
-            
-            {{"De:"}} {{order.book.dessinateur.prenom}}
-            {{order.book.dessinateur.nom}}</br>
-        
-        {%endif%}
-        {% if not order.book.coloriste == NULL %}
-            
-            
-            {{"Coloriste:"}} {{order.book.coloriste.prenom}}
-            {{order.book.coloriste.nom}}</br>
+                {% if not order.book.coloriste == NULL %}
+                    <div>Coloriste: {{order.book.coloriste.prenom}}
+                    {{order.book.coloriste.nom}}</div>
+                {%endif%}
 
-        {%endif%}
-        
-        {% if not order.book.scenariste == NULL %}
-            
-            {{"Scenariste:"}} {{order.book.scenariste.prenom}}
-            {{order.book.scenariste.nom}}</br>
+                {% if not order.book.scenariste == NULL %}
+                    <div>Scenariste: {{order.book.scenariste.prenom}}
+                    {{order.book.scenariste.nom}}</div>
+                {%endif%}
 
-        {%endif%}
-
-        {% if order.book.exemplaires > 0 %}
-            {#
-            {% if order.book.exemplaires <= 3 %}
-            <span class="dispo" value=" {{order.book.exemplaires}} ">
-                {{"Vite plus que:"}} <b>{{order.book.exemplaires}}</b> {{" dispos !"}}
-
-            </span></br>
-            {%endif%}
-
-            {% if order.book.exemplaires > 3 %}
-            <span class="dispo" value=" {{order.book.exemplaires}} ">
-                {{"Encore:"}} <b>{{order.book.exemplaires}}</b> {{" dispos !"}}
-            </span></br>
-            {%endif%}</br>
-            #}
-
-            <span>
-                {{"Encore:"}} <div class="dispo" value=" {{order.book.exemplaires}} ">{{order.book.exemplaires}}</div> {{" dispos !"}}
-            </span></br>
-
-        {%endif%}
-
-            <a type="button" class="btn btn-danger dropdown-toggle" href="{{ path('panier_delete', {"id":order.order.id}) }}">retirer du panier</a></article>
-        
+                <a class="panier_delete btn btn-danger dropdown-toggle" href="{{ path('panier_delete', {"id":order.order.id}) }}">retirer du panier</a>
+            </article>
         {% endif %}
 
     {% endfor %}
