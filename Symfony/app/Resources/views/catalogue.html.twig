@@ -3,7 +3,7 @@
 <h1>catalogue</h1>
 
     {% block aside %}
-    <aside>tri</aside>
+    <aside><p>FILTRAGE</p></aside>
     {% endblock %}
 
     {% for book in books %}
@@ -16,22 +16,22 @@
         {% if not book.dessinateur == NULL %}
 
             
-            {{"De:"}} {{book.dessinateur.prenom}}
-            {{book.dessinateur.nom}}</br>
+            {{"De:"}} <b>{{book.dessinateur.prenom}}
+            {{book.dessinateur.nom}}</b></br>
         
         {%endif%}
         {% if not book.coloriste == NULL %}
             
             
-            {{"Coloriste:"}} {{book.coloriste.prenom}}
-            {{book.coloriste.nom}}</br>
+            {{"Coloriste:"}} <b>{{book.coloriste.prenom}}
+            {{book.coloriste.nom}}</b></br>
 
         {%endif%}
         
         {% if not book.scenariste == NULL %}
             
-            {{"Scenariste:"}} {{book.scenariste.prenom}}
-            {{book.scenariste.nom}}</br>
+            {{"Scenariste:"}} <b>{{book.scenariste.prenom}}
+            {{book.scenariste.nom}}</b></br>
 
         {%endif%}
 
@@ -48,7 +48,7 @@
             <div class="dispo" value=" {{book.exemplaires}} ">
                 {{"Encore:"}} <b>{{book.exemplaires}}</b> {{" dispos !"}}
             </div></br>
-            {%endif%}</br>
+            {%endif%}
 
             <button data-bdid="{{path("ajoutPanier",{id:book.id})}}" class="ajoutPanier">ajouter au panier</button>
 
