@@ -5,10 +5,10 @@
         
         {% if  order.order.user.id == app.user.id %}
 
-            <article><img class="cover" src="{{asset('images/Couvertures/'~order.book.cover)}}" alt="cover">{{order.dateOrder|date("d-m-Y")}}
+            <article class="test"><img class="cover" src="{{asset('images/Couvertures/'~order.book.cover)}}" alt="cover">{{order.dateOrder|date("d-m-Y")}}
             {{order.book.title}}
 
-            <a href="{{ path('panier_delete', {"id":order.order.id}) }}">retirer du panier</a></article>
+            <button data-remove={{path("panier_delete",{id:order.order.id})}} class="panier_delete">retirer du panier</button></article>
         
         {% endif %}
 
