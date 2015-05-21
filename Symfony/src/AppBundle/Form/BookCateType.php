@@ -8,6 +8,12 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class BookType extends AbstractType
 {
+    /*liste des catégories*/
+    private $category;
+
+    private function
+
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -15,20 +21,8 @@ class BookType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('num')
-            ->add('title')
-            ->add('editor')
-            ->add('reference')
-            ->add('cover')
-            ->add('exlibris')
-            ->add('nbPages')
-            ->add('planche')
-            ->add('idBel')
-            ->add('exemplaires')
-            ->add('dessinateur')
-            ->add('coloriste')
-            ->add('scenariste')
-            ->add('serie')
+            ->add('Categorie', 'choice', array())
+            ->add('submit', 'Rechercher')
         ;
     }
     
