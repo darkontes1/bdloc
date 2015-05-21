@@ -5,8 +5,52 @@
         
         {% if  order.order.user.id == app.user.id %}
 
-            <article><img class="cover" src="{{asset('images/Couvertures/'~order.book.cover)}}" alt="cover">{{order.dateOrder|date("d-m-Y")}}
-            {{order.book.title}}
+            <article class="apercu"><img class="cover" src="{{asset('images/Couvertures/'~order.book.cover)}}" alt="cover">{{order.dateOrder|date("d-m-Y")}}
+            <h4>{{order.book.title}}</h4>
+
+        {% if not order.book.dessinateur == NULL %}
+
+            
+            {{"De:"}} {{order.book.dessinateur.prenom}}
+            {{order.book.dessinateur.nom}}</br>
+        
+        {%endif%}
+        {% if not order.book.coloriste == NULL %}
+            
+            
+            {{"Coloriste:"}} {{order.book.coloriste.prenom}}
+            {{order.book.coloriste.nom}}</br>
+
+        {%endif%}
+        
+        {% if not order.book.scenariste == NULL %}
+            
+            {{"Scenariste:"}} {{order.book.scenariste.prenom}}
+            {{order.book.scenariste.nom}}</br>
+
+        {%endif%}
+
+        {% if order.book.exemplaires > 0 %}
+            {#
+            {% if order.book.exemplaires <= 3 %}
+            <div class="dispo" value=" {{order.book.exemplaires}} ">
+                {{"Vite plus que:"}} <b>{{order.book.exemplaires}}</b> {{" dispos !"}}
+
+            </div></br>
+            {%endif%}
+
+            {% if order.book.exemplaires > 3 %}
+            <div class="dispo" value=" {{order.book.exemplaires}} ">
+                {{"Encore:"}} <b>{{order.book.exemplaires}}</b> {{" dispos !"}}
+            </div></br>
+            {%endif%}</br>
+            #}
+
+            <div>
+                {{"Encore:"}} <div class="dispo" value=" {{order.book.exemplaires}} ">{{order.book.exemplaires}}</div> {{" dispos !"}}
+            </div></br>
+
+        {%endif%}
 
             <a href="{{ path('panier_delete', {"id":order.order.id}) }}">retirer du panier</a></article>
         
