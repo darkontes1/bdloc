@@ -9,8 +9,12 @@ use AppBundle\Entity\Commande;
 use AppBundle\Entity\RelBookOrder;
 use AppBundle\Entity\PickUpSpot;
 
+use AppBundle\Form\PickUpSpotType;
+use AppBundle\Form\CommandeType;
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 
 class OrderController extends Controller
@@ -71,9 +75,9 @@ class OrderController extends Controller
     public function afficherPanierAction(){
 
         $orderrepo=$this->get("doctrine")->getRepository("AppBundle:RelBookOrder");
-        
+       
 
-        $order=$orderrepo->findAll();
+        $order=$orderrepo->findByStatus(false);
 
 
         $param=array(
@@ -134,13 +138,68 @@ class OrderController extends Controller
     }
 
     /**
-    * @Route("/panier/validation/{id}", name="panier_confirm") 
+    * @Route("/panier/confirmation/{id}", name="panier_confirm") 
     */
      public function panierConfirmAction($id,Request $request)
     {
-        $user = new User();
-        $createUserForm = $this->createForm(new UserAllType(), $user);
-        $createUserForm->handleRequest($request);
+        $spot=new PickUpSpot(); 
+        $validrepo=$this->get("doctrine")->getRepository("AppBundle:Commande");
+
+        $relrepo=$this->get("doctrine")->getRepository("AppBundle:RelBookOrder");
+
+
+
+        $valid=$validrepo->find($id);
+
+        $rel=$relrepo->findByOrder($valid);
+
+        $createSpotForm = $this->createForm(new PickUpSpotType(), $spot);
+        $createSpotForm->handleRequest($request);
+
+        
+
+        if ($createSpotForm->isValid()){
+            $valid->setStatus("valider");
+            $valid->setPickUpSpot($createSpotForm->get("adresse")->getData());
+            $valid->setDate( new \DateTime() );
+
+            $rel[0]->setStatus(true);
+
+            $em = $this->get("doctrine")->getManager();
+            $em->persist($valid);
+            $em->flush();
+
+            return $this->redirectToRoute('validation',array('id'=>$id));
+
+
+        }
+
+        $params = array(
+            "createSpotForm" => $createSpotForm->createView()
+        );
+        return $this->render("confirm.html.twig", $params);
+    }
+
+    /**
+    * @Route("/panier/validation/{id}", name="validation") 
+    */
+    public function paniervalidAction($id,Request $request)
+    {
+         
+        $validrepo=$this->get("doctrine")->getRepository("AppBundle:Commande");
+
+        $valid=$validrepo->find($id);
+
+        dump($valid);
+
+        $params = array(
+            "valids" => $valid
+        );
+        return $this->render("valid.html.twig", $params);
+
+
+        
+
     }
 
 

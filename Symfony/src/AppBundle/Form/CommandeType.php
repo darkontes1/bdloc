@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class PickUpSpotType extends AbstractType
+class CommandeType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,12 +15,14 @@ class PickUpSpotType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('adresse','entity',array(
-                'class'=>'AppBundle:PickUpSpot',
+            
+            ->add('pickupspot','entity',array(
+                'class'=>'AppBundle:Commande',
+                'property'=>'pickupspot'
                 ))
 
             ->add('valider','submit')
-        ;
+            ;
     }
     
     /**
@@ -29,7 +31,7 @@ class PickUpSpotType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\PickUpSpot'
+            'data_class' => 'AppBundle\Entity\Commande'
         ));
     }
 
@@ -38,6 +40,6 @@ class PickUpSpotType extends AbstractType
      */
     public function getName()
     {
-        return 'appbundle_pickupspot';
+        return 'appbundle_commande';
     }
 }

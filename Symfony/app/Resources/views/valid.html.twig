@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {% for valid in valids %}
+
+
+            {{valid.date|date("d-m-Y")}}
+            {{valid.user.username}}
+            {{valid.pickupspot.adresse}}<br />
+        
+    {% endfor %}
+
+
+{% endblock %}
