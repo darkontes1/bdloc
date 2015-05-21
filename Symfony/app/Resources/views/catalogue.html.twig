@@ -38,11 +38,16 @@
         {% if book.exemplaires > 0 %}
 
             {% if book.exemplaires <= 3 %}
-                {{"Vite plus que:"}} <b>{{book.exemplaires}}</b> {{" dispos !"}}</br>
+            <div class="dispo" value=" {{book.exemplaires}} ">
+                {{"Vite plus que:"}} <b>{{book.exemplaires}}</b> {{" dispos !"}}
+
+            </div></br>
             {%endif%}
 
             {% if book.exemplaires > 3 %}
-                {{"Encore:"}} <b>{{book.exemplaires}}</b> {{" dispos !"}}</br>
+            <div class="dispo" value=" {{book.exemplaires}} ">
+                {{"Encore:"}} <b>{{book.exemplaires}}</b> {{" dispos !"}}
+            </div></br>
             {%endif%}</br>
 
             <button data-bdid="{{path("ajoutPanier",{id:book.id})}}" class="ajoutPanier">ajouter au panier</button>
