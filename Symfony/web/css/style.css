@@ -86,7 +86,7 @@ header{
     width: 90px; 
     height: 90px;
     display: block;
-    background: rgb(36,68,92);
+    background: white;
     position: absolute;
     margin-left: 430px;
     margin-top: 130px;
@@ -99,7 +99,7 @@ header{
     width: 180px;
     height: 180px;
     border-color: #333;
-    background: url("../images/tintin.png");
+    background: url("../images/dupont.jpg");
     margin-left: 385px;
     margin-top: 85px;
     transform: rotate(1080deg);
@@ -239,20 +239,25 @@ aside{
 }
 
 .apercu{
-
-    border: solid black 1px;
+;
     display:inline-block;
-    height: 400px;
-    width: 380px;
+    height: 280px;
+    width: 390px;
     margin: 25px;
     padding: 5px;
     float: right;
+    border-radius: 8px;
+    background: rgba(102, 153, 255, 0.5);
     
+}
+
+.apercu:hover{
+    background: rgb(102, 153, 255);  
 }
 
 .cover{
     float: left;
-    margin: 2px;
+    margin: 3px 5px 0px 3px;
     max-height: 250px;
     max-width: 250px;
 }
