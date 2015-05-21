@@ -44,7 +44,7 @@ header{
 }
 
 #fond-slider{
-    width: 1000px;
+    width: 100%;
     margin: 0px auto;
     height: 350px;
     background: url("../images/accueil.jpg");
@@ -158,6 +158,7 @@ header{
     background: url("../images/log-bk.jpg");
     padding: 100px 0px 0px 0px;
     border-radius: 10px;
+    margin-top: 25px;
 }
 
 .form-signin{
@@ -248,6 +249,7 @@ aside:hover{
     transition: all 1s;
 }
 
+
 .apercu{
 ;
     display:inline-block;
@@ -288,6 +290,19 @@ footer{
 
     #log-resp{
         display: block;
+    }
+
+    #slider1{
+        display: none;
+    }
+
+    #slider2{
+        display: none;
+    }
+
+    #slider3{
+        display: none;
+    }
 
 
 }
