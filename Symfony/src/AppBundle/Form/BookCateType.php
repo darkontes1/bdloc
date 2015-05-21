@@ -16,10 +16,11 @@ class BookCateType extends AbstractType
     {
         $builder
             ->add('category', 'choice', array(
+                'empty_value' => 'Toutes les categories',
                 'mapped' => false,
                 "label" => "Catégorie",
+                "required" => false,
                 'choices' => array(
-                    'Toutes-les-catégories' => 'Toutes les catégories',
                     'Science-fiction' => 'Science-fiction',
                     'Divers' => 'Divers',
                     'Polar/Thriller' => 'Polar/Thriller',
@@ -35,10 +36,11 @@ class BookCateType extends AbstractType
                 )
             ))
             ->add('dispo', 'choice', array(
+                'empty_value' => 'Toutes les disponibilités',
                 'mapped' => false,
                 "label" => "Disponibilité",
+                "required" => false,
                 'choices' => array(
-                    'Toutes-les-disponibilites' => 'Toutes les disponibilités',
                     'Disponible' => 'Disponible',
                     'Indisponible' => 'Indisponible'
                 )

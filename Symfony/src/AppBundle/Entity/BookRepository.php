@@ -26,7 +26,7 @@ class BookRepository extends EntityRepository
         return $result;
     }
 
-    public function cateResult($cate=null, $exem=null, $mc=null)
+    public function cateResult($cate, $exem, $mc)
     {
         $qd=$this->createQueryBuilder('b');
 
@@ -36,16 +36,19 @@ class BookRepository extends EntityRepository
         ->leftJoin('b.coloriste', 's')
         ->leftJoin('b.serie','se');
 
-        if($cate != null){
-            $qd->andwhere('se.style = '.$cate);
+        if(!empty($cate)){
+            $qd->andwhere('se.style = :cate');
+            $qd->setParameter("cate",$cate);
         }
 
-        if($exem != null){
-            $qd->andwhere('b.exemplaires = '.$exem);
+        if(!empty($exem)){
+            $qd->andwhere('b.exemplaires = :exem');
+            $qd->setParameter("exem",$exem);
         }
 
-        if($mc != null){
-            $qd->andwhere('b.title = '.$mc);
+        if(!empty($mc)){
+            $qd->andwhere('b.title = :mc');
+            $qd->setParameter("mc",$mc);
         }
         
         $query=$qd->getQuery();
