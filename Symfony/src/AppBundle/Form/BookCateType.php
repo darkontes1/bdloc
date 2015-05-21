@@ -38,6 +38,9 @@ class BookType extends AbstractType
                     'Indisponible' => 'Indisponible'
                 )
             ))
+            ->add('Mots-clé', 'search', array(
+                "label" => "Mots-clé"
+            ))
             ->add('submit', 'Rechercher')
         ;
     }
