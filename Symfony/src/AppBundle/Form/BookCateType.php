@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class BookType extends AbstractType
+class BookCateType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -17,6 +17,7 @@ class BookType extends AbstractType
 
         $builder
             ->add('Categorie', 'choice', array(
+                'mapped' => false,
                 'choices' => array(
                     'Toutes les catégories' => 'Toutes les catégories',
                     'Science-fiction' => 'Science-fiction',
@@ -33,17 +34,20 @@ class BookType extends AbstractType
                     'Érotique' => 'Érotique'
                 )
             ))
-            ->add('Disponibilité', 'choice', array(
+            ->add('Disponibilite', 'choice', array(
+                'mapped' => false,
                 'choices' => array(
                     'Toutes les disponibilités' => 'Toutes les disponibilités',
                     'Disponible' => 'Disponible',
                     'Indisponible' => 'Indisponible'
                 )
             ))
-            ->add('Mots-clé', 'search', array(
-                "label" => "Mots-clé"
+            ->add('Mots-cle', 'search', array(
+                'mapped' => false,
+                "label" => "Mots-clé",
+                "required" => false
             ))
-            ->add('submit', 'Rechercher')
+            ->add('Rechercher', 'submit')
         ;
     }
     
@@ -62,6 +66,6 @@ class BookType extends AbstractType
      */
     public function getName()
     {
-        return 'appbundle_book';
+        return 'appbundle_book_cate';
     }
 }

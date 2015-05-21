@@ -1,10 +1,13 @@
 {% extends 'base.html.twig' %}
+
+{% block filtre %}
+    <aside>
+        {{ form(createBookForm) }}
+    </aside>
+{% endblock %}
+
 {% block body %}
 <h1>catalogue</h1>
-
-    {% block aside %}
-    <aside>tri</aside>
-    {% endblock %}
 
     {% for book in books %}
         

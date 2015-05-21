@@ -52,6 +52,6 @@ class UserDataType extends AbstractType
      */
     public function getName()
     {
-        return 'appbundle_user';
+        return 'appbundle_user_data';
     }
 }

@@ -58,6 +58,6 @@ class UserAllType extends AbstractType
      */
     public function getName()
     {
-        return 'appbundle_user';
+        return 'appbundle_user_all';
     }
 }
