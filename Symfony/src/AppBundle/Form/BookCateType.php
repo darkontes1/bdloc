@@ -18,8 +18,25 @@ class BookType extends AbstractType
         $builder
             ->add('Categorie', 'choice', array(
                 'choices' => array(
-                    'matin' => 'Matin',
-                    'apresmidi' => 'Après-midi'
+                    'Science-fiction' => 'Science-fiction',
+                    'Divers' => 'Divers',
+                    'Polar/Thriller' => 'Polar/Thriller',
+                    'Historique' => 'Historique',
+                    'Biographie' => 'Biographie',
+                    'Aventure' => 'Aventure',
+                    'Jeunesse' => 'Jeunesse',
+                    'Comics' => 'Comics',
+                    'Humour' => 'Humour',
+                    'Manga' => 'Manga',
+                    'Indépendant' => 'Indépendant',
+                    'Érotique' => 'Érotique'
+                )
+            ))
+            ->add('Disponibilité', 'choice', array(
+                'choices' => array(
+                    'Disponible' => 'Disponible',
+                    'Indisponible' => 'Indisponible'
+                )
             ))
             ->add('submit', 'Rechercher')
         ;
