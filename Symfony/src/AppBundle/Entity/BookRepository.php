@@ -12,7 +12,8 @@ use Doctrine\ORM\EntityRepository;
  */
 class BookRepository extends EntityRepository
 {
-    public function allResults(){
+    public function allResults()
+    {
         $qd=$this->createQueryBuilder('b');
         $qd->select('b','a','c','s')
         ->leftJoin('b.dessinateur', 'a')
@@ -22,8 +23,35 @@ class BookRepository extends EntityRepository
         $query->setMaxResults(10);
         $result=$query->getResult();
 
-
         return $result;
     }
 
+    public function cateResult($cate=null, $exem=null, $mc=null)
+    {
+        $qd=$this->createQueryBuilder('b');
+
+        $qd->select('b','a','c','s','se')
+        ->leftJoin('b.dessinateur', 'a')
+        ->leftJoin('b.scenariste', 'c')
+        ->leftJoin('b.coloriste', 's')
+        ->leftJoin('b.serie_id','se');
+
+        if($cate != null){
+            $qd->andwhere('se.style = '.$cate);
+        }
+
+        if($exem != null){
+            $qd->andwhere('b.exemplaires = '.$exem);
+        }
+
+        if($mc != null){
+            $qd->andwhere('b.title = '.$mc);
+        }
+        
+        $query=$qd->getQuery();
+        $query->setMaxResults(10);
+        $result=$query->getResult();
+
+        return $result;
+    }
 }

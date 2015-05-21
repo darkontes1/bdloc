@@ -10,6 +10,7 @@ use AppBundle\Entity\RelBookOrder;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 
 class CatalogueController extends Controller
@@ -17,37 +18,24 @@ class CatalogueController extends Controller
     /**
      * @Route("/catalogue", name="catalogue")
      */
-    public function catalogueAction()
+    public function catalogueAction(Request $request)
     {        
-
         $bookrepo=$this->get("doctrine")->getRepository("AppBundle:Book");
         //$book=$bookrepo->findBy(array(), null, 5);
         $book=$bookrepo->allResults();
-
         $orderrepo=$this->get("doctrine")->getRepository("AppBundle:RelBookOrder");
-
-        
-
         $order=$orderrepo->findAll();
-
-
 
         /*$dessinateur=$bookrepo->findByDessinateur($book);*/
 
-
-
-
-
         $param=array('books'=>$book,
             'orders'=>$order
-
-            );
-
+        );
 
         return $this->render('catalogue.html.twig',$param);
     }
 
-        /**
+    /**
     * @Route("/details/{id}", name="book_details") 
     */
     public function bookDetailsAction($id)
@@ -66,5 +54,6 @@ class CatalogueController extends Controller
         );
         return $this->render("bd/book_details.html.twig", $params);
     }
+
 
 }

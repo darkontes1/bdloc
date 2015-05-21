@@ -18,6 +18,7 @@ class BookType extends AbstractType
         $builder
             ->add('Categorie', 'choice', array(
                 'choices' => array(
+                    'Toutes les catégories' => 'Toutes les catégories',
                     'Science-fiction' => 'Science-fiction',
                     'Divers' => 'Divers',
                     'Polar/Thriller' => 'Polar/Thriller',
@@ -34,6 +35,7 @@ class BookType extends AbstractType
             ))
             ->add('Disponibilité', 'choice', array(
                 'choices' => array(
+                    'Toutes les disponibilités' => 'Toutes les disponibilités',
                     'Disponible' => 'Disponible',
                     'Indisponible' => 'Indisponible'
                 )
