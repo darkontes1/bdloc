@@ -11,7 +11,7 @@ $(document).on("click",".ajoutPanier",function(e){
         success:function(r){
             //console.log(r);
             dispo -= 1;
-            //$(this).parents(".dispo").html("toto");
+            $(this).prev(".dispo").css( "background", "yellow" );
             //$(this).attr(".dispo").text($(this).attr(".dispo").text()-1);
         }
     });
@@ -19,7 +19,7 @@ $(document).on("click",".ajoutPanier",function(e){
 
 $(document).on("click",".panier_delete",function(e){
     console.log("aer");
-    $(".test").hide();
+
     var button = $(this).attr("data-remove");
     //var panier = $("#panier").val();
     var dispo = ($(".dispo").val());

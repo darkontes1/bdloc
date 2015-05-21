@@ -132,4 +132,12 @@ class OrderController extends Controller
 
     }
 
+    /**
+    * @Route("/panier/effacer/{id}", name="panier_delete") 
+    */
+     public function panierConfirmAction($id)
+    {
+
+
+
 }
