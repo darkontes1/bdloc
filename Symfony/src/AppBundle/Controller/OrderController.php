@@ -7,6 +7,7 @@ use AppBundle\Entity\Author;
 use AppBundle\Entity\Serie;
 use AppBundle\Entity\Commande;
 use AppBundle\Entity\RelBookOrder;
+use AppBundle\Entity\PickUpSpot;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -133,10 +134,14 @@ class OrderController extends Controller
     }
 
     /**
-    * @Route("/panier/effacer/{id}", name="panier_delete") 
+    * @Route("/panier/validation/{id}", name="panier_confirm") 
     */
-     public function panierConfirmAction($id)
+     public function panierConfirmAction($id,Request $request)
     {
+        $user = new User();
+        $createUserForm = $this->createForm(new UserAllType(), $user);
+        $createUserForm->handleRequest($request);
+    }
 
 
 
