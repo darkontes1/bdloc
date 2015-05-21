@@ -237,7 +237,7 @@ header{
 
 aside{
     height: 100px;
-    width: 180px;
+    width: 220px;
     border: solid 1px;
     background: rgba(163, 194, 255, 0.5);
     border-radius: 0px 12px 12px 0px;
@@ -249,7 +249,7 @@ aside{
 }
 
 aside:hover{
-    height: 400px;
+    height: 370px;
     width: 220px;
     background: rgb(163, 194, 255);
     transition: all 1s;

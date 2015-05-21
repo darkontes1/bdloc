@@ -33,22 +33,22 @@
         {% if order.book.exemplaires > 0 %}
             {#
             {% if order.book.exemplaires <= 3 %}
-            <div class="dispo" value=" {{order.book.exemplaires}} ">
+            <span class="dispo" value=" {{order.book.exemplaires}} ">
                 {{"Vite plus que:"}} <b>{{order.book.exemplaires}}</b> {{" dispos !"}}
 
-            </div></br>
+            </span></br>
             {%endif%}
 
             {% if order.book.exemplaires > 3 %}
-            <div class="dispo" value=" {{order.book.exemplaires}} ">
+            <span class="dispo" value=" {{order.book.exemplaires}} ">
                 {{"Encore:"}} <b>{{order.book.exemplaires}}</b> {{" dispos !"}}
-            </div></br>
+            </span></br>
             {%endif%}</br>
             #}
 
-            <div>
+            <span>
                 {{"Encore:"}} <div class="dispo" value=" {{order.book.exemplaires}} ">{{order.book.exemplaires}}</div> {{" dispos !"}}
-            </div></br>
+            </span></br>
 
         {%endif%}
 
