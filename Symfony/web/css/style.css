@@ -116,7 +116,7 @@ header{
     margin-top: 130px;
     border: 20px solid black;
     border-radius: 30px;
-    transition: all 1s; /* transition when the mouse over */
+    transition: all 1s; /* transition */
 }
 
 #slider3:hover {
@@ -231,11 +231,21 @@ header{
 }
 
 aside{
-    height: 400px;
-    width: 250px;
+    height: 100px;
+    width: 180px;
     border: solid 1px;
+    background: rgba(163, 194, 255, 0.5);
+    border-radius: 0px 12px 12px 0px;
     float: left;
-    
+    position: fixed;
+    transition: all 1s;   
+}
+
+aside:hover{
+    height: 400px;
+    width: 220px;
+    background: rgb(163, 194, 255);
+    transition: all 1s;
 }
 
 .apercu{
@@ -247,12 +257,12 @@ aside{
     padding: 5px;
     float: right;
     border-radius: 8px;
-    background: rgba(102, 153, 255, 0.5);
+    background: rgba(163, 194, 255, 0.5);;
     
 }
 
 .apercu:hover{
-    background: rgb(102, 153, 255);  
+    background: rgb(163, 194, 255);
 }
 
 .cover{
