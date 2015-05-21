@@ -16,61 +16,59 @@
         {% if not book.dessinateur == NULL %}
 
             
-            {{"De:"}} {{book.dessinateur.prenom}}
-            {{book.dessinateur.nom}}</br>
+            {{"De:"}} <b>{{book.dessinateur.prenom}}
+            {{book.dessinateur.nom}}</b></br>
         
         {%endif%}
         {% if not book.coloriste == NULL %}
             
             
-            {{"Coloriste:"}} {{book.coloriste.prenom}}
-            {{book.coloriste.nom}}</br>
+            {{"Coloriste:"}} <b>{{book.coloriste.prenom}}
+            {{book.coloriste.nom}}</b>
 
         {%endif%}
         
         {% if not book.scenariste == NULL %}
             
-            {{"Scenariste:"}} {{book.scenariste.prenom}}
-            {{book.scenariste.nom}}</br>
+            {{"Scenariste:"}} <b>{{book.scenariste.prenom}}
+            {{book.scenariste.nom}}</b></br>
 
         {%endif%}
 
         {% if book.exemplaires > 0 %}
             {#
             {% if book.exemplaires <= 3 %}
-            <div class="dispo" value=" {{book.exemplaires}} ">
+            <span class="dispo" value=" {{book.exemplaires}} ">
                 {{"Vite plus que:"}} <b>{{book.exemplaires}}</b> {{" dispos !"}}
 
-            </div></br>
+            </span>
             {%endif%}
 
             {% if book.exemplaires > 3 %}
-            <div class="dispo" value=" {{book.exemplaires}} ">
-                {{"Encore:"}} <b>{{book.exemplaires}}</b> {{" dispos !"}}
-            </div></br>
-            {%endif%}</br>
+            <span class="dispo" value=" {{book.exemplaires}} ">
+                {{"Encore:"}}<b>{{book.exemplaires}}</b> {{" dispos !"}}
+            </span>
+            {%endif%}
             #}
 
             <div>
-                {{"Encore:"}} <div class="dispo" value=" {{book.exemplaires}} ">{{book.exemplaires}}</div> {{" dispos !"}}
-            </div></br>
+                {{"Encore:"}} <span class="dispo" value=" {{book.exemplaires}} "><b>{{book.exemplaires}}</b></span> {{" dispos !"}}
+            </div>
 
             <button data-bdid="{{path("ajoutPanier",{id:book.id})}}" class="ajoutPanier">ajouter au panier</button>
 
         {%endif%}
 
         {% if book.exemplaires <= 0 %}
-        {{"indisponible !"}}</br>
+        </br>
+        <b style="color:red">{{"indisponible !"}}</b></br>
 
         {%endif%}
 
 
-            
-
-
 
         <!-- Bouton pour activer modal -->
-        </br></br><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal-{{book.id}}">
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal-{{book.id}}">
           Plus de détails
         </button>
 
