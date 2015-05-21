@@ -52,7 +52,7 @@
 
         {%endif%}
 
-            <a href="{{ path('panier_delete', {"id":order.order.id}) }}">retirer du panier</a></article>
+            <a type="button" class="btn btn-danger dropdown-toggle" href="{{ path('panier_delete', {"id":order.order.id}) }}">retirer du panier</a></article>
         
         {% endif %}
 
