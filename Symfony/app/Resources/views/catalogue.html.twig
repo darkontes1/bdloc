@@ -36,7 +36,7 @@
         {%endif%}
 
         {% if book.exemplaires > 0 %}
-            {{book.exemplaires}}{{" dispos !"}}</br>
+            <div class="dispo" value=" {{book.exemplaires}} ">{{book.exemplaires}}{{" dispos !"}}</br>
             <button data-bdid="{{path("ajoutPanier",{id:book.id})}}" class="ajoutPanier">ajouter au panier</button>
         {%endif%}
 
