@@ -21,30 +21,32 @@ class CatalogueController extends Controller
      */
     public function catalogueAction(Request $request)
     {        
-        $bookrepo=$this->get("doctrine")->getRepository("AppBundle:Book");
-        //$book=$bookrepo->findBy(array(), null, 5);
-        $book=$bookrepo->allResults();
-        $orderrepo=$this->get("doctrine")->getRepository("AppBundle:RelBookOrder");
-        $order=$orderrepo->findAll();
+        $bookrepo = $this->get("doctrine")->getRepository("AppBundle:Book");
+        $book = $bookrepo->allResults();
+
+        $orderrepo = $this->get("doctrine")->getRepository("AppBundle:RelBookOrder");
+        $order = $orderrepo->findAll();
 
         $books = new Book();
         $createBookForm = $this->createForm(new BookCateType(), $books);
         $createBookForm->handleRequest($request);
+
         if($createBookForm->isValid()){
-            $bookrepo=$this->get("doctrine")->getRepository("AppBundle:Book");
-            $books=$bookrepo->cateResult();
+            $cate = $createBookForm->get("category")->getData();
+            $exem = $createBookForm->get("dispo")->getData();
+            $mc = $createBookForm->get("keyword")->getData();
+            //$bookrepo=$this->get("doctrine")->getRepository("AppBundle:Book");
+            $books = $bookrepo->cateResult($cate, $exem, $mc);
         }
 
         if(!$this->getUser()) {
             return $this->redirectToRoute('home');
         }
 
-        /*$dessinateur=$bookrepo->findByDessinateur($book);*/
-
         $params=array(
             'createBookForm' => $createBookForm->createView(),
-            'books'=>$book,
-            'orders'=>$order
+            'books' => $book,
+            'orders' => $order
         );
 
         return $this->render('catalogue.html.twig',$params);
@@ -55,7 +57,6 @@ class CatalogueController extends Controller
     */
     public function bookDetailsAction($id)
     {
-
         $bookRepo = $this->get("doctrine")->getRepository("AppBundle:Book");
         $book = $bookRepo->find($id);
 

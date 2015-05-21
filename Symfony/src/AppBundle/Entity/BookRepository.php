@@ -34,7 +34,7 @@ class BookRepository extends EntityRepository
         ->leftJoin('b.dessinateur', 'a')
         ->leftJoin('b.scenariste', 'c')
         ->leftJoin('b.coloriste', 's')
-        ->leftJoin('b.serie_id','se');
+        ->leftJoin('b.serie','se');
 
         if($cate != null){
             $qd->andwhere('se.style = '.$cate);

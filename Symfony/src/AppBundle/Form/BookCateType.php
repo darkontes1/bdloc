@@ -14,12 +14,12 @@ class BookCateType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
         $builder
-            ->add('Categorie', 'choice', array(
+            ->add('category', 'choice', array(
                 'mapped' => false,
+                "label" => "Catégorie",
                 'choices' => array(
-                    'Toutes les catégories' => 'Toutes les catégories',
+                    'Toutes-les-catégories' => 'Toutes les catégories',
                     'Science-fiction' => 'Science-fiction',
                     'Divers' => 'Divers',
                     'Polar/Thriller' => 'Polar/Thriller',
@@ -34,15 +34,16 @@ class BookCateType extends AbstractType
                     'Érotique' => 'Érotique'
                 )
             ))
-            ->add('Disponibilite', 'choice', array(
+            ->add('dispo', 'choice', array(
                 'mapped' => false,
+                "label" => "Disponibilité",
                 'choices' => array(
-                    'Toutes les disponibilités' => 'Toutes les disponibilités',
+                    'Toutes-les-disponibilites' => 'Toutes les disponibilités',
                     'Disponible' => 'Disponible',
                     'Indisponible' => 'Indisponible'
                 )
             ))
-            ->add('Mots-cle', 'search', array(
+            ->add('keyword', 'search', array(
                 'mapped' => false,
                 "label" => "Mots-clé",
                 "required" => false
