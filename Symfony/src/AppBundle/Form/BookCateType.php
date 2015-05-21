@@ -8,20 +8,19 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class BookType extends AbstractType
 {
-    /*liste des catégories*/
-    private $category;
-
-    private function
-
-
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
         $builder
-            ->add('Categorie', 'choice', array())
+            ->add('Categorie', 'choice', array(
+                'choices' => array(
+                    'matin' => 'Matin',
+                    'apresmidi' => 'Après-midi'
+            ))
             ->add('submit', 'Rechercher')
         ;
     }
