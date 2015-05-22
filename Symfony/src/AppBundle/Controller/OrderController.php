@@ -26,70 +26,65 @@ class OrderController extends Controller
     */
     public function ajoutPanierAction($id)
     {
-        $em=$this->get("doctrine")->getManager();
+            $em=$this->get("doctrine")->getManager();
 
 
-        $orderrepo=$this->get("doctrine")->getRepository("AppBundle:Commande");
+            $orderrepo=$this->get("doctrine")->getRepository("AppBundle:Commande");
 
-        $user=$this->getUser();
+            $user=$this->getUser();
 
-        $bookrepo=$this->get("doctrine")->getRepository("AppBundle:Book");
+            $bookrepo=$this->get("doctrine")->getRepository("AppBundle:Book");
 
-        $book=$bookrepo->find($id);
-        $ex=$book->getExemplaires();
+            $book=$bookrepo->find($id);
+            $ex=$book->getExemplaires();
+
+                
+                $book->setExemplaires($ex-1);
+
+                $bookrepo=$this->get("doctrine")->getRepository("AppBundle:Book");
+
+                $book=$bookrepo->find($id);
+                
+                $em->persist($book);
+                $em->flush();
+
+                
+
+                
+
+                if($commande=$orderrepo->findOneBy(array('user'=>$user, 'status'=>"panier"))){
+                    
+                    $commande=$orderrepo->findOneBy(array('user'=>$user, 'status'=>"panier"));
 
 
-        $book->setExemplaires($ex-1);
+                    $nb=$commande->getNbBD();
+                    $commande->setNbBD($nb+1);
+                }
+                    
 
-        $bookrepo=$this->get("doctrine")->getRepository("AppBundle:Book");
+                    $commande= new Commande();
 
-        $book=$bookrepo->find($id);
-        
-        $em->persist($book);
-        $em->flush();
+                    $commande->setDate(new \DateTime());
+                    $commande->setNbBD(1);
+                    $commande->setUser($this->getUser());
+                    $commande->setStatus("panier");                                      
 
-        
+                  
 
-        
+                $em->persist($commande);
+                $em->flush();
 
-        if($commande=$orderrepo->findOneBy(array('user'=>$user, 'status'=>"panier"))){
-            
-            $commande=$orderrepo->findOneBy(array('user'=>$user, 'status'=>"panier"));
+                
+                $panier= new RelBookOrder();
+                $panier->setOrder($commande);
+                $panier->setStatus(false);
+                $panier->setDateOrder(new \DateTime());
+                $panier->setBook($book);
 
+                $em->persist($panier);
+                $em->flush();        
 
-            $nb=$commande->getNbBD();
-            $commande->setNbBD($nb+1);
-            
-            
-        }
-
-        else{
-
-            $commande= new Commande();
-
-            $commande->setDate(new \DateTime());
-            $commande->setNbBD(1);
-            $commande->setUser($this->getUser());
-            $commande->setStatus("panier");                                      
-
-            
-        }
-
-        $em->persist($commande);
-        $em->flush();
-
-        $panier= new RelBookOrder();
-        $panier->setOrder($commande);
-        $panier->setStatus(false);
-        $panier->setDateOrder(new \DateTime());
-        $panier->setBook($book);
-
-        $em->persist($panier);
-        $em->flush();
-
-            
-
-            return $this->redirectToRoute('catalogue');
+                return $this->redirectToRoute('catalogue');
 
     }
 
