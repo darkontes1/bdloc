@@ -13,21 +13,19 @@
     
         <ul class="pagination">
 
-        {% if paginationResults.prevPage %}
+            {% if paginationResults.prevPage %}
 
-        <li><a id="prec" href="{{ path('catalogue', {page: paginationResults.prevPage}) }}"><i class="fa fa-arrow-circle-left"></i> Précédent</a></li>
+                <li><a id="prec" href="{{ path('catalogue', {page: paginationResults.prevPage}) }}" data-action="{{ path('catalogue', {page: paginationResults.prevPage}) }}"><i class="fa fa-arrow-circle-left"></i> Précédent</a></li>
 
-        {% endif %}
+            {% endif %}
 
-        <div class="sous-pagination">{{ paginationResults.nowShowingMin }} à {{ paginationResults.nowShowingMax }} sur {{ paginationResults.total }}</div>
+            <div class="sous-pagination">{{ paginationResults.nowShowingMin }} à {{ paginationResults.nowShowingMax }} sur {{ paginationResults.total }}</div>
 
+            {% if paginationResults.nextPage %}
 
+                <li><a id="suiv" href="{{ path('catalogue', {page: paginationResults.nextPage}) }}">Suivant <i class="fa fa-arrow-circle-right"></i></a></li>
 
-        {% if paginationResults.nextPage %}
-
-        <li><a id="suiv" href="{{ path('catalogue', {page: paginationResults.nextPage}) }}">Suivant <i class="fa fa-arrow-circle-right"></i></a></li>
-
-        {% endif %}
+            {% endif %}
 
         </ul>
     </div>

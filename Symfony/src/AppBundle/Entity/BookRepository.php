@@ -87,7 +87,7 @@ class BookRepository extends EntityRepository
         $paginationResults["prevPage"] = ($page <= 1) ? false : $page-1;
         $paginationResults["nextPage"] = ($page >= $lastPage) ? false : $page+1;
         
-        dump($paginationResults);
+        //dump($paginationResults);
         return $paginationResults;
     }
 }
