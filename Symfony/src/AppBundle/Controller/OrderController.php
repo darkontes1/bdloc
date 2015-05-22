@@ -113,7 +113,7 @@ class OrderController extends Controller
             );
 
 
-        return $this->render('panier.html.twig',$param);
+        return $this->render('order/panier.html.twig',$param);
 
     }
     
@@ -218,7 +218,7 @@ class OrderController extends Controller
         $params = array(
             "createSpotForm" => $createSpotForm->createView()
         );
-        return $this->render("confirm.html.twig", $params);
+        return $this->render("order/confirm.html.twig", $params);
     }
 
     /**
@@ -241,7 +241,7 @@ class OrderController extends Controller
             "valid" => $valid,
             "rel"=>$rel
         );
-        return $this->render("valid.html.twig", $params);
+        return $this->render("order/valid.html.twig", $params);
 
 
         

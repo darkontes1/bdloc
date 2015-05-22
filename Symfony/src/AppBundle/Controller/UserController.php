@@ -224,7 +224,7 @@ class UserController extends Controller
         $params = array(
             "comm"=>$comm
         );
-        return $this->render("historique.html.twig", $params);
+        return $this->render("user/historique.html.twig", $params);
 
 
     }
