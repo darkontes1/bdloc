@@ -1,34 +1,59 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
+<table>
+    <tr>
+        <td>Couverture</td>
+        <td>Date</td>
+        <td>Titre</td>
+        <td>Auteur</td>
+        <td>Coloriste</td>
+        <td>Scenariste</td>
+        <td></td>
+    </tr>
     {% for order in orders %}
+    <div class="article">
+        <tr>
+            {% if order.order.user.id == app.user.id %}
+                <td>
+                    <img class="cover" src="{{asset('images/Couvertures/'~order.book.cover)}}" alt="cover">
+                </td>
+                <td>
+                    {{order.dateOrder|date("d-m-Y")}}
+                    </td>
+                    <td>
+                    {{order.book.title}}
+                    </td>
+                    
 
-        {% if order.order.user.id == app.user.id %}
-            <article class="apercu">
-                <img class="cover" src="{{asset('images/Couvertures/'~order.book.cover)}}" alt="cover">
-                <div>{{order.dateOrder|date("d-m-Y")}}</div>
-                <h4>{{order.book.title}}</h4>
+                    {% if not order.book.dessinateur == NULL %}
+                    <td>
+                        {{order.book.dessinateur.prenom}}
+                        {{order.book.dessinateur.nom}}
+                        </td>
+                    {%endif%}
 
-                {% if not order.book.dessinateur == NULL %}
-                    <div>De: {{order.book.dessinateur.prenom}}
-                    {{order.book.dessinateur.nom}}</div>
-                {%endif%}
+                    {% if not order.book.coloriste == NULL %}
+                    <td>
+                        {{order.book.coloriste.prenom}}
+                        {{order.book.coloriste.nom}}
+                        </td>
+                    {%endif%}
 
-                {% if not order.book.coloriste == NULL %}
-                    <div>Coloriste: {{order.book.coloriste.prenom}}
-                    {{order.book.coloriste.nom}}</div>
-                {%endif%}
-
-                {% if not order.book.scenariste == NULL %}
-                    <div>Scenariste: {{order.book.scenariste.prenom}}
-                    {{order.book.scenariste.nom}}</div>
-                {%endif%}
-
-                <button class="panier_delete btn btn-danger dropdown-toggle" data-remove="{{ path('panier_delete', {"id":order.order.id}) }}">retirer du panier</button>
-            </article>
-        {% endif %}
-
+                    {% if not order.book.scenariste == NULL %}
+                    <td>
+                        {{order.book.scenariste.prenom}}
+                        {{order.book.scenariste.nom}}
+                        </td>
+                    {%endif%}
+                    <td>
+                    <button class="panier_delete btn btn-danger dropdown-toggle" data-remove="{{ path('panier_delete', {"id":order.order.id}) }}">retirer du panier</button>
+                    </td>
+            {% endif %}
+        </tr>
+    </div>
     {% endfor %}
+</table>
+    <a href="{{ path('panier_confirm', {"id":orders[0].order.id}) }}" class="btn btn-success">valider la commande</a>
 
 {% endblock %}
