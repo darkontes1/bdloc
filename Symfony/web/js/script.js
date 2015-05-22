@@ -20,12 +20,12 @@ $(document).on("click",".panier_delete",function(e){
         url:button,
         success:function(r){
             //console.log(r);
-            btn.parents(".article").hide("slow");
+            btn.parents(".art").hide("slow");
         }
     });
 });
 
-$(document).on("click", "prec", function(e)){
+/*$(document).on("click", "prec", function(e)){
     var btn = $(this);
     var action = $(this).attr("data-action");
     //e.preventDefault();
@@ -41,4 +41,4 @@ $(document).on("click", "prec", function(e)){
 $(document).on("click", "suiv", function(e)){
     var btn = $(this);
     e.preventDefault();
-});
+});*/
