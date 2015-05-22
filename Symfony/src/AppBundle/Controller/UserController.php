@@ -200,4 +200,32 @@ class UserController extends Controller
     {
 
     }
+
+    /**
+     * @Route("/historique", name="historique")
+     */
+    public function historique(){
+        $em=$this->get("doctrine")->getManager();
+
+
+        $orderrepo=$this->get("doctrine")->getRepository("AppBundle:Commande");
+
+        $user=$this->getUser();
+
+        $commande=$orderrepo->findBy(array('user'=>$user, 'status'=>"valider"));
+
+        $count=count($commande);
+
+        $relrepo=$this->get("doctrine")->getRepository("AppBundle:RelBookOrder");
+
+        $comm=$relrepo->findByOrder($commande);
+        
+
+        $params = array(
+            "comm"=>$comm
+        );
+        return $this->render("historique.html.twig", $params);
+
+
+    }
 }

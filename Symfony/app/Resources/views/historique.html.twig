@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {% for commande in comm %}
+        <table>
+            <tr>
+                
+                <td>{{commande.order.id}}</td>
+                <td> - {{commande.book.title}}</td>
+                <td> - {{commande.order.date |date("d-m-Y")}}</td>
+                <td> - {{commande.order.nbBD}}</td>
+
+                
+
+            </tr>
+        </table>
+    {% endfor %}
+
+{% endblock %}

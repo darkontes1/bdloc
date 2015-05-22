@@ -107,8 +107,6 @@ class OrderController extends Controller
         if (!$orderrepo->findByStatus(false)) {
             return $this->redirectToRoute('catalogue');
         }
-
-        dump($order);
         $param=array(
             'orders'=>$order
 
@@ -237,7 +235,7 @@ class OrderController extends Controller
 
         $rel=$relrepo->findByOrder($valid);
 
-        dump($valid);
+        
 
         $params = array(
             "valid" => $valid,
