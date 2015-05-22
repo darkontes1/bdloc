@@ -35,6 +35,7 @@ class CatalogueController extends Controller
         $books = new Book();
         $createBookForm = $this->createForm(new BookCateType(), $books);
         $createBookForm->handleRequest($request);
+        $toto = $request->getQueryString();
 
         if($createBookForm->isValid()){
             $cate = $createBookForm->get("category")->getData();
@@ -54,6 +55,7 @@ class CatalogueController extends Controller
 
         $params=array(
             'createBookForm' => $createBookForm->createView(),
+            'toto' => $toto,
             //'books' => $book,
             //'orders' => $order,
             "paginationResults" => $paginationResults

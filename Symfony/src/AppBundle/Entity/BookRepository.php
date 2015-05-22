@@ -49,7 +49,8 @@ class BookRepository extends EntityRepository
         }
 
         if(!empty($mc)){
-            $qb->andwhere('b.title = :mc');
+            $qb->andwhere('b.title = :mc')
+                ->orwhere('b.dessinateur = :mc');
             $qb->setParameter("mc",$mc);
         }
 

@@ -12,10 +12,9 @@
     <div id="nav-page">
     
         <ul class="pagination">
-
             {% if paginationResults.prevPage %}
 
-                <li><a id="prec" href="{{ path('catalogue', {page: paginationResults.prevPage}) }}" data-action="{{ path('catalogue', {page: paginationResults.prevPage}) }}"><i class="fa fa-arrow-circle-left"></i> Précédent</a></li>
+                <li><a id="prec" href="{{ path('catalogue', {page: paginationResults.prevPage})~"?"~toto }}" data-action="{{ path('catalogue', {page: paginationResults.prevPage}) }}"><i class="fa fa-arrow-circle-left"></i> Précédent</a></li>
 
             {% endif %}
 
@@ -23,7 +22,7 @@
 
             {% if paginationResults.nextPage %}
 
-                <li><a id="suiv" href="{{ path('catalogue', {page: paginationResults.nextPage}) }}">Suivant <i class="fa fa-arrow-circle-right"></i></a></li>
+                <li><a id="suiv" href="{{ path('catalogue', {page: paginationResults.nextPage})~"?"~toto }}">Suivant <i class="fa fa-arrow-circle-right"></i></a></li>
 
             {% endif %}
 
