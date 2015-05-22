@@ -20,11 +20,10 @@ $(document).on("click",".panier_delete",function(e){
         url:button,
         success:function(r){
             //console.log(r);
-            btn.parents(".apercu").hide("slow");
+            btn.parents(".article").hide("slow");
         }
     });
 });
-
 $(document).on("click", "prec", function(e)){
     var btn = $(this);
     e.preventDefault();

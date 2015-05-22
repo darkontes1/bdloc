@@ -19,33 +19,66 @@ use Symfony\Component\HttpFoundation\Request;
 
 class OrderController extends Controller
 {
+
+
     /**
     * @Route("/ajout/{id}", name="ajoutPanier") 
     */
     public function ajoutPanierAction($id)
     {
         $em=$this->get("doctrine")->getManager();
-        $commande= new Commande();
+
+
+        $orderrepo=$this->get("doctrine")->getRepository("AppBundle:Commande");
+
+        $user=$this->getUser();
 
         $bookrepo=$this->get("doctrine")->getRepository("AppBundle:Book");
 
         $book=$bookrepo->find($id);
         $ex=$book->getExemplaires();
 
+
         $book->setExemplaires($ex-1);
 
-        $panier= new RelBookOrder();
+        $bookrepo=$this->get("doctrine")->getRepository("AppBundle:Book");
 
-        $commande->setDate(new \DateTime());
-        $commande->setNbBD(1);
-        $commande->setUser($this->getUser());
-        $commande->setStatus("panier");
-           
+        $book=$bookrepo->find($id);
+        
         $em->persist($book);
         $em->flush();
+
+        
+
+        
+
+        if($commande=$orderrepo->findOneBy(array('user'=>$user, 'status'=>"panier"))){
+            
+            $commande=$orderrepo->findOneBy(array('user'=>$user, 'status'=>"panier"));
+
+
+            $nb=$commande->getNbBD();
+            $commande->setNbBD($nb+1);
+            
+            
+        }
+
+        else{
+
+            $commande= new Commande();
+
+            $commande->setDate(new \DateTime());
+            $commande->setNbBD(1);
+            $commande->setUser($this->getUser());
+            $commande->setStatus("panier");                                      
+
+            
+        }
+
         $em->persist($commande);
         $em->flush();
-        
+
+        $panier= new RelBookOrder();
         $panier->setOrder($commande);
         $panier->setStatus(false);
         $panier->setDateOrder(new \DateTime());
@@ -53,9 +86,13 @@ class OrderController extends Controller
 
         $em->persist($panier);
         $em->flush();
-        
-        return $this->redirectToRoute('catalogue');
+
+            
+
+            return $this->redirectToRoute('catalogue');
+
     }
+
 
     /**
     * @Route("/panier", name="panier") 
@@ -63,13 +100,23 @@ class OrderController extends Controller
     public function afficherPanierAction(){
 
         $orderrepo=$this->get("doctrine")->getRepository("AppBundle:RelBookOrder");
+       
 
         $order=$orderrepo->findByStatus(false);
 
+        if (!$orderrepo->findByStatus(false)) {
+            return $this->redirectToRoute('catalogue');
+        }
+
+        dump($order);
         $param=array(
             'orders'=>$order
-        );
+
+            );
+
+
         return $this->render('panier.html.twig',$param);
+
     }
     
     /**
@@ -78,26 +125,54 @@ class OrderController extends Controller
      public function panierDeleteAction($id)
     {
         $em=$this->get("doctrine")->getManager();
+        
         $orderrepo=$this->get("doctrine")->getRepository("AppBundle:Commande");
+        
         $bookrepo=$this->get("doctrine")->getRepository("AppBundle:Book");
 
+
+        
+
+
+
         $dyingorder=$orderrepo->find($id);
-        if (!$dyingorder) {
-            throw  $this->createAccessDeniedException("access denied");  
+
+
+        
+        $nb=$dyingorder->getNbBD();
+        if ($nb>0) {
+            $dyingorder->setNbBD($nb-1);
         }
+        
+
+        $em->persist($dyingorder);
+        $em->flush();
+
+        if (!$dyingorder) {
+            throw  $this->createAccessDeniedException("access denied");
+            
+        }
+
+
+        
         $relrepo=$this->get("doctrine")->getRepository("AppBundle:RelBookOrder");
+
+        
+        
+
+
         $dyingrel=$relrepo->findByOrder($dyingorder);
 
         $ex=$dyingrel[0]->getBook()->getExemplaires();
         $dyingrel[0]->getBook()->setExemplaires($ex+1);
 
+
         $em->remove($dyingrel[0]);
         $em->flush();
 
-        $em->remove($dyingorder);
-        $em->flush();
-
         return $this->redirectToRoute('panier');
+
+
     }
 
     /**
@@ -115,18 +190,23 @@ class OrderController extends Controller
         $valid=$validrepo->find($id);
 
         $rel=$relrepo->findByOrder($valid);
+        
+        $count=count($rel);
+        
 
         $createSpotForm = $this->createForm(new PickUpSpotType(), $spot);
         $createSpotForm->handleRequest($request);
 
-        
-
+    
         if ($createSpotForm->isValid()){
-            $valid->setStatus("valider");
-            $valid->setPickUpSpot($createSpotForm->get("adresse")->getData());
-            $valid->setDate( new \DateTime() );
 
-            $rel[0]->setStatus(true);
+            $valid->setStatus("valider");
+            $valid->setPickUpSpot($createSpotForm->get("relais")->getData());
+            $valid->setDate(new \DateTime('+2 days'));
+            
+            for ($i=0; $i<$count ; $i++) { 
+                $rel[$i]->setStatus(true);
+            }
 
             $em = $this->get("doctrine")->getManager();
             $em->persist($valid);
@@ -150,13 +230,18 @@ class OrderController extends Controller
     {
          
         $validrepo=$this->get("doctrine")->getRepository("AppBundle:Commande");
-
+        dump($id);
         $valid=$validrepo->find($id);
+
+        $relrepo=$this->get("doctrine")->getRepository("AppBundle:RelBookOrder");
+
+        $rel=$relrepo->findByOrder($valid);
 
         dump($valid);
 
         $params = array(
-            "valids" => $valid
+            "valid" => $valid,
+            "rel"=>$rel
         );
         return $this->render("valid.html.twig", $params);
 
@@ -164,4 +249,7 @@ class OrderController extends Controller
         
 
     }
+
+
+
 }

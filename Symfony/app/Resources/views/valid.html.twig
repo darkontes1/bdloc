@@ -1,13 +1,28 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    {% for valid in valids %}
-
-
-            {{valid.date|date("d-m-Y")}}
-            {{valid.user.username}}
-            {{valid.pickupspot.adresse}}<br />
+    <div>
+        M/Mme {{ valid.user.nom }},
+        Votre commande a bien été prise en compte. Nous vous remercions de votre confiance.
+        Vore numéro de commande est : {{ valid.id }}
+        La livraison se fera dans un délai de 48 heures (voir tableau ci-joint).
+    </div>
+    <table>
+        <tr>
+            <td>
+                date de livraison : {{valid.date|date("d-m-Y H:i:s")}}
+            </td>
+        <tr>
+            <td>
+                adresse du relais : {{valid.pickupspot.adresse}}
+            </td>
+            <td>
+                <a href="{{ path('panier_confirm', {"id":valid.id}) }}" class="btn btn-success">changer le relais</a>
+            </td>
+        </tr>
+        <tr>
+            nombre de BD :{{valid.nbBD}}
+        </tr>
+    </table>
         
-    {% endfor %}
-
 
 {% endblock %}

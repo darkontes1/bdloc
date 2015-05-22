@@ -1,9 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h2>validation commande</h2>
+    <h2>validation de la commande</h2>
     
     {{ form(createSpotForm, {'attr' : {novalidate : 'novalidate'}}) }}
+
+    <a href="{{ path('catalogue') }}" class="btn btn-success">retour au catalogue</a>
 
     
 {% endblock %}
