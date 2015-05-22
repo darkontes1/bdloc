@@ -273,6 +273,11 @@ aside:hover{
     
 }
 
+.sous-pagination{
+    float:left; 
+    margin: 6px 4px 0px 4px;
+}
+
 .apercu:hover{
     background: rgb(163, 194, 255);
 }

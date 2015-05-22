@@ -10,22 +10,22 @@
 {% block body %}
 
     <div id="nav-page">
-    {{ paginationResults.nowShowingMin }} à {{ paginationResults.nowShowingMax }} sur {{ paginationResults.total }}
+    
         <ul class="pagination">
 
         {% if paginationResults.prevPage %}
 
-        <li><a href="{{ path('catalogue', {page: paginationResults.prevPage}) }}">Préc</a></li>
+        <li><a href="{{ path('catalogue', {page: paginationResults.prevPage}) }}"><i class="fa fa-arrow-circle-left"></i> Précédent</a></li>
 
         {% endif %}
 
-        {% for i in paginationResults.numLinkMin..paginationResults.numLinkMax %}
-        <li><a href="{{ path('catalogue', {'page' : i}) }}">{{i}}</a></li>
-        {% endfor %}
+        <div class="sous-pagination">{{ paginationResults.nowShowingMin }} à {{ paginationResults.nowShowingMax }} sur {{ paginationResults.total }}</div>
+
+
 
         {% if paginationResults.nextPage %}
 
-        <li><a href="{{ path('catalogue', {page: paginationResults.nextPage}) }}">Suiv</a></li>
+        <li><a href="{{ path('catalogue', {page: paginationResults.nextPage}) }}">Suivant <i class="fa fa-arrow-circle-right"></i></a></li>
 
         {% endif %}
 
