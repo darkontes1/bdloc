@@ -29,9 +29,9 @@ class PickUpSpot
     private $adresse;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="CP", type="integer")
+     * @ORM\Column(name="CP", type="string")
      */
     private $cP;
 
@@ -85,7 +85,7 @@ class PickUpSpot
     /**
      * Set cP
      *
-     * @param integer $cP
+     * @param string $cP
      * @return PickUpSpot
      */
     public function setCP($cP)
@@ -98,7 +98,7 @@ class PickUpSpot
     /**
      * Get cP
      *
-     * @return integer 
+     * @return string 
      */
     public function getCP()
     {
@@ -166,5 +166,10 @@ class PickUpSpot
     public function getOrders()
     {
         return $this->orders;
+    }
+
+    public function __toString(){
+
+        return $this->nomEntreprise.' '.$this->adresse.' '.$this->cP; 
     }
 }

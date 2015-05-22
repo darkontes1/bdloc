@@ -178,4 +178,9 @@ class Commande
     {
         return $this->status;
     }
+
+    public function __toString(){
+
+        return $pickupspot->getNomEntreprise().' '.$pickupspot->getAdresse().' '.$pickupspot->getCP(); 
+    }
 }
