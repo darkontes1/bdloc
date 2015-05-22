@@ -135,16 +135,14 @@
     <div id="nav-page">
     
         <ul class="pagination">
-        
-            {% if paginationResults.prevPage %}
-                <li><a href="{{ path('catalogue', {page: paginationResults.prevPage}) }}">Préc</a></li>
-            {% endif %}
+
+            <li><a href="{{ path('catalogue', {page: paginationResults.prevPage}) }}"><i class="fa fa-arrow-circle-left"></i> Précédent</a></li>
 
             <div class="sous-pagination">{{ paginationResults.nowShowingMin }} à {{ paginationResults.nowShowingMax }} sur {{ paginationResults.total }}</div>
 
 
             {% if paginationResults.nextPage %}
-                <li><a href="{{ path('catalogue', {page: paginationResults.nextPage}) }}">Suiv</a></li>
+                <li><a href="{{ path('catalogue', {page: paginationResults.nextPage}) }}">Suivant <i class="fa fa-arrow-circle-right"></i></a></li>
             {% endif %}
         </ul>
     </div>
