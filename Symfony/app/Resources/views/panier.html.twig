@@ -25,7 +25,7 @@
                     {{order.book.scenariste.nom}}</div>
                 {%endif%}
 
-                <a class="panier_delete btn btn-danger dropdown-toggle" href="{{ path('panier_delete', {"id":order.order.id}) }}">retirer du panier</a>
+                <button class="panier_delete btn btn-danger dropdown-toggle" data-remove="{{ path('panier_delete', {"id":order.order.id}) }}">retirer du panier</button>
             </article>
         {% endif %}
 

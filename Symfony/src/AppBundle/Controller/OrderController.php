@@ -15,8 +15,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class OrderController extends Controller
 {
-
-
     /**
     * @Route("/ajout/{id}", name="ajoutPanier") 
     */
@@ -30,7 +28,6 @@ class OrderController extends Controller
         $book=$bookrepo->find($id);
         $ex=$book->getExemplaires();
 
-
         $book->setExemplaires($ex-1);
 
         $panier= new RelBookOrder();
@@ -39,31 +36,22 @@ class OrderController extends Controller
         $commande->setNbBD(1);
         $commande->setUser($this->getUser());
         $commande->setStatus("panier");
+           
+        $em->persist($book);
+        $em->flush();
+        $em->persist($commande);
+        $em->flush();
         
-            
-            $em->persist($book);
-            $em->flush();
-            $em->persist($commande);
-            $em->flush();
-        
-        
-
-
-
         $panier->setOrder($commande);
         $panier->setStatus(false);
         $panier->setDateOrder(new \DateTime());
         $panier->setBook($book);
 
-
         $em->persist($panier);
         $em->flush();
         
-
         return $this->redirectToRoute('catalogue');
-
     }
-
 
     /**
     * @Route("/panier", name="panier") 
@@ -71,19 +59,11 @@ class OrderController extends Controller
     public function afficherPanierAction(){
 
         $orderrepo=$this->get("doctrine")->getRepository("AppBundle:RelBookOrder");
-        
-
         $order=$orderrepo->findAll();
-
-
         $param=array(
             'orders'=>$order
-
-            );
-
-
+        );
         return $this->render('panier.html.twig',$param);
-
     }
     
     /**
@@ -92,31 +72,14 @@ class OrderController extends Controller
      public function panierDeleteAction($id)
     {
         $em=$this->get("doctrine")->getManager();
-        
         $orderrepo=$this->get("doctrine")->getRepository("AppBundle:Commande");
-        
         $bookrepo=$this->get("doctrine")->getRepository("AppBundle:Book");
 
-
-        
-
-
-
         $dyingorder=$orderrepo->find($id);
-
         if (!$dyingorder) {
-            throw  $this->createAccessDeniedException("access denied");
-            
+            throw  $this->createAccessDeniedException("access denied");  
         }
-
-
-        
         $relrepo=$this->get("doctrine")->getRepository("AppBundle:RelBookOrder");
-
-        
-        
-
-
         $dyingrel=$relrepo->findByOrder($dyingorder);
 
         $ex=$dyingrel[0]->getBook()->getExemplaires();
@@ -129,8 +92,6 @@ class OrderController extends Controller
         $em->flush();
 
         return $this->redirectToRoute('panier');
-
-
     }
 
     /**
@@ -142,7 +103,4 @@ class OrderController extends Controller
         $createUserForm = $this->createForm(new UserAllType(), $user);
         $createUserForm->handleRequest($request);
     }
-
-
-
 }

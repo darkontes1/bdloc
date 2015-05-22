@@ -1,36 +1,36 @@
 {% extends 'base.html.twig' %}
+
 {% block filtre %}
-<h1>catalogue</h1>
+    <h1>catalogue</h1>
     <aside>
         {{ form(createBookForm) }}
     </aside>
 {% endblock %}
+
 {% block body %}
 
-<div id="nav-page">
-{{ paginationResults.nowShowingMin }} à {{ paginationResults.nowShowingMax }} sur {{ paginationResults.total }}
-    <ul class="pagination">
+    <div id="nav-page">
+    {{ paginationResults.nowShowingMin }} à {{ paginationResults.nowShowingMax }} sur {{ paginationResults.total }}
+        <ul class="pagination">
 
-    {% if paginationResults.prevPage %}
+        {% if paginationResults.prevPage %}
 
-    <li><a href="{{ path('catalogue', {page: paginationResults.prevPage}) }}">Préc</a></li>
+        <li><a href="{{ path('catalogue', {page: paginationResults.prevPage}) }}">Préc</a></li>
 
-    {% endif %}
+        {% endif %}
 
-    {% for i in paginationResults.numLinkMin..paginationResults.numLinkMax %}
-    <li><a href="{{ path('catalogue', {'page' : i}) }}">{{i}}</a></li>
-    {% endfor %}
+        {% for i in paginationResults.numLinkMin..paginationResults.numLinkMax %}
+        <li><a href="{{ path('catalogue', {'page' : i}) }}">{{i}}</a></li>
+        {% endfor %}
 
-    {% if paginationResults.nextPage %}
+        {% if paginationResults.nextPage %}
 
-    <li><a href="{{ path('catalogue', {page: paginationResults.nextPage}) }}">Suiv</a></li>
+        <li><a href="{{ path('catalogue', {page: paginationResults.nextPage}) }}">Suiv</a></li>
 
-    {% endif %}
+        {% endif %}
 
-    </ul>
-</div>
-
-
+        </ul>
+    </div>
 
 
     {% for book in paginationResults.data %}
@@ -43,43 +43,28 @@
         {% if not book.dessinateur == NULL %}
 
             
-            {{"De:"}} <b>{{book.dessinateur.prenom}}
-            {{book.dessinateur.nom}}</b></br>
+            <div>De:<strong>{{book.dessinateur.prenom}}
+            {{book.dessinateur.nom}}</strong></div>
         
         {%endif%}
         {% if not book.coloriste == NULL %}
             
             
-            {{"Coloriste:"}} <b>{{book.coloriste.prenom}}
-            {{book.coloriste.nom}}</b>
+            <div>Coloriste: <strong>{{book.coloriste.prenom}}
+            {{book.coloriste.nom}}</strong></div>
 
         {%endif%}
         
         {% if not book.scenariste == NULL %}
             
-            {{"Scenariste:"}} <b>{{book.scenariste.prenom}}
-            {{book.scenariste.nom}}</b></br>
+            <div>Scenariste: <strong>{{book.scenariste.prenom}}
+            {{book.scenariste.nom}}</strong></div>
 
         {%endif%}
 
         {% if book.exemplaires > 0 %}
-            {#
-            {% if book.exemplaires <= 3 %}
-            <span class="dispo" value=" {{book.exemplaires}} ">
-                {{"Vite plus que:"}} <b>{{book.exemplaires}}</b> {{" dispos !"}}
-
-            </span>
-            {%endif%}
-
-            {% if book.exemplaires > 3 %}
-            <span class="dispo" value=" {{book.exemplaires}} ">
-                {{"Encore:"}}<b>{{book.exemplaires}}</b> {{" dispos !"}}
-            </span>
-            {%endif%}
-            #}
-
             <div>
-                {{"Encore:"}} <span class="dispo" value=" {{book.exemplaires}} "><b>{{book.exemplaires}}</b></span> {{" dispos !"}}
+                <span class="dispo" value=" {{book.exemplaires}} ">{{book.exemplaires}}</span> dispos !
             </div>
 
             <button data-bdid="{{path("ajoutPanier",{id:book.id})}}" class="ajoutPanier">ajouter au panier</button>
@@ -88,11 +73,9 @@
 
         {% if book.exemplaires <= 0 %}
         </br>
-        <b style="color:red">{{"indisponible !"}}</b></br>
+        <div style="color:red">{{"indisponible !"}}</div>
 
         {%endif%}
-
-
 
         <!-- Bouton pour activer modal -->
         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal-{{book.id}}">
@@ -108,79 +91,64 @@
                   </div>
                   <div class="modal-body">
                     <article>
-                    <img class="cover" src="{{asset('images/Couvertures/'~book.cover)}}" alt="cover">
+                        <img class="cover" src="{{asset('images/Couvertures/'~book.cover)}}" alt="cover">
 
-                        <h4><u>{{"Nom de la série:"}}</u>  {{book.serie.title}} || <u>{{"Langue:"}}</u> {{book.serie.langue}}</br></br>
-                        <u>{{"Catégorie:"}}</u>
-                        {{book.serie.style}}
+                        <h4>
+                            <div>Nom de la série: {{book.serie.title}} || Langue: {{book.serie.langue}}</div>
+                            <div>Catégorie: {{book.serie.style}}</div>
                         </h4>
                         
                         {% if not book.dessinateur == NULL %}
-
-                            <h4><u>{{"Autheur:"}}</u> {{book.dessinateur.prenom}} {{book.dessinateur.nom}}</h4></br>
-                
+                            <h4>Autheur: {{book.dessinateur.prenom}} {{book.dessinateur.nom}}</h4>
                         {%endif%}
-                    {% if not book.coloriste == NULL %}
-                        <h4><u>{{"Coloriste:"}}</u> {{book.coloriste.prenom}} {{book.coloriste.nom}}</h4>
 
-                                            {%endif%}
-                    {% if not book.scenariste == NULL %}
-                        <h4><u>{{"Scenariste:"}}</u> {{book.scenariste.prenom}} {{book.scenariste.nom}}</h4>
+                        {% if not book.coloriste == NULL %}
+                            <h4>Coloriste: {{book.coloriste.prenom}} {{book.coloriste.nom}}</h4>
+                        {%endif%}
+                        {% if not book.scenariste == NULL %}
+                            <h4>Scenariste: {{book.scenariste.prenom}} {{book.scenariste.nom}}</h4>
+                        {%endif%}
 
-                                            {%endif%}
+                        {% if book.exemplaires > 0 %}
+                            <h4>Disponibilité: <strong>{{book.exemplaires}}</strong> dispos !</h4>
+                        {%endif%}
 
-                    {% if book.exemplaires > 0 %}
-                        <h4><u>{{"Disponibilité:"}}</u> <b>{{book.exemplaires}}</b> {{" dispos !"}}</h4>
-                    {%endif%}
+                        {% if book.exemplaires == 0 %}
+                            <h4>indisponible !</h4>
+                        {%endif%}
 
-                    {% if book.exemplaires == 0 %}
-                    <h4><u>{{"Disponibilité:"}}</u> {{"indisponible !"}}</h4>
+                        {% if book.nbPages != NULL %}
+                            <h4>Pages: {{book.nbPages}}</h4>
+                        {%endif%}
 
-                    {%endif%}
-
-                            </article>
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-
+                    </article>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                  </div>
+                </div>
+              </div>
+            </div>
         </article>
 
-
-        {% endfor %}
-        <div id="nav-page">
-{{ paginationResults.nowShowingMin }} à {{ paginationResults.nowShowingMax }} sur {{ paginationResults.total }}
-    <ul class="pagination">
-
-    {% if paginationResults.prevPage %}
-
-    <li><a href="{{ path('catalogue', {page: paginationResults.prevPage}) }}">Préc</a></li>
-
-    {% endif %}
-
-    {% for i in paginationResults.numLinkMin..paginationResults.numLinkMax %}
-    <li><a href="{{ path('catalogue', {'page' : i}) }}">{{i}}</a></li>
     {% endfor %}
+    <div id="nav-page">
+        {{ paginationResults.nowShowingMin }} à {{ paginationResults.nowShowingMax }} sur {{ paginationResults.total }}
+        <ul class="pagination">
+            {% if paginationResults.prevPage %}
+                <li><a href="{{ path('catalogue', {page: paginationResults.prevPage}) }}">Préc</a></li>
+            {% endif %}
 
-    {% if paginationResults.nextPage %}
+            {% for i in paginationResults.numLinkMin..paginationResults.numLinkMax %}
+                <li><a href="{{ path('catalogue', {'page' : i}) }}">{{i}}</a></li>
+            {% endfor %}
 
-    <li><a href="{{ path('catalogue', {page: paginationResults.nextPage}) }}">Suiv</a></li>
-
-    {% endif %}
-
-    </ul>
-</div>
-
-
-
-
-
+            {% if paginationResults.nextPage %}
+                <li><a href="{{ path('catalogue', {page: paginationResults.nextPage}) }}">Suiv</a></li>
+            {% endif %}
+        </ul>
+    </div>
 {% endblock %}
-
 
 {% block javascripts %}
 
