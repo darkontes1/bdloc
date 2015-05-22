@@ -6,7 +6,7 @@ $(document).on("click",".ajoutPanier",function(e){
         url:button,
         success:function(r){
             //console.log(r);
-            btn.parents(".dispo").val(btn.parents(".dispo").val()-1);
+            btn.parents(".apercu").find(".dispo").html(btn.parents(".apercu").find(".dispo").html()-1);
         }
     });
 });
@@ -20,7 +20,7 @@ $(document).on("click",".panier_delete",function(e){
         url:button,
         success:function(r){
             //console.log(r);
-            btn.parents(".art").hide("slow");
+            btn.parents(".art").hide();
         }
     });
 });

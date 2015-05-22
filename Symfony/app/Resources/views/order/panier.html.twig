@@ -12,46 +12,44 @@
         <td></td>
     </tr>
     {% for order in orders %}
-    <div class="art">
-        <tr>
-            {% if order.order.user.id == app.user.id %}
-                <td>
-                    <img class="cover" src="{{asset('images/Couvertures/'~order.book.cover)}}" alt="cover">
+    <tr class="art">
+        {% if order.order.user.id == app.user.id %}
+            <td>
+                <img class="cover" src="{{asset('images/Couvertures/'~order.book.cover)}}" alt="cover">
+            </td>
+            <td>
+                {{order.dateOrder|date("d-m-Y")}}
                 </td>
                 <td>
-                    {{order.dateOrder|date("d-m-Y")}}
-                    </td>
-                    <td>
-                    {{order.book.title}}
-                    </td>
-                    
+                {{order.book.title}}
+                </td>
+                
 
-                    {% if not order.book.dessinateur == NULL %}
-                    <td>
-                        {{order.book.dessinateur.prenom}}
-                        {{order.book.dessinateur.nom}}
-                        </td>
-                    {%endif%}
-
-                    {% if not order.book.coloriste == NULL %}
-                    <td>
-                        {{order.book.coloriste.prenom}}
-                        {{order.book.coloriste.nom}}
-                        </td>
-                    {%endif%}
-
-                    {% if not order.book.scenariste == NULL %}
-                    <td>
-                        {{order.book.scenariste.prenom}}
-                        {{order.book.scenariste.nom}}
-                        </td>
-                    {%endif%}
-                    <td>
-                    <button class="panier_delete btn btn-danger dropdown-toggle" data-remove="{{ path('panier_delete', {"id":order.order.id}) }}">retirer du panier</button>
+                {% if not order.book.dessinateur == NULL %}
+                <td>
+                    {{order.book.dessinateur.prenom}}
+                    {{order.book.dessinateur.nom}}
                     </td>
-            {% endif %}
-        </tr>
-    </div>
+                {%endif%}
+
+                {% if not order.book.coloriste == NULL %}
+                <td>
+                    {{order.book.coloriste.prenom}}
+                    {{order.book.coloriste.nom}}
+                    </td>
+                {%endif%}
+
+                {% if not order.book.scenariste == NULL %}
+                <td>
+                    {{order.book.scenariste.prenom}}
+                    {{order.book.scenariste.nom}}
+                    </td>
+                {%endif%}
+                <td>
+                <button class="panier_delete btn btn-danger dropdown-toggle" data-remove="{{ path('panier_delete', {"id":order.order.id}) }}">retirer du panier</button>
+                </td>
+        {% endif %}
+    </tr>
     {% endfor %}
 </table>
     <a href="{{ path('panier_confirm', {"id":orders[0].order.id}) }}" class="btn btn-success">valider la commande</a>
