@@ -228,7 +228,6 @@ class OrderController extends Controller
     {
          
         $validrepo=$this->get("doctrine")->getRepository("AppBundle:Commande");
-        dump($id);
         $valid=$validrepo->find($id);
 
         $relrepo=$this->get("doctrine")->getRepository("AppBundle:RelBookOrder");
@@ -241,10 +240,33 @@ class OrderController extends Controller
             "valid" => $valid,
             "rel"=>$rel
         );
-        return $this->render("order/valid.html.twig", $params);
+        return $this->render("order/valid.html.twig", $params);       
+
+    }
 
 
-        
+    /**
+    * @Route("/panier/annuler/{id}", name="annulOrder") 
+    */
+    public function annulOrder($id)
+    {
+        $validrepo=$this->get("doctrine")->getRepository("AppBundle:Commande");
+        $valid=$validrepo->find($id);
+
+        $relrepo=$this->get("doctrine")->getRepository("AppBundle:RelBookOrder");
+
+        $rel=$relrepo->findByOrder($valid);
+
+        $valid->setStatus("panier");
+
+        $rel[0]->setStatus(false);
+
+        $em = $this->get("doctrine")->getManager();
+        $em->persist($valid);
+        $em->persist($rel[0]);
+        $em->flush();
+
+        return $this->redirectToRoute('catalogue');
 
     }
 

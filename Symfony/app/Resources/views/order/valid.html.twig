@@ -23,6 +23,10 @@
             nombre de BD :{{valid.nbBD}}
         </tr>
     </table>
+
+    <a href="{{ path('catalogue') }}" class="btn btn-default">retour au catalogue</a>
+
+    <a href="{{path("annulOrder",{id:valid.id})}}" class="btn btn-default">annuler la commande</a>
         
 
 {% endblock %}
