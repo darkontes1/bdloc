@@ -24,3 +24,17 @@ $(document).on("click",".panier_delete",function(e){
         }
     });
 });
+
+$(document).on("click", "prec", function(e)){
+    var btn = $(this);
+    e.preventDefault();
+    $.ajax({
+
+
+    });
+});
+
+$(document).on("click", "suiv", function(e)){
+    var btn = $(this);
+    e.preventDefault();
+});
