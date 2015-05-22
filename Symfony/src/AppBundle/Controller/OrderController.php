@@ -63,15 +63,9 @@ class OrderController extends Controller
     public function afficherPanierAction(){
 
         $orderrepo=$this->get("doctrine")->getRepository("AppBundle:RelBookOrder");
-<<<<<<< HEAD
-        $order=$orderrepo->findAll();
-=======
-       
 
         $order=$orderrepo->findByStatus(false);
 
-
->>>>>>> 7c768ca2568d5bb6a4a51b6d5c1e79b6c813f620
         $param=array(
             'orders'=>$order
         );
