@@ -14,70 +14,44 @@ class BookRepository extends EntityRepository
 {
     public function allResults()
     {
-        $qd=$this->createQueryBuilder('b');
-        $qd->select('b','a','c','s')
+        $qb=$this->createQueryBuilder('b');
+        $qb->select('b','a','c','s')
         ->leftJoin('b.dessinateur', 'a')
         ->leftJoin('b.scenariste', 'c')
         ->leftJoin('b.coloriste', 's');
-        $query=$qd->getQuery();
+        $query=$qb->getQuery();
         $query->setMaxResults(10);
         $result=$query->getResult();
 
         return $result;
     }
 
-    public function cateResult($cate, $exem, $mc)
+    public function findPaginated($page, $cate, $exem, $mc)
     {
-        $qd=$this->createQueryBuilder('b');
+       
+        //Doctrine Query Builder
+        $qb = $this->createQueryBuilder("b");
 
-        $qd->select('b','a','c','s','se')
+        $qb->select('b','a','c','s','se')
         ->leftJoin('b.dessinateur', 'a')
         ->leftJoin('b.scenariste', 'c')
         ->leftJoin('b.coloriste', 's')
         ->leftJoin('b.serie','se');
 
         if(!empty($cate)){
-            $qd->andwhere('se.style = :cate');
-            $qd->setParameter("cate",$cate);
+            $qb->andwhere('se.style = :cate');
+            $qb->setParameter("cate",$cate);
         }
 
         if(!empty($exem)){
-            $qd->andwhere('b.exemplaires = :exem');
-            $qd->setParameter("exem",$exem);
+            $qb->andwhere('b.exemplaires = :exem');
+            $qb->setParameter("exem",$exem);
         }
 
         if(!empty($mc)){
-            $qd->andwhere('b.title = :mc');
-            $qd->setParameter("mc",$mc);
+            $qb->andwhere('b.title = :mc');
+            $qb->setParameter("mc",$mc);
         }
-        
-        $query=$qd->getQuery();
-        $query->setMaxResults(10);
-        $result=$query->getResult();
-
-        return $result;
-    }
-
-     public function findPaginated($page)
-    {
-        // DQL
-        /*
-        $em = $this->getEntityManager();
-
-        $dql = "SELECT s, a
-                FROM AppBundle\Entity\Story s 
-                LEFT JOIN s.author a 
-                WHERE s.isPublished = 1";
-        $query = $em->createQuery($dql);
-        */
-
-        //Doctrine Query Builder
-        $qb = $this->createQueryBuilder("b");
-
-        // $qb->select('s')
-        //     ->addSelect('a')
-        //     ->leftJoin('s.author', 'a')
-        //     ->where('s.isPublished = 1');
 
         //commun aux deux
         $query = $qb->getQuery();
@@ -113,7 +87,7 @@ class BookRepository extends EntityRepository
         $paginationResults["prevPage"] = ($page <= 1) ? false : $page-1;
         $paginationResults["nextPage"] = ($page >= $lastPage) ? false : $page+1;
         
-        //dump($paginationResults);
+        dump($paginationResults);
         return $paginationResults;
     }
 }

@@ -25,18 +25,13 @@ class CatalogueController extends Controller
     public function catalogueAction(Request $request, $page)
     {        
         $bookrepo = $this->get("doctrine")->getRepository("AppBundle:Book");
-        $book = $bookrepo->allResults();
+        //$book = $bookrepo->allResults();
 
-        $orderrepo = $this->get("doctrine")->getRepository("AppBundle:RelBookOrder");
-        $order = $orderrepo->findAll();
-
-        //récupère toutes les BDs de la bdd
-        $paginationResults = $bookrepo->findPaginated($page);
-
-        if (!$paginationResults){
-            throw $this->createNotFoundException();
-        }
-
+        //$orderrepo = $this->get("doctrine")->getRepository("AppBundle:RelBookOrder");
+        //$order = $orderrepo->findAll();
+        $cate = "";
+        $exem = "";
+        $mc = "";
         $books = new Book();
         $createBookForm = $this->createForm(new BookCateType(), $books);
         $createBookForm->handleRequest($request);
@@ -46,7 +41,11 @@ class CatalogueController extends Controller
             $exem = $createBookForm->get("dispo")->getData();
             $mc = $createBookForm->get("keyword")->getData();
             //$bookrepo=$this->get("doctrine")->getRepository("AppBundle:Book");
-            $books = $bookrepo->cateResult($cate, $exem, $mc);
+            //$book = $bookrepo->cateResult($cate, $exem, $mc);
+        }
+        $paginationResults = $bookrepo->findPaginated($page, $cate, $exem, $mc);
+        if (!$paginationResults){
+            throw $this->createNotFoundException();
         }
 
         if(!$this->getUser()) {
@@ -55,8 +54,8 @@ class CatalogueController extends Controller
 
         $params=array(
             'createBookForm' => $createBookForm->createView(),
-            'books' => $book,
-            'orders' => $order,
+            //'books' => $book,
+            //'orders' => $order,
             "paginationResults" => $paginationResults
         );
 
