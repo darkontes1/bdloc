@@ -136,7 +136,11 @@
     
         <ul class="pagination">
 
+        {% if paginationResults.prevPage %}
+
             <li><a href="{{ path('catalogue', {page: paginationResults.prevPage}) }}"><i class="fa fa-arrow-circle-left"></i> Précédent</a></li>
+
+            {% endif %}
 
             <div class="sous-pagination">{{ paginationResults.nowShowingMin }} à {{ paginationResults.nowShowingMax }} sur {{ paginationResults.total }}</div>
 
