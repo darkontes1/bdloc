@@ -32,7 +32,7 @@ class OrderController extends Controller
         $orderrepo=$this->get("doctrine")->getRepository("AppBundle:Commande");
 
         $user=$this->getUser();
-
+        $nb;
 
         if($commande=$orderrepo->findOneBy(array('user'=>$user, 'status'=>"panier"))){
             
@@ -56,9 +56,8 @@ class OrderController extends Controller
             $commande->setDate(new \DateTime());
             $commande->setNbBD(1);
             $commande->setUser($this->getUser());
-            $commande->setStatus("panier");                                      
-
-            
+            $commande->setStatus("panier"); 
+            $nb = 1;
         }
 
         if ($nb<10) {
@@ -184,8 +183,6 @@ class OrderController extends Controller
 
         $relrepo=$this->get("doctrine")->getRepository("AppBundle:RelBookOrder");
 
-
-
         $valid=$validrepo->find($id);
 
         $rel=$relrepo->findByOrder($valid);
@@ -194,8 +191,7 @@ class OrderController extends Controller
         
 
         $createSpotForm = $this->createForm(new PickUpSpotType(), $spot);
-        $createSpotForm->handleRequest($request);
-
+        $createSpotForm->handleRequest($request);  
     
         if ($createSpotForm->isValid()){
 
@@ -210,6 +206,16 @@ class OrderController extends Controller
             $em = $this->get("doctrine")->getManager();
             $em->persist($valid);
             $em->flush();
+
+            //dump($this->getUser());
+            //envoie du mail
+            $mail = $this->get('mailer');
+            $message = $mail->createMessage()
+                              ->setSubject("Confirmation de commande !")
+                              ->setFrom('totoap123@gmail.fr')
+                              ->setTo($this->getUser()->getEmail())
+                              ->setBody($this->renderView('email/email.html.twig',array('valid'=>$valid, 'id'=>$id)),'text/html'); 
+            $mail->send($message);
 
             return $this->redirectToRoute('validation',array('id'=>$id));
 
