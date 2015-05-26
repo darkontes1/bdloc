@@ -1,0 +1,35 @@
+{% block body %}
+    <div>
+        <p>M/Mme {{ valid.user.nom }},</p>
+        <p>Votre commande a bien été prise en compte. Nous vous remercions de votre confiance.
+        Vore numéro de commande est : {{ valid.id }}</p>
+        <p>La livraison se fera dans un délai de 48 heures (voir tableau ci-joint).</p>
+    </div>
+    <table border="1px solid">
+        <tr>
+            <td>
+                date de livraison
+            </td>
+            <td>
+                {{valid.date|date("d-m-Y H:i:s")}}
+            </td>
+        <tr>
+            <td>
+                adresse du relais
+            </td>
+            <td>
+                {{valid.pickupspot.adresse}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                nombre de BD 
+            </td>
+            <td>
+                {{valid.nbBD}}
+            </td>
+        </tr>
+    </table>
+    <p>Bien cordialement,</p>
+    <div>BdLoc</div>
+{% endblock %}
