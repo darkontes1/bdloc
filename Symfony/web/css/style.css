@@ -249,7 +249,7 @@ aside{
 }
 
 aside:hover{
-    height: 370px;
+    height: 395px;
     width: 220px;
     background: rgb(163, 194, 255);
     transition: all 1s;
@@ -272,6 +272,21 @@ aside:hover{
     background: rgba(163, 194, 255, 0.5);;
     
 }
+
+#appbundle_paiement_exp_day{
+    display: none;
+}
+
+#amende{
+    border-bottom: 1px solid black;
+    padding: 15px 0px 15px 5px;
+}
+
+#transaction{
+    border-bottom: 1px solid black;
+    padding: 15px 0px 15px 5px;
+}
+
 
 .sous-pagination{
     float:left; 

@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+
+    {% for transaction in transactions %}
+        
+        <article id="transaction">
+
+            Id de la transaction: <strong>{{ transaction.id }}</strong> |
+            Prix du pv: <strong>{{ transaction.montant}}€</strong> |
+            Motif de l'amende: <strong>{{ transaction.message}}</strong> |
+            Statut de l'amende: <strong>{{ transaction.status}}</strong>
+
+        </article>
+
+
+    {% endfor %}
+
+    <a href=" {{ path('payer_amende') }} " class="btn btn-primary btn-lg" class="btn-retour">Retour</a>
+
+
+{% endblock %}
+
+{% block javascripts %}
+
+{% endblock %}

@@ -40,6 +40,12 @@ class Fine
      */
     private $user;
 
+    /**
+   * @ORM\OneToMany(targetEntity="transaction", mappedBy="fine")
+   * @ORM\JoinColumn(nullable=false)
+   */
+  private $transactions;
+
 
     /**
      * Get id
@@ -118,5 +124,45 @@ class Fine
     public function getUser()
     {
         return $this->user;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->transactions = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add transactions
+     *
+     * @param \AppBundle\Entity\transaction $transactions
+     * @return Fine
+     */
+    public function addTransaction(\AppBundle\Entity\transaction $transactions)
+    {
+        $this->transactions[] = $transactions;
+
+        return $this;
+    }
+
+    /**
+     * Remove transactions
+     *
+     * @param \AppBundle\Entity\transaction $transactions
+     */
+    public function removeTransaction(\AppBundle\Entity\transaction $transactions)
+    {
+        $this->transactions->removeElement($transactions);
+    }
+
+    /**
+     * Get transactions
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTransactions()
+    {
+        return $this->transactions;
     }
 }

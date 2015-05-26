@@ -40,6 +40,12 @@ class Fine
      */
     private $user;
 
+    /**
+   * @ORM\OneToMany(targetEntity="transaction", mappedBy="fine")
+   * @ORM\JoinColumn(nullable=false)
+   */
+  private $transactions;
+
 
     /**
      * Get id

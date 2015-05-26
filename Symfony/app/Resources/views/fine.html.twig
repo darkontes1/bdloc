@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+
+    {% for fine in fines %}
+        
+        <article id="amende">
+
+            <H3>Id de l'amende: <strong>{{ fine.id }}</strong> |
+            Nom: <strong>{{ fine.user.username }}</strong> |
+            Montant du pv: <strong>{{ fine.montant}}€</strong> |
+            Motif de l'amende: <strong>{{ fine.motif}}</strong> |
+            <a href="{{ path('paiement_amende',{ fineId:fine.id } ) }}" class="btn btn-primary btn-lg">Payer</a>
+            </H3>
+
+        </article>
+
+    {% endfor %}
+
+
+{% endblock %}
+
+{% block javascripts %}
+
+{% endblock %}

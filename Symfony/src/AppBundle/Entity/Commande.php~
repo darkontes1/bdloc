@@ -155,4 +155,32 @@ class Commande
     {
         return $this->pickupspot;
     }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     * @return Commande
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string 
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function __toString(){
+
+        return $pickupspot->getNomEntreprise().' '.$pickupspot->getAdresse().' '.$pickupspot->getCP(); 
+    }
 }

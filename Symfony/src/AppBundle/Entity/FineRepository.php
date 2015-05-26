@@ -12,4 +12,17 @@ use Doctrine\ORM\EntityRepository;
  */
 class FineRepository extends EntityRepository
 {
+    // public function allResults()
+    // {
+    //     $qb=$this->createQueryBuilder('f');
+    //     // $qb->select('b','a','c','s')
+    //     // ->leftJoin('b.dessinateur', 'a')
+    //     // ->leftJoin('b.scenariste', 'c')
+    //     // ->leftJoin('b.coloriste', 's');
+    //     $query=$qb->getQuery();
+    //     // $query->setMaxResults(10);
+    //     $result=$query->getResult();
+
+    //     return $result;
+    // }
 }

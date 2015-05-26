@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+{% if app.user and is_granted("ROLE_USER") or is_granted("ROLE_ADMIN") %}
+    <h1>Paiement sécurisé</h1>
+    {{ form(createPaiementForm, {'attr' : {novalidate : 'novalidate'}}) }}
+    <H4><a href="{{ path('transaction_detail') }}">Détails de vos transactions</a></H4>
+{% else %}
+    <p>Vous n'êtes pas connecté</p>
+    <a href=" {{ path('home') }} ">Retour à la page d'accueil</a>
+{% endif %}
+
+{% endblock %}
