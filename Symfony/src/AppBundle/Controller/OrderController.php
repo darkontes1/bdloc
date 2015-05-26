@@ -55,7 +55,10 @@ class OrderController extends Controller
 
 
                     $nb=$commande->getNbBD();
-                    $commande->setNbBD($nb+1);
+                    if ($nb<10) {
+                        $commande->setNbBD($nb+1);
+                    }
+                    
                 }
                     
 
@@ -66,9 +69,7 @@ class OrderController extends Controller
                     $commande->setUser($this->getUser());
                     $commande->setStatus("panier");                                      
 
-            if ($nb<10) {
-                      
-                    
+            if ($nb<10) {  
 
                 $em->persist($commande);
                 $em->flush();
