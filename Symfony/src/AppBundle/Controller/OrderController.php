@@ -37,13 +37,10 @@ class OrderController extends Controller
 
             $book=$bookrepo->find($id);
             $ex=$book->getExemplaires();
-
+            
                 
                 $book->setExemplaires($ex-1);
 
-                $bookrepo=$this->get("doctrine")->getRepository("AppBundle:Book");
-
-                $book=$bookrepo->find($id);
                 
                 $em->persist($book);
                 $em->flush();
@@ -69,7 +66,9 @@ class OrderController extends Controller
                     $commande->setUser($this->getUser());
                     $commande->setStatus("panier");                                      
 
-                  
+            if ($nb<10) {
+                      
+                    
 
                 $em->persist($commande);
                 $em->flush();
@@ -82,7 +81,8 @@ class OrderController extends Controller
                 $panier->setBook($book);
 
                 $em->persist($panier);
-                $em->flush();        
+                $em->flush();
+            }        
 
                 return $this->redirectToRoute('catalogue');
 
