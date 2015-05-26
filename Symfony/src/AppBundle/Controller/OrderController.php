@@ -33,24 +33,6 @@ class OrderController extends Controller
 
         $user=$this->getUser();
 
-        $bookrepo=$this->get("doctrine")->getRepository("AppBundle:Book");
-
-        $book=$bookrepo->find($id);
-        $ex=$book->getExemplaires();
-
-
-        $book->setExemplaires($ex-1);
-
-        $bookrepo=$this->get("doctrine")->getRepository("AppBundle:Book");
-
-        $book=$bookrepo->find($id);
-        
-        $em->persist($book);
-        $em->flush();
-
-        
-
-        
 
         if($commande=$orderrepo->findOneBy(array('user'=>$user, 'status'=>"panier"))){
             
@@ -58,7 +40,11 @@ class OrderController extends Controller
 
 
             $nb=$commande->getNbBD();
-            $commande->setNbBD($nb+1);
+
+            if ($nb<10) {
+            
+                $commande->setNbBD($nb+1);
+            }
             
             
         }
@@ -75,17 +61,32 @@ class OrderController extends Controller
             
         }
 
-        $em->persist($commande);
-        $em->flush();
+        if ($nb<10) {
+            
+            $bookrepo=$this->get("doctrine")->getRepository("AppBundle:Book");
 
-        $panier= new RelBookOrder();
-        $panier->setOrder($commande);
-        $panier->setStatus(false);
-        $panier->setDateOrder(new \DateTime());
-        $panier->setBook($book);
+            $book=$bookrepo->find($id);
+            $ex=$book->getExemplaires();
 
-        $em->persist($panier);
-        $em->flush();
+
+            $book->setExemplaires($ex-1);
+            
+            $em->persist($book);
+            $em->flush();
+
+            $em->persist($commande);
+            $em->flush();
+
+            $panier= new RelBookOrder();
+            $panier->setOrder($commande);
+            $panier->setStatus(false);
+            $panier->setDateOrder(new \DateTime());
+            $panier->setBook($book);
+
+            $em->persist($panier);
+            $em->flush();
+
+        }
 
             
 
