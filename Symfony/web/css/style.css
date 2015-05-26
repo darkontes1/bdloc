@@ -249,7 +249,7 @@ aside{
 }
 
 aside:hover{
-    height: 395px;
+    height: 425px;
     width: 220px;
     background: rgb(163, 194, 255);
     transition: all 1s;

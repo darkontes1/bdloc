@@ -179,6 +179,8 @@ class UserController extends Controller
 
             $res = file_get_contents($url); 
 
+            dump($res);
+
 
 
 
