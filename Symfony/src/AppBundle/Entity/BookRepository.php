@@ -26,38 +26,45 @@ class BookRepository extends EntityRepository
         return $result;
     }
 
-    public function findPaginated($page, $cate, $exem, $mc)
+    public function findPaginated($page, $cate, $exem, $mc, $alpha, $nbPage)
     {
-       
+        $numPerPage = 10;
         //Doctrine Query Builder
         $qb = $this->createQueryBuilder("b");
 
+        //Request for make the filter or not
         $qb->select('b','a','c','s','se')
         ->leftJoin('b.dessinateur', 'a')
         ->leftJoin('b.scenariste', 'c')
         ->leftJoin('b.coloriste', 's')
         ->leftJoin('b.serie','se');
-
+        //if author or title
+        if(!empty($mc)){
+            $qb->andwhere('b.title = :mc')
+                ->orwhere('a.nom = :mc');
+            $qb->setParameter("mc",$mc);
+        }
+        //if category
         if(!empty($cate)){
             $qb->andwhere('se.style = :cate');
             $qb->setParameter("cate",$cate);
         }
-
+        //if nbExemplaire > 0 or not
         if(!empty($exem)){
             $qb->andwhere('b.exemplaires = :exem');
             $qb->setParameter("exem",$exem);
         }
-
-        if(!empty($mc)){
-            $qb->andwhere('b.title = :mc')
-                ->orwhere('b.dessinateur = :mc');
-            $qb->setParameter("mc",$mc);
+        //if we need a order alphanumeric
+        if(!empty($alpha)){
+            $qb->orderBy('b.title', $alpha);
+        }
+        //if we need more /page
+        if(!empty($nbPage)){
+            $numPerPage = $nbPage;
         }
 
         //commun aux deux
         $query = $qb->getQuery();
-
-        $numPerPage = 10;
         $query->setMaxResults($numPerPage);
         $query->setFirstResult( ($page-1) * $numPerPage );
         $result = $query->getResult();

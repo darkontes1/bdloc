@@ -6,7 +6,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-//?appbundle_book_cate%5Bcategory%5D=Science-fiction&appbundle_book_cate%5Bdispo%5D=&appbundle_book_cate%5Badd%5D=&appbundle_book_cate%5Bnbbd%5D=&appbundle_book_cate%5Bkeyword%5D=&appbundle_book_cate%5BRechercher%5D=&appbundle_book_cate%5B_token%5D=E2YMGBtUYpBOqrnKzE1IbrgOj4is6LRKHbTkz1TgF34
 class BookCateType extends AbstractType
 {
     /**
@@ -53,8 +52,8 @@ class BookCateType extends AbstractType
                 "label" => "Trier par",
                 "required" => false,
                 'choices' => array(
-                    'Alpha ASC' => 'Ordre alphabetique croissant',
-                    'Alpha DESC' => 'Ordre alphabetique croissant'
+                    'ASC' => 'Ordre alphabetique croissant',
+                    'DESC' => 'Ordre alphabetique décroissant'
                 )
             ))
             ->add('nbbd', 'choice', array(
@@ -63,8 +62,8 @@ class BookCateType extends AbstractType
                 "label" => "Nombre par page",
                 "required" => false,
                 'choices' => array(
-                    'cinq' => '5 par page',
-                    'vingt' => '20 par page'
+                    5 => '5 par page',
+                    20 => '20 par page'
                 )
             ))
             ->add('keyword', 'search', array(

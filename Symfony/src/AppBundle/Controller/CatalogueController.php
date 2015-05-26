@@ -32,8 +32,13 @@ class CatalogueController extends Controller
         $cate = "";
         $exem = "";
         $mc = "";
+        $alpha = "ASC";
+        $nbPage = 10;
         $books = new Book();
-        $createBookForm = $this->createForm(new BookCateType(), $books);
+        $createBookForm = $this->createForm(new BookCateType(), $books, array(
+            "action" => $this->generateUrl('catalogue'),
+            "method" => "GET"
+        ));
         $createBookForm->handleRequest($request);
         $toto = $request->getQueryString();
 
@@ -41,10 +46,12 @@ class CatalogueController extends Controller
             $cate = $createBookForm->get("category")->getData();
             $exem = $createBookForm->get("dispo")->getData();
             $mc = $createBookForm->get("keyword")->getData();
+            $alpha = $createBookForm->get("sort")->getData();
+            $nbPage = $createBookForm->get("nbbd")->getData();
             //$bookrepo=$this->get("doctrine")->getRepository("AppBundle:Book");
             //$book = $bookrepo->cateResult($cate, $exem, $mc);
         }
-        $paginationResults = $bookrepo->findPaginated($page, $cate, $exem, $mc);
+        $paginationResults = $bookrepo->findPaginated($page, $cate, $exem, $mc, $alpha, $nbPage);
         if (!$paginationResults){
             throw $this->createNotFoundException();
         }
